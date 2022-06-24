@@ -97,7 +97,7 @@ Now, apply the manifest:
 kubectl apply -f repo.yml
 
 ## Add the Podinfo Service
-Save the following contents to podinfo/podinfo.yml
+Save the following contents to manifests/podinfo/podinfo.yml
 ```yml
 apiVersion: apps/v1
 kind: Deployment
