@@ -56,3 +56,81 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ## Login
 Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `admin` user and the password you obtain in the previous step.
+
+## Setup Your Repository and deploy Podifo in Argo CD
+Save the following contents to repo.yml
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: private-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: git
+  url: https://github.com/codygreen/argo_cd_demo
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-cd-demo
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: podinfo
+    repoURL: https://github.com/codygreen/argo_cd_demo.git
+    targetRevision: HEAD
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+```
+
+Now, apply the manifest:
+kubectl apply -f repo.yml
+
+## Add the Podinfo Service
+Save the following contents to podinfo/podinfo.yml
+```yml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podinfo
+spec:
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+    spec:
+      containers:
+      - name: podinfo
+        image: stefanprodan/podinfo
+        ports:
+        - containerPort: 9898
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: podinfo
+spec:
+  ports:
+    - port: 80
+      targetPort: 9898
+  selector:
+    app: podinfo
+```
+
+Commit the new file to upstream git repository.
+
+Click on the argo-cd-demo application in the Argo CD UI, you should see the service, deploy and pod objects appear once the Argo CD sync is completed.  
+![Argo CD Sync](..//assets/argo_sync.jpg)
