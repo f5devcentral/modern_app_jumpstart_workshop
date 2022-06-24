@@ -14,6 +14,8 @@ After a few months of developing this, the Brews company exposed this to their c
 - Break monolithic VM application into separate “microservices” to enable per-component scalability. 
 - Host application in Kubernetes for service automation and orchestration. 
 
+  - [Install ArgoCD](argocd.md)
+
 **Mission 2:**
 
 - Implement an API gateway to rate limit visitors that may be abusing the application 
@@ -29,3 +31,4 @@ After a few months of developing this, the Brews company exposed this to their c
 **Mission 5:** 
 
 - Acquire application performance visibility
+

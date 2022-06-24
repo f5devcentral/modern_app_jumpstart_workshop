@@ -8,3 +8,4 @@ This workshop will walk you through common scenarios that an application develop
 
 ## Monolith to Microservices Scenario
 At the beginning of the workshop we will walk through a common scenario that a developer might take as they transition their application from a monolith to microservices. 
+[start scenario](scenario/README.md)
