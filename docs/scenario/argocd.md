@@ -9,9 +9,6 @@ In our workshop, we will use Argo CD to deploy our microservices and resources.
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-# Expose the Argo CD API Server
-kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": 
-"LoadBalancer"}}'
 ```
 
 ## Expose the Argo CD Server API/UI
