@@ -32,10 +32,25 @@ git clone https://github.com/your_username/modern_app_jumpstart_workshop.git mod
 git clone git@github.com:your_username/modern_app_jumpstart_workshop.git modern_app_jumpstart_workshop
 ```
 
-## Configure Kubectl
-For kubectl to talk with you K3s cluster in UDF, you'll need to ensure you have a kubeconfig file setup on your laptop
+## Generate Local Kubeconfig
 
-Download the UDF kubeconfig file from the k3s server in UDF (steps TBD)
+To access the K8s API, you will need to download a kubeconfig file from the K3s server in your UDF blueprint.
 
-Set the KUBECONFIG environment varible to point to your UDF kubeconfig file (see [K8s docs](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#the-kubeconfig-environment-variable) if you need help.)
+In your UDF deployment, click the Components tab then for the k3s system click the Access dropdown then the KUBECONFIG access method.
 
+This will present a webpage with a link to download the config-udf.yaml file.
+
+Once the file is downloaded, set your KUBECONFIG environment variable to point to this location. For more information, reference the [K8s docs](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#the-kubeconfig-environment-variable). 
+
+Now, test that your settings are correct:
+```bash
+kubectl get nodes
+```
+
+## Obtain the Argo CD password 
+To leverage the Argo CD UI, you will need to obtain the password created at install - save this for later use. 
+```bash
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
+```
+
+Now open the Argo CD Access Method for the K3s server and login with *admin* and the password obtain from the previous step. 
