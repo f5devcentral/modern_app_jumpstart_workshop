@@ -14,6 +14,7 @@ After a few months of developing this, the Brews company exposed this to their c
 - Break monolithic VM application into separate “microservices” to enable per-component scalability. 
 - Host application in Kubernetes for service automation and orchestration. 
 
+  - [Setup](setup.md)
   - [Install ArgoCD](argocd.md)
 
 **Mission 2:**
