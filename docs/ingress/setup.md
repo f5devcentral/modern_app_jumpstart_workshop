@@ -114,7 +114,9 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.nginxStatus.allowCidrs=0.0.0.0/0
 ```
 
-## Configure CoreDNS
+## Configure kube-vip
+
+[kube-vip](https://kube-vip.chipzoller.dev/) will be used to assign external IP addresses for our LoadBalancer resources so that users can reach the application once deployed.
 
 ```bash
 cd manifests/kube-vip
