@@ -150,14 +150,14 @@ curl -H "Host: brewz.f5demo.com" http://10.1.1.200:8242
 Ssh into the k3s VM and add the following to the end of the `/etx/nginx/conf.d/default.conf` file:
 
 ```bash
-upstream brews {
+upstream brewz {
     server 10.1.1.200:8242;
 }
 
 server {
     listen 8082;
     location / {
-        proxy_pass http://brews;
+        proxy_pass http://brewz;
         proxy_set_header Host brewz.f5demo.com;
     }
 }
