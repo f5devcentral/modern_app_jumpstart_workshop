@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ingress
+  namespace: nginx-ingress
+spec:
+  externalTrafficPolicy: Local
+  type: LoadBalancer
+  loadBalancerIP: 10.1.1.200
+  ports:
+    - port: 8242
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    app: nginx-ingress
