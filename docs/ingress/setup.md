@@ -111,10 +111,8 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.image.tag=latest \
   --set controller.serviceAccount.imagePullSecretName=regcred \
   --set controller.nginxplus=true \
-  --set con
+  --set controller.nginxStatus.allowCidrs=0.0.0.0/0
 ```
-
-TODO: the above command appears to be cut off
 
 ## Configure CoreDNS
 
@@ -165,3 +163,6 @@ server {
 Restart nginx: `sudo systemctl restart nginx`
 
 ## Use the Brewz UDF access method to explore the deployed app
+
+# Next Steps
+Now you can continue to configuring [ArgoCD](argocd.md)

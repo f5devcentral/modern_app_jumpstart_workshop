@@ -15,7 +15,6 @@ After a few months of developing this, the Brews company exposed this to their c
 - Host application in Kubernetes for service automation and orchestration. 
 
   - [Setup](setup.md)
-  - [Install ArgoCD](argocd.md)
 
 **Mission 2:**
 
