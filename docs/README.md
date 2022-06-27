@@ -2,7 +2,7 @@
 
 This workshop will walk you through common scenarios that an application developer may face as they transition their application from a monolith to microservices. 
 
-## Prerequists 
+## Prerequisites 
 The following resources need to be installed on your laptop:
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [git](https://git-scm.com/downloads)

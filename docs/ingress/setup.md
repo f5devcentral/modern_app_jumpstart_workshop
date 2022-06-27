@@ -70,7 +70,7 @@ do
     sleep 10
 done
 
-kubectl config --kubeconfig=$KUBECONFIG set-cluster udf --server=https://44355f38-2543-42d2-aa52-e80d44c8a791.access.udf.f5.com:443 2>&1 >/dev/null
+kubectl config --kubeconfig=$KUBECONFIG set-cluster udf --server=https://$HOST:443 2>&1 >/dev/null
 
 kubectl config --kubeconfig=$KUBECONFIG set clusters.udf.certificate-authority-data $CA 2>&1 >/dev/null
 
@@ -114,57 +114,6 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.nginxStatus.allowCidrs=0.0.0.0/0
 ```
 
-## Configure kube-vip
-
-[kube-vip](https://kube-vip.chipzoller.dev/) will be used to assign external IP addresses for our LoadBalancer resources so that users can reach the application once deployed.
-
-```bash
-cd manifests/kube-vip
-kubectl apply -f rbac.yml
-kubectl apply -f configmap.yml
-kubectl apply -f arp-manifest.yml
-```
-
-## Configure NGINX Plus Ingress
-
-Follow the installation instructions [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-manifests/). Skip the optional NAP WAF and NAP DoS steps. Stop before you reach step 4.
-
-## Deploy the brews application
-
-```bash
-cd ../brews
-kubectl apply -f mongo-init.yml
-kubectl apply -f app.yml
-kubectl apply -f virtual-server.yml
-kubectl apply -f ingress.yml
-```
-
-Ssh into the k3s VM and run a test cUrl:
-
-```bash
-curl -H "Host: brewz.f5demo.com" http://10.1.1.200:8242
-```
-
-## Expose brewz.f5demo.com in external NGINX proxy
-
-Ssh into the k3s VM and add the following to the end of the `/etx/nginx/conf.d/default.conf` file:
-
-```bash
-upstream brewz {
-    server 10.1.1.200:8242;
-}
-
-server {
-    listen 8082;
-    location / {
-        proxy_pass http://brewz;
-        proxy_set_header Host brewz.f5demo.com;
-    }
-}
-```
-Restart nginx: `sudo systemctl restart nginx`
-
-## Use the Brewz UDF access method to explore the deployed app
 
 # Next Steps
 Now you can continue to configuring [ArgoCD](argocd.md)
