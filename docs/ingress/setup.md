@@ -64,7 +64,13 @@ HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.n
 
 CA=`openssl s_client -connect $HOST:443 2>&1 </dev/null | sed -ne '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p'|base64 -w 0`
 
-kubectl config --kubeconfig=$KUBECONFIG set-cluster udf --server=https://44355f38-2543-42d2-aa52-e80d44c8a791.access.udf.f5.com:443 2>&1 >/dev/null
+while ! kubectl get po
+do
+    echo waiting for kube api to be up...
+    sleep 10
+done
+
+kubectl config --kubeconfig=$KUBECONFIG set-cluster udf --server=https://$HOST:443 2>&1 >/dev/null
 
 kubectl config --kubeconfig=$KUBECONFIG set clusters.udf.certificate-authority-data $CA 2>&1 >/dev/null
 
@@ -107,6 +113,7 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.nginxplus=true \
   --set controller.nginxStatus.allowCidrs=0.0.0.0/0
 ```
+
 
 # Next Steps
 Now you can continue to configuring [ArgoCD](argocd.md)

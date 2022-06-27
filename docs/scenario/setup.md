@@ -47,6 +47,17 @@ Now, test that your settings are correct:
 kubectl get nodes
 ```
 
+## Manually deploy the Brewz application using manifests
+
+```bash
+cd manifests/brewz
+kubectl apply -f mongo-init.yml
+kubectl apply -f app.yml
+kubectl apply -f virtual-server.yml
+```
+
+Use the **Brewz** UDF access method to explore the deployed app in your browser.
+
 ## Obtain the Argo CD password 
 To leverage the Argo CD UI, you will need to obtain the password created at install - save this for later use. 
 ```bash

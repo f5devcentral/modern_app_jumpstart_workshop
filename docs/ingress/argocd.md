@@ -91,7 +91,7 @@ spec:
 ```
 
 Now, apply the manifest:
-kubectl apply -f repo.yml
+`kubectl apply -f repo.yml`
 
 ## Add the Podinfo Service
 Save the following contents to manifests/podinfo/podinfo.yml
