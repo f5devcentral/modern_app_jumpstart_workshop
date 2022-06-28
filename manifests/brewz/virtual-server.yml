@@ -17,8 +17,6 @@ spec:
       action:
         pass: spa
     - path: /api
-      policies:
-        - name: rate-limit-policy
       action:
         pass: api
     - path: /images
