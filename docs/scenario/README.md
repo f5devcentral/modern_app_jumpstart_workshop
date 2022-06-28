@@ -20,6 +20,8 @@ After a few months of developing this, the Brewz company exposed this to their c
 
 - Implement an API gateway to rate limit visitors that may be abusing the application 
 
+  - [Rate-limit](rate-limit.md)
+
 **Mission 3:**
 
 - Achieve non-disruptive application deployments 
