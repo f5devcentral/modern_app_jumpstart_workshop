@@ -7,6 +7,7 @@ The following resources need to be installed on your laptop:
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [git](https://git-scm.com/downloads)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [ApacheBench](https://httpd.apache.org/docs/2.4/programs/ab.html)
 - [GitHub CLI - optional](https://cli.github.com/)
 
 You will also need to [setup authentication](https://docs.github.com/en/authentication) to GitHub.
