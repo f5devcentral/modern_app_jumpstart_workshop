@@ -31,23 +31,26 @@ nginx-repo.crt  nginx-repo.key
 To build the NGINX Ingress Controller container, follow these steps:
 ```bash
 # Replace OWNER with your Github username
-make debian-image-nap-dos-plus PREFIX=ghcr.io/OWNER/nginx-plus-ingress TARGET=container
+export GITHUB_USER=OWNER
+make debian-image-nap-dos-plus PREFIX=ghcr.io/$GITHUB_USER/nginx-plus-ingress TARGET=container
 
 ```
 
 ## Publish the Container
 To publish the NGINX Ingress Controller container to your private registry follow the following steps:
 1. Create a [GitHub PAT (Personal Access Token)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following scopes:
-  - *read:packages*
-  - *write:packages*
-  - *delete:packages*
+    - *read:packages*
+    - *write:packages*
+    - *delete:packages*
 1. Export the value to the *GITHUB_TOKEN* environment variable.
+    ```bash
+    export GITHUB_TOKEN=your_access_token
+    ```
 1. run the *docker login* command to log in to the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
     ```bash
     # Login to GitHub Packages
-    echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin 
+    echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin 
     # Find your container tag
-    docker images | grep nginx-plus-ingress
-    # Replace OWNER with your Github username
-    # Replace TAG with your nginx-plus-ingress tag version    
-    docker push ghcr.io/OWNER/nginx-plus-ingress:TAG
+    TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
+    # Publish the container
+    docker push ghcr.io/$GITHUB_USER/nginx-plus-ingress:$TAG
