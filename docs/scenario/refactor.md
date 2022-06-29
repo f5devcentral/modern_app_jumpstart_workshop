@@ -35,11 +35,19 @@ spec:
     - name: api
       service: api
       port: 8000
+    - name: inventory
+      service: inventory
+      port: 8002
+    - name: recommendations
+      service: recommendations
+      port: 8001
   routes:
     - path: /
       action:
         pass: spa
     - path: /api
+      policies:
+        - name: rate-limit-policy
       action:
         pass: api
     - path: /api/inventory
@@ -60,7 +68,9 @@ spec:
 
 ```
 
-Note that we have added more specific routes so that calls to `/api/inventory` and `/api/recommendations` are being routed directly to the authoritative services and ultimately the pods that contain them.
+Note that we have:
+* Added upstream definitions to the `inventory` and `recommendations` services.
+* Added more specific paths so that calls to `/api/inventory` and `/api/recommendations` are being routed directly to the authoritative services, and ultimately the pods that contain them.
 
 Save and commit the `virtual-server.yml` file to the local repository, and push the changes to your remote GitHub repository. 
 
