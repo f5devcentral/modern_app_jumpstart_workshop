@@ -14,7 +14,7 @@ For this lab we will leverage the Rancher K3s Kubernetes distribution.  Since we
 
 Run the following command on the K3s server:
 ```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik --bind-address 10.1.1.5" sh -s -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik --egress-selector-mode=disabled --bind-address 10.1.1.5" sh -s -
 ```
 
 ## Generate Service Account
