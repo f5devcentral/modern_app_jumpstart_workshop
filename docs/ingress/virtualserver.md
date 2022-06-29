@@ -45,6 +45,15 @@ The *return* action returns a preconfigured response.
 The *proxy* action passes a request to an upstream with the ability to modify the request/response.  
 
 In the Brewz virtual-server.yml manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
+```yaml
+...
+    - path: /images
+      action:
+        proxy:
+          upstream: api
+          rewritePath: /images
+...
+```
 
 # Upstreams
 The upstream defines a destination for the routing configuration.  The upstream's name must be a valid DNS lable as defined in RFC 1035. 
