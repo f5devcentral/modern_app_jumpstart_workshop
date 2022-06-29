@@ -222,8 +222,8 @@ OpenSSL will prompt you with questions about your cert request:
 - Locality Name: Seattle
 - Organization Name: F5
 - Organizational Unit Name: Brewz
-- Common Name: brewz.f5demos.com
-- Email Address: brewsz@f5demos.com
+- Common Name: brewz.f5demo.com
+- Email Address: brewsz@f5demo.com
 
 ### Create K8s Secret for the Cert and Key
 Now that we have a self-signed certificate, we need to add it to our K8s cluster as a secret.
