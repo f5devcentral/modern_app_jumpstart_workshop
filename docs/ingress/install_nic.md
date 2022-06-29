@@ -69,7 +69,7 @@ NAME                               TYPE           CLUSTER-IP      EXTERNAL-IP   
 nginx-plus-ingress-nginx-ingress   LoadBalancer   10.43.129.144   10.1.1.5      80:31901/TCP,443:31793/TCP   57m
 ```
 
-## Insect Pod Details
+## Inspect Pod Details
 Now that we know our NGINX Ingress Controller Pod is up and running, lets dig into some of the pod details.
 
 ```shell
@@ -165,6 +165,22 @@ Some items of interest from the output:
     - 80/443: http/https traffic
     - 8081: readiness 
     - 9113: Prometheus
+
+## NGINX Dashboard
+The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key load-balancing and performance metrics.
+
+To access the dashboard, SSH into the K3s server via the *SSH* or *Web Shell* access methods.
+
+```bash
+# get the ingress pod name
+NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
+# start a kubectl port-forward
+kubectl port-forward $NIC_POD 9000:9000 --address='0.0.0.0' --namespace=nginx-ingress
+```
+
+Now, open the *Dashboard* UDF Access Method on the K3 server.
+
+**Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
 
 # Next Steps
 Now you can continue to configuring [ArgoCD](argocd.md)
