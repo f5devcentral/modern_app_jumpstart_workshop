@@ -98,7 +98,7 @@ Now, apply the manifest:
 
 ## View the Argo CD Application
 1. Open the Argo CD UDF Access Method under the K3s server
-  ![Argo CD Sync](..//assets/argo_sync.jpg)
+  ![Argo CD Sync](../assets/argo_sync.jpg)
 1. Click on the argo-cd-demo application in the Argo CD UI and inspect the deployed services and policies
   - You should see the individual services as well as the rate-limit-policy from day 1 of the workshop
 
