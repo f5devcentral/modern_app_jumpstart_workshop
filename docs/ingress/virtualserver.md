@@ -8,7 +8,7 @@ More detailed information can be found in the [VirtualServer and VirtualServerRo
 Let's take a look at common resources for a modern application.
 
 # Action
-The action resources defines an action to perform for a request and is the basis for our Brewz demo application.
+The action resource defines an action to perform for a request and is the basis for our Brewz demo application.
 
 ## Pass
 The *pass* action passees the request to an upstream that is defined in the resource.  
