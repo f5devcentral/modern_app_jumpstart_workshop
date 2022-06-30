@@ -18,7 +18,7 @@ curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik --egress-se
 ```
 
 ## Generate Service Account
-To provide remote Access to the K8s API, best practice would be to generated a dedicated K8s Service Account. 
+To provide remote Access to the K8s API, the best practice would be to generate a dedicated K8s Service Account. 
 
 Run the following commands on the K3s server:
 ```bash
