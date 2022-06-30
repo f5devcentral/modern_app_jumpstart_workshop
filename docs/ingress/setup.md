@@ -37,7 +37,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
 
 1. Run the following commands on the K3s server:
     ```bash
-    export KUBECONFIG=~/etc/rancher/k3s/config-udf.yaml
+    export KUBECONFIG=/etc/rancher/k3s/config-udf.yaml
 
     # Get the UDF Access Method
     HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "K3s API") | .host' -r`
