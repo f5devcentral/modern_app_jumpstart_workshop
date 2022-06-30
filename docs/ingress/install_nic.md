@@ -39,7 +39,8 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.appprotect.enable=true \
   --set controller.appprotectdos.enable=true \
   --set controller.nginxStatus.port=9000 \
-  --set controller.nginxStatus.allowCidrs=0.0.0.0/0
+  --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
+  --set prometheus.create=true
 ```
 
 The helm output should state:`The NGINX Ingress Controller has been installed.`
@@ -70,7 +71,7 @@ nginx-plus-ingress-nginx-ingress   LoadBalancer   10.43.129.144   10.1.1.5      
 ```
 
 ## Inspect Pod Details
-Now that we know our NGINX Ingress Controller Pod is up and running, lets dig into some of the pod details.
+Now that we know our NGINX Ingress Controller Pod is up and running, let's dig into some of the pod details.
 
 ```shell
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
