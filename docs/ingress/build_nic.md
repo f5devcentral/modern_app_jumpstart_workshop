@@ -46,7 +46,7 @@ To publish the NGINX Ingress Controller container to your private registry follo
     ```bash
     export GITHUB_TOKEN=your_access_token
     ```
-1. run the *docker login* command to log in to the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
+1. run the *docker login* command to log into the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
     ```bash
     # Login to GitHub Packages
     echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin 
