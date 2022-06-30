@@ -75,7 +75,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
 1. Copy the output from the kubeconfig file and save it to your laptop.
 1. Set the KUBECONFIG environment variable to your new kubeconfig file
     ```bash
-    # 
+    # Export kubeconfig location
     export KUBECONFIG=~/Downloads/config-udf.yaml
 
     # Test kubeconfig, you should see the ubuntu node
