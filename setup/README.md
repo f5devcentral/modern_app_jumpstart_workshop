@@ -11,5 +11,11 @@ To configure setup on a new k3s server, run the following steps:
 
 ```bash
 git clone https://github.com/f5devcentral/modern_app_jumpstart_workshop.git
-cp modern_app_jumpstart_workshop/setup/manifests/* /var/lib/rancher/k3s/server/manifests
+cp /root/modern_app_jumpstart_workshop/setup/manifests/* /var/lib/rancher/k3s/server/manifests
+```
+
+You can check the logs by:
+
+```bash
+journalctl -u k3s.service
 ```
