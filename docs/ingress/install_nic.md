@@ -62,7 +62,7 @@ nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj   1/1     Running   0         
 
 To check our service run the following command:
 ```shell
-kubectl get svcs -n nginx-ingress
+kubectl get svc -n nginx-ingress
 ```
 The output should look similar to:
 ```shell
