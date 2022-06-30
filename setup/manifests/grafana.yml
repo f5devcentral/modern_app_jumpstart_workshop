@@ -1,9 +1,11 @@
+---
 kind: Namespace
 apiVersion: v1
 metadata:
   name: monitoring
   labels:
     name: monitoring
+
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart

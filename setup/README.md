@@ -4,7 +4,7 @@ This folder contains the resources needed to build and maintain the base UDF blu
 
 ## Manifests
 
-The manifest folder contains manifests that need to be copied to the
+The manifests folder contains manifests that need to be copied to the
 `/var/lib/rancher/k3s/server/manifests` folder on the k3s server.
 
 To configure setup on a new k3s server, run the following steps:

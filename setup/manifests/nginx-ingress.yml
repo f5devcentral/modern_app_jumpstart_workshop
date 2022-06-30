@@ -1,9 +1,11 @@
+---
 kind: Namespace
 apiVersion: v1
 metadata:
   name: nginx-ingress
   labels:
     name: nginx-ingress
+
 ---
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
