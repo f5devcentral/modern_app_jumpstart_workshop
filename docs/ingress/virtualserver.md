@@ -5,7 +5,7 @@ The resources enable use cases not supported with the Ingress resource, such as 
 
 More detailed information can be found in the [VirtualServer and VirtualServerRoute Resources docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources).
 
-Lets take a look at common resources for a modern application.
+Let's take a look at common resources for a modern application.
 
 # Action
 The action resources defines an action to perform for a request and is the basis for our Brewz demo application.

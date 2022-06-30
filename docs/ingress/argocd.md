@@ -103,7 +103,7 @@ Now, apply the manifest:
   - You should see the individual services as well as the rate-limit-policy from day 1 of the workshop
 
 ## Inspect the NGINX Ingress Controller Configuration
-Now that Argo CD has deployed out application lets take a look at the NGINX Ingress Controller Virtual Server resources.
+Now that Argo CD has deployed out application let's take a look at the NGINX Ingress Controller Virtual Server resources.
 
 **Note:** Refer to the [VirtualServer docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) for more information.
 
@@ -207,4 +207,4 @@ A few items of interest in the output:
   - "/images" -> rewrite policy to the api upstream
 
 # Next Steps
-Now that you have a base application deployed, lets take a deeper look at the [VirtualServer resource](virtualserver.md).
+Now that you have a base application deployed, let's take a deeper look at the [VirtualServer resource](virtualserver.md).
