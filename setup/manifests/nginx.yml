@@ -1,0 +1,20 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: nginx-ingress
+  labels:
+    name: nginx-ingress
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nginx-ingress
+  namespace: nginx-ingress
+spec:
+  chart: nginx-stable
+  repo: https://helm.nginx.com/stable
+  targetNamespace: nginx-ingress
+  set:
+    controller.nginxStatus.port: "9000"
+    controller.nginxStatus.allowCidrs: "0.0.0.0/0"
+    prometheus.create: "true"

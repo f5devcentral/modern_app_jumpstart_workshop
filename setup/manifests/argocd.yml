@@ -10705,7 +10705,6 @@ metadata:
     app.kubernetes.io/name: argocd-server
     app.kubernetes.io/part-of: argocd
   name: argocd-server-nodeport
-  namespace: argocd
 spec:
   ports:
     - name: http
