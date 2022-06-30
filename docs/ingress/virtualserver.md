@@ -1,4 +1,5 @@
 # VirtualServer and VirtualServerRoute Resources
+
 VirtualServer and VirtualServerRoute resources were added into NGINX Ingress Controller started in version 1.5 and are implemented via [Customer Resources (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
 The resources enable use cases not supported with the Ingress resource, such as traffic splitting and advanced content-based routing.
@@ -7,13 +8,15 @@ More detailed information can be found in the [VirtualServer and VirtualServerRo
 
 Let's take a look at common resources for a modern application.
 
-# Action
+## Action
+
 The action resource defines an action to perform for a request and is the basis for our Brewz demo application.
 
-## Pass
+### Pass
+
 The *pass* action passes the request to an upstream that is defined in the resource.  
 
-In the Brewz virtual-server.yml manifest, the *spa* and *api* services leverage this method. 
+In the Brewz `virtual-server.yml` manifest, the *spa* and *api* services leverage this method.
 
 ```yaml
 ...
@@ -35,16 +38,20 @@ In the Brewz virtual-server.yml manifest, the *spa* and *api* services leverage 
 ...
 ```
 
-## Redirect
-The *redirect* action redirects a request to a provided URL. 
+### Redirect
 
-## Return
+The *redirect* action redirects a request to a provided URL.
+
+### Return
+
 The *return* action returns a preconfigured response.  
 
-## Proxy
+### Proxy
+
 The *proxy* action passes a request to an upstream with the ability to modify the request/response.  
 
-In the Brewz virtual-server.yml manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
+In the Brewz `virtual-server.yml` manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
+
 ```yaml
 ...
     - path: /images
@@ -55,10 +62,12 @@ In the Brewz virtual-server.yml manifest, the */images* path uses this method to
 ...
 ```
 
-# Upstreams
-The upstream defines a destination for the routing configuration. The upstream's name must be a valid DNS label as defined in RFC 1035. 
+## Upstreams
 
-In the Brewz virtual-server.yml mainfest, we define a very simple upstream configuration for the *spa* and *api* services:
+The upstream defines a destination for the routing configuration. The upstream's name must be a valid DNS label as defined in RFC 1035.
+
+In the Brewz `virtual-server.yml` manifest, we define a very simple upstream configuration for the *spa* and *api* services:
+
 ```yaml
 ...
   upstreams:
@@ -71,7 +80,7 @@ In the Brewz virtual-server.yml mainfest, we define a very simple upstream confi
 ...
 ```
 
-While this configuration meets our requirements for a lab, in a production environment you may need more advanced configurations.  For example, if we knew that the API server could only handle 32 concurent connections then we may want to modify the mainifest to include the *max-conns* attribute:
+While this configuration meets our requirements for a lab, in a production environment you may need more advanced configurations.  For example, if we knew that the API server could only handle 32 concurrent connections then we may want to modify the manifest to include the *max-conns* attribute:
 
 ```yaml
 ...
@@ -85,13 +94,14 @@ While this configuration meets our requirements for a lab, in a production envir
       max-conns: 32
 ...
 ```
+
 For a full list of Upstream attributes, please refer to the [docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/#upstream).
 
+### HealthCheck
 
-## HealthCheck
-One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly. 
+One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly.
 
-In VSCode, open the */manifsts/brewz/virtaul-server.yml* file and add a healthCheck resource; example below.
+In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add a `healthCheck` resource; example below.
 
 ```yaml
 ---
@@ -129,16 +139,19 @@ spec:
 ```
 
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
+
 ```bash
 # Find the Brewz Access Method's Host
 HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
 curl -k https://$HOST/api/products/123
 ```
 
-# ErrorPage
+## ErrorPage
+
 While the Brews developers were able to break their monolith application into microservices, their APIs are not always returning a JSON response.  A good example is when you lookup a product that does not exist.  The API returns a 400 HTTP response code but the body payload is *"Could not find the product!"*.
 
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test this output:
+
 ```bash
 # Find the Brewz Access Method's Host
 HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
@@ -147,7 +160,7 @@ curl -k https://$HOST/api/products/1234
 
 Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-In VSCode, open the */manifsts/brewz/virtaul-server.yml* file and add an ErrorPage resource; example below.
+In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add an `errorPages` resource; example below.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -194,6 +207,7 @@ spec:
 ```
 
 Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
+
 ```bash
 # Find the Brewz Access Method's Host
 HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
@@ -203,20 +217,24 @@ curl -k https://$HOST/api/products/1234
 Your output should look like: `{"msg": "Could not find the product!"}`
 
 ## TLS
-A common requirement for most websites today is to leverage encryption to secure the communcation between the client and the server.  While this would be a critical requirement for an ecommerce site like our Brewz demo app, many enterprise customers also require encryption due to search engines, such as Google, demoting their rank in search results if the website does not offer encryption.
+
+A common requirement for most websites today is to leverage encryption to secure the communication between the client and the server.  While this would be a critical requirement for an e-commerce site like our Brewz demo app, many enterprise customers also require encryption due to search engines, such as Google, demoting their rank in search results if the website does not offer encryption.
 
 In this step, we will add TLS encryption to the Brewz VirtualServer resource.
 
 ### Create a certificate
+
 Since you are running this lab in a closed ecosystem (UDF), you do not have the ability to easily create external DNS records and obtain a public TLS certificate; we will look at this ability in another lab leveraging F5 Distributed Cloud.  Due to this limitation, we will create a self-signed certificate.
 
 Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
+
 ```bash
 # Create the key and cert
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/brewz-selfsigned.key -out /etc/ssl/certs/brewz-selfsigned.crt
 ```
 
 OpenSSL will prompt you with questions about your cert request:
+
 - Country Name: US
 - State or Province Name: WA
 - Locality Name: Seattle
@@ -226,6 +244,7 @@ OpenSSL will prompt you with questions about your cert request:
 - Email Address: brewsz@f5demo.com
 
 ### Create K8s Secret for the Cert and Key
+
 Now that we have a self-signed certificate, we need to add it to our K8s cluster as a secret.
 
 Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
@@ -237,11 +256,13 @@ sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned
 Now that your secret is created, let's take a look at it.
 
 Run the following command from your laptop:
+
 ```shell
 kubectl describe secret brewz-tls -n nginx-ingress
 ```
 
-Your output should look simiar to:
+Your output should look similar to:
+
 ```shell
 Name:         brewz-tls
 Namespace:    nginx-ingress
@@ -257,9 +278,10 @@ tls.key:  1704 bytes
 ```
 
 ### Modify VirtualServer Resource
+
 The final step is to update our Brewz VirtualServer resource to leverage the new TLS certificate.
 
-In VSCode, open the */manifests/brewz/virtual-server.yml* file and add the following fields to the virtual server:
+In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add the following fields to the virtual server:
 
 ```yaml
 secret: brewz-tls
@@ -268,6 +290,7 @@ redirect:
 ```
 
 The final file should look like the example below:
+
 ```yaml
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServer
@@ -315,11 +338,13 @@ spec:
 ```
 
 Now, let's check the status of our virtual server:
+
 ```shell
 kubectl get vs
 ```
 
 Notice that the virtual server is now listening on port *80* and *443*.
 
-# Next Steps
-You have completed the NGINX Plus portion of the Ingress lab. 
+## Next Steps
+
+You have completed the NGINX Plus portion of the Ingress lab.
