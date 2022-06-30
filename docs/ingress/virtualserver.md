@@ -11,7 +11,7 @@ Let's take a look at common resources for a modern application.
 The action resource defines an action to perform for a request and is the basis for our Brewz demo application.
 
 ## Pass
-The *pass* action passees the request to an upstream that is defined in the resource.  
+The *pass* action passes the request to an upstream that is defined in the resource.  
 
 In the Brewz virtual-server.yml manifest, the *spa* and *api* services leverage this method. 
 
