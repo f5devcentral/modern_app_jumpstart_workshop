@@ -231,7 +231,7 @@ Now that we have a self-signed certificate, we need to add it to our K8s cluster
 Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
 
 ```shell
-sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned.key --cert=/etc/ssl/certs/brewz-selfsigned.crt -n nginx-ingress
+sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned.key --cert=/etc/ssl/certs/brewz-selfsigned.crt
 ```
 
 Now that your secret is created, let's take a look at it.
@@ -277,8 +277,6 @@ spec:
   host: brewz.f5demo.com
   tls:
     secret: brewz-tls
-    redirect: 
-        enable: true
   upstreams:
     - name: spa
       service: spa
