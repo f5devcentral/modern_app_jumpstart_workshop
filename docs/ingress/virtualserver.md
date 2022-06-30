@@ -136,7 +136,7 @@ curl -k https://$HOST/api/products/123
 ```
 
 # ErrorPage
-While the Brews developers were able to break their monolith application into microservies their APIs are not always returning a JSON response.  A good example is when you lookup a product that does not exist.  The API returns a 400 HTTP response code but the body payload is *""Could not find the product!"*.
+While the Brews developers were able to break their monolith application into microservices, their APIs are not always returning a JSON response.  A good example is when you lookup a product that does not exist.  The API returns a 400 HTTP response code but the body payload is *"Could not find the product!"*.
 
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test this output:
 ```bash
