@@ -14,3 +14,5 @@ spec:
   chart: grafana
   repo: https://grafana.github.io/helm-charts
   targetNamespace: monitoring
+  set:
+    service.type: "NodePort"
