@@ -184,7 +184,7 @@ spec:
             body: |
               {\"msg\": \"Could not find the product!\"}
             headers:
-            - name: x-debug-original-statues
+            - name: x-debug-original-status
               value: ${upstream_status}
     - path: /images
       action:
@@ -305,7 +305,7 @@ spec:
             body: |
               {\"msg\": \"Could not find the product!\"}
             headers:
-            - name: x-debug-original-statues
+            - name: x-debug-original-status
               value: ${upstream_status}
     - path: /images
       action:
