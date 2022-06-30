@@ -1,5 +1,5 @@
 # Setup
-To start the monolith to microservices senario you will first need to ensure the following items are installed on your laptop:
+To start the monolith to microservices scenario you will first need to ensure the following items are installed on your laptop:
 
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [git](https://git-scm.com/downloads)
@@ -7,7 +7,7 @@ To start the monolith to microservices senario you will first need to ensure the
 - [GitHub CLI - optional](https://cli.github.com/)
 
 ## Fork the workshop repository
-To proceed with this senario, you will need to fork the workshop repository to your GitHub account.  If this is your first time, then take a few minutes to review the [GitHub Docs on how to Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
+To proceed with this scenario, you will need to fork the workshop repository to your GitHub account.  If this is your first time, then take a few minutes to review the [GitHub Docs on how to Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
 You can complete this task through the GitHub UI: 
 ![GitHub Fork](../assets/gh_fork.jpg)
@@ -38,7 +38,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 In your UDF deployment, click the Components tab then for the k3s system click the Access dropdown then the KUBECONFIG access method.
 
-This will present a webpage with a link to download the config-udf.yaml file.
+This will present a webpage with a link to download the `config-udf.yaml` file.
 
 Once the file is downloaded, set your KUBECONFIG environment variable to point to this location. For more information, reference the [K8s docs](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#the-kubeconfig-environment-variable). 
 

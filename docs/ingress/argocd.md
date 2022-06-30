@@ -1,6 +1,6 @@
 # Argo CD
 
-[Argo CD](https://argoproj.github.io/cd/) is a declarative, GitOps continous delivery tool for Kubernetes.
+[Argo CD](https://argoproj.github.io/cd/) is a declarative, GitOps continuous delivery tool for Kubernetes.
 
 In our workshop, we will use Argo CD to deploy our microservices and resources.
 
@@ -14,7 +14,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ## Expose the Argo CD Server API/UI
 
-Save the following manifest to argocd-nodeport.yml
+Save the following manifest to `argocd-nodeport.yml`
 
 ```yml
 apiVersion: v1
@@ -62,7 +62,7 @@ Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `a
 
 ## Setup Your Repository and deploy Brewz in Argo CD
 
-Save the following contents to argocd_brewz.yml
+Save the following contents to `argocd_brewz.yml`
 
 **Note:** Replace OWNER with your GitHub username
 
