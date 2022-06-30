@@ -1,0 +1,19 @@
+# F5 Distributed Cloud Kubernetes Site
+
+In this lab, you will evaluate alternative options for publishing services from a K8s cluster leveraging F5 Distributed Cloud.
+
+## Resources
+
+- [F5 XC Create a Kubernetes Site Docs](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site)
+
+## Preparation  
+
+1. [Create a site token](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site)
+2. [Prepare a manifest file](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site) using the [manifest template](https://gitlab.com/volterra.io/volterra-ce/-/blob/master/k8s/ce_k8s.yml)
+3. Update the manifest file with the required attributes:
+    - **ClusterName**: *yourname-k8s-site*
+    - **Latitude**: *47.608013*
+    - **Longitude**: *-122.335167*
+    - **Token**: *token generated in step 1*
+
+## Deploy
