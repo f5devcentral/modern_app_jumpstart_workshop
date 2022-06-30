@@ -18,7 +18,7 @@ cd kubernetes-ingress
 ## Build the Container
 For this step, we will leverage the [Docker CLI](https://docs.docker.com/engine/install/) to build the NGINX Ingress Controller image. Alternativley, you can use [Podman](https://podman.io/) if you do not have a Docker license. 
 
-The repository's Makefile supports several [target types](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/#makefile-targets), but for this lab we will leverage the *debian-image-nap-dos-plus* target so we can use NGINX App Protect.
+The repository's Makefile supports several [target types](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/#makefile-targets), but for this lab we will leverage the *debian-image-nap-dos-plus* target so we can use NGINX App Protect WAF.
 
 **Note:** For additional details you can also reference the [Build the Ingress Controller Image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) portion of the [NGINX Ingress Controller documentation](https://docs.nginx.com/nginx-ingress-controller/).
 
