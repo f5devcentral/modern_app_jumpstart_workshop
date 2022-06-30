@@ -56,7 +56,7 @@ In the Brewz virtual-server.yml manifest, the */images* path uses this method to
 ```
 
 # Upstreams
-The upstream defines a destination for the routing configuration.  The upstream's name must be a valid DNS lable as defined in RFC 1035. 
+The upstream defines a destination for the routing configuration. The upstream's name must be a valid DNS label as defined in RFC 1035. 
 
 In the Brewz virtual-server.yml mainfest, we define a very simple upstream configuration for the *spa* and *api* services:
 ```yaml
