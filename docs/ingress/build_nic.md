@@ -54,3 +54,6 @@ To publish the NGINX Ingress Controller container to your private registry follo
     TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
     # Publish the container
     docker push ghcr.io/$GITHUB_USER/nginx-plus-ingress:$TAG
+
+# Next Steps
+Now you can [install the NGINX Plus Ingress Controller](install_nic.md)

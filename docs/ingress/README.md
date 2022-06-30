@@ -21,4 +21,4 @@ For this lab, you will need:
 - [Build NGINX Plus Ingress Controller container](build_nic.md)
 - [Install NGINX Plus Ingress Controller](install_nic.md)
 - [Install Argo CD](argocd.md)
-- NGINX Ingress Controller Virtual Server
+- [NGINX Ingress Controller Virtual Server](virtualserver.md)

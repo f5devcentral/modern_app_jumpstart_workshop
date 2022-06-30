@@ -322,4 +322,4 @@ kubectl get vs
 Notice that the virtual server is now listening on port *80* and *443*.
 
 # Next Steps
-Now that you have a base application deployed, lets take a deeper look at the [VirtualServer resource](virtualserver.md).
+You have completed the NGINX Plus portion of the Ingress lab. 
