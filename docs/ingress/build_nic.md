@@ -2,7 +2,7 @@
 
 In this step, you will build a copy of the NGINX Plus Ingress Controller container and push it to your private container registry.
 
-**Note:** We **HIGHLY** discourage you from publishing your NGINX Plus containers to a public registry. Please ensure you are publishing the containeres from this lab to a private registry such as [GitHub Package](https://github.com/features/packages) or [Docker Hub](https://hub.docker.com/).
+**Note:** We **HIGHLY** discourage you from publishing your NGINX Plus containers to a public registry. Please ensure you are publishing the containers from this lab to a private registry such as [GitHub Package](https://github.com/features/packages) or [Docker Hub](https://hub.docker.com/).
 
 You can also reference the official [NGINX Ingress Controller documentation](https://docs.nginx.com/nginx-ingress-controller/) for additional details.
 
@@ -19,7 +19,7 @@ cd kubernetes-ingress
 
 ## Build the Container
 
-For this step, we will leverage the [Docker CLI](https://docs.docker.com/engine/install/) to build the NGINX Ingress Controller image. Alternativley, you can use [Podman](https://podman.io/) if you do not have a Docker license.
+For this step, we will leverage the [Docker CLI](https://docs.docker.com/engine/install/) to build the NGINX Ingress Controller image. Alternatively, you can use [Podman](https://podman.io/) if you do not have a Docker license.
 
 The repository's Makefile supports several [target types](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/#makefile-targets), but for this lab we will leverage the *debian-image-nap-dos-plus* target so we can use NGINX App Protect WAF.
 

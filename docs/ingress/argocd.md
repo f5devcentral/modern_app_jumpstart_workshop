@@ -60,7 +60,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `admin` user and the password you obtain in the previous step.
 
-## Setup Your Repository and deploy Podifo in Argo CD
+## Setup Your Repository and deploy Brewz in Argo CD
 
 Save the following contents to argocd_brewz.yml
 

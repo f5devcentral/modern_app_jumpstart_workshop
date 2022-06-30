@@ -66,7 +66,7 @@ In the Brewz virtual-server.yml manifest, the */images* path uses this method to
 
 The upstream defines a destination for the routing configuration. The upstream's name must be a valid DNS label as defined in RFC 1035.
 
-In the Brewz virtual-server.yml mainfest, we define a very simple upstream configuration for the *spa* and *api* services:
+In the Brewz virtual-server.yml manifest, we define a very simple upstream configuration for the *spa* and *api* services:
 
 ```yaml
 ...
@@ -80,7 +80,7 @@ In the Brewz virtual-server.yml mainfest, we define a very simple upstream confi
 ...
 ```
 
-While this configuration meets our requirements for a lab, in a production environment you may need more advanced configurations.  For example, if we knew that the API server could only handle 32 concurent connections then we may want to modify the mainifest to include the *max-conns* attribute:
+While this configuration meets our requirements for a lab, in a production environment you may need more advanced configurations.  For example, if we knew that the API server could only handle 32 concurrent connections then we may want to modify the manifest to include the *max-conns* attribute:
 
 ```yaml
 ...
@@ -101,7 +101,7 @@ For a full list of Upstream attributes, please refer to the [docs](https://docs.
 
 One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly.
 
-In VSCode, open the */manifsts/brewz/virtaul-server.yml* file and add a healthCheck resource; example below.
+In VSCode, open the */manifests/brewz/virtual-server.yml* file and add a healthCheck resource; example below.
 
 ```yaml
 ---
@@ -160,7 +160,7 @@ curl -k https://$HOST/api/products/1234
 
 Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-In VSCode, open the */manifsts/brewz/virtaul-server.yml* file and add an ErrorPage resource; example below.
+In VSCode, open the */manifests/brewz/virtual-server.yml* file and add an ErrorPage resource; example below.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -218,7 +218,7 @@ Your output should look like: `{"msg": "Could not find the product!"}`
 
 ## TLS
 
-A common requirement for most websites today is to leverage encryption to secure the communcation between the client and the server.  While this would be a critical requirement for an ecommerce site like our Brewz demo app, many enterprise customers also require encryption due to search engines, such as Google, demoting their rank in search results if the website does not offer encryption.
+A common requirement for most websites today is to leverage encryption to secure the communication between the client and the server.  While this would be a critical requirement for an ecommerce site like our Brewz demo app, many enterprise customers also require encryption due to search engines, such as Google, demoting their rank in search results if the website does not offer encryption.
 
 In this step, we will add TLS encryption to the Brewz VirtualServer resource.
 
@@ -261,7 +261,7 @@ Run the following command from your laptop:
 kubectl describe secret brewz-tls -n nginx-ingress
 ```
 
-Your output should look simiar to:
+Your output should look similar to:
 
 ```shell
 Name:         brewz-tls

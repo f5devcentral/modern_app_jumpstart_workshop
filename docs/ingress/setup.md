@@ -41,7 +41,7 @@ echo $TOKEN
 
 Now that we have K3s up and running and a dedicated service account for UDF we need to build a kubeconfig file so *kubectl* on your laptop knows how to access our cluster.
 
-*Note:* the *kubectl config* command will produce warnings about invalid configuration - this can be ingored since you are building the configuration.
+*Note:* the *kubectl config* command will produce warnings about invalid configuration - this can be ignored since you are building the configuration.
 
 1. Run the following commands on the K3s server:
 
