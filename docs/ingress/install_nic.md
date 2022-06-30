@@ -1,20 +1,23 @@
 # Install NGINX Plus Ingress
+
 For this step, we will pull the NGINX Plus Ingress Controller image from your private registry and deploy it into your K3s deployment.
 
 **Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
 
-
 ## Create a Read-Only GitHub PAT (Personal Access Token)
+
 While you could leverage the PAT created in the build steps, the best practice is to leverage a least privilege model and create a read-only PAT for your Kubernetes cluster.
 
 1. Create a [GitHub PAT (Personal Access Token)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following scopes:
     - *read:packages*
 1. Export the value to the *GITHUB_TOKEN* environment variable.
+
     ```bash
     export GITHUB_TOKEN=your_access_token
     ```
 
 ## Deploy NGINX Ingress Controller Container
+
 Run the following commands to deploy the NGINX Plus Ingress Controller:
 
 ```bash
@@ -45,32 +48,40 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
 
 The helm output should state:`The NGINX Ingress Controller has been installed.`
 
-# Verify Install
+## Verify Install
+
 Now that NGINX Plus Ingress Controller has been installed, we need to check that our pods are up and running.
 
 ## Verify Deployment
 
 To check our pod run the following command:
+
 ```shell
 kubectl get pods -n nginx-ingress
 ```
+
 The output should look similar to:
+
 ```shell
 NAME                                                READY   STATUS    RESTARTS   AGE
 nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj   1/1     Running   0          55m
 ```
 
 To check our service run the following command:
+
 ```shell
 kubectl get svc -n nginx-ingress
 ```
+
 The output should look similar to:
+
 ```shell
 NAME                               TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
 nginx-plus-ingress-nginx-ingress   LoadBalancer   10.43.129.144   10.1.1.5      80:31901/TCP,443:31793/TCP   57m
 ```
 
 ## Inspect Pod Details
+
 Now that we know our NGINX Ingress Controller Pod is up and running, let's dig into some of the pod details.
 
 ```shell
@@ -79,6 +90,7 @@ kubectl describe pod $NIC_POC -n nginx-ingress
 ```
 
 The output should look similar to:
+
 ```bash
 Name:         nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj
 Namespace:    nginx-ingress
@@ -162,12 +174,14 @@ Events:                      <none>
 ```
 
 Some items of interest from the output:
+
 - Ports:
-    - 80/443: http/https traffic
-    - 8081: readiness 
-    - 9113: Prometheus
+  - 80/443: http/https traffic
+  - 8081: readiness
+  - 9113: Prometheus
 
 ## NGINX Dashboard
+
 The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key load-balancing and performance metrics.
 
 To access the dashboard, SSH into the K3s server via the *SSH* or *Web Shell* access methods.
@@ -183,5 +197,6 @@ Now, open the *Dashboard* UDF Access Method on the K3 server.
 
 **Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
 
-# Next Steps
+## Next Steps
+
 Now you can continue to configuring [ArgoCD](argocd.md)

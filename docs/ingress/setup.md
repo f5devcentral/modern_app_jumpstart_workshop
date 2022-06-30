@@ -1,26 +1,33 @@
 
 # Setup
+
 For this lab, you will start with a clean environment and build out your K3s environment.
 
 ## Uninstall K3s in UDF
+
 SSH into the K3s server using the UDF *SSH* or *Web Shell* Access Methods and run the following commands:
+
 ```bash
 sudo su -
 /usr/local/bin/k3s-uninstall.sh
 ```
 
 ## Install K3s in UDF
-For this lab we will leverage the Rancher K3s Kubernetes distribution.  Since we plan to use NGINX Plus as our ingress controller we will also tell K3s not to install Traefik as the default ingress. 
+
+For this lab we will leverage the Rancher K3s Kubernetes distribution.  Since we plan to use NGINX Plus as our ingress controller we will also tell K3s not to install Traefik as the default ingress.
 
 Run the following command on the K3s server:
+
 ```bash
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik --egress-selector-mode=disabled --bind-address 10.1.1.5" sh -s -
 ```
 
 ## Generate Service Account
-To provide remote Access to the K8s API, the best practice would be to generate a dedicated K8s Service Account. 
+
+To provide remote Access to the K8s API, the best practice would be to generate a dedicated K8s Service Account.
 
 Run the following commands on the K3s server:
+
 ```bash
 kubectl -n kube-system create serviceaccount udf-sa
 kubectl create clusterrolebinding udf-sa-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:udf-sa
@@ -31,11 +38,13 @@ echo $TOKEN
 ```
 
 ## Generate Local Kubeconfig
+
 Now that we have K3s up and running and a dedicated service account for UDF we need to build a kubeconfig file so *kubectl* on your laptop knows how to access our cluster.
 
 *Note:* the *kubectl config* command will produce warnings about invalid configuration - this can be ingored since you are building the configuration.
 
 1. Run the following commands on the K3s server:
+
     ```bash
     export KUBECONFIG=/etc/rancher/k3s/config-udf.yaml
 
@@ -71,9 +80,9 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     cat $KUBECONFIG
     ```
 
-
 1. Copy the output from the kubeconfig file and save it to your laptop.
 1. Set the KUBECONFIG environment variable to your new kubeconfig file
+
     ```bash
     # Export kubeconfig location
     export KUBECONFIG=~/Downloads/config-udf.yaml
@@ -83,4 +92,5 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     ```
 
 # Next Steps
+
 Now you can build the [NGINX Plus Ingress Controller container](build_nic.md)
