@@ -91,7 +91,7 @@ For a full list of Upstream attributes, please refer to the [docs](https://docs.
 ## HealthCheck
 One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly. 
 
-In VSCode, open the */manifsts/brewz/virtaul-server.yml* file and add an ErrorPage resource; example below.
+In VSCode, open the */manifsts/brewz/virtaul-server.yml* file and add a healthCheck resource; example below.
 
 ```yaml
 ---
