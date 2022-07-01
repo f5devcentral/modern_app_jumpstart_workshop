@@ -25,4 +25,4 @@ Use the following settings:
 
 At this point, you should have an HTTP LB that you can access the Brewz API at:
 
-`<http://brewz-username.lab-app.f5demos.com/api/products>
+`<http://brewz-username.lab-app.f5demos.com/api/products>`
