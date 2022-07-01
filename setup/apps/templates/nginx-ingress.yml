@@ -18,7 +18,7 @@ spec:
         controller.nginxStatus.allowCidrs: 0.0.0.0/0
         prometheus.create: true
     repoURL: https://helm.nginx.com/stable
-    targetRevision: v2.2.2
+    targetRevision: 2.2.2
   syncPolicy:
     automated:
       prune: true
