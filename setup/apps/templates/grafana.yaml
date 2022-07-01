@@ -11,6 +11,7 @@ spec:
     namespace: monitoring
   project: udf
   source:
+    chart: grafana
     helm:
       values: |
         service:
