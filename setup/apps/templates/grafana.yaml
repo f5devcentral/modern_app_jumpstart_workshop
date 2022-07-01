@@ -16,7 +16,7 @@ spec:
       values: |
         service.type: NodePort
     repoURL: https://grafana.github.io/helm-charts
-    targetRevision: HEAD
+    targetRevision: 6.32.1
   syncPolicy:
     automated:
       prune: true
