@@ -43,6 +43,16 @@ spec:
   type: NodePort
 ---
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: udf
+  namespace: argocd
+spec:
+  description: UDF Setup
+  sourceRepos:
+  - '*'
+---
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: root
