@@ -75,7 +75,7 @@ spec:
   source:
     path: setup/apps
     repoURL: https://github.com/f5devcentral/modern_app_jumpstart_workshop.git
-    targetRevision: argocd_from_helm
+    targetRevision: HEAD
   syncPolicy:
     automated:
       prune: true
