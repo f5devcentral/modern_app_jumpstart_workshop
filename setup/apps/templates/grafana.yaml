@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  project: udf
+  source:
+    chart: grafana
+    helm:
+      values: |
+        service:
+          type: NodePort
+          nodePort: 32517
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 6.31.1
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
