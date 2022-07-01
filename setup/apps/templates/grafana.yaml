@@ -14,7 +14,7 @@ spec:
     chart: grafana
     helm:
       values: |
-        service.type: NodePort
+        serviceType: NodePort
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.31.1
   syncPolicy:
