@@ -54,6 +54,11 @@ spec:
   destinations:
   - namespace: '*'
     server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  orphanedResources:
+    warn: false
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
