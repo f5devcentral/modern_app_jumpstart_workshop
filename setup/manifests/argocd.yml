@@ -41,3 +41,24 @@ spec:
     app.kubernetes.io/name: argocd-server
   sessionAffinity: None
   type: NodePort
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  project: default
+  source:
+    path: setup/apps
+    repoURL: https://github.com/f5devcentral/modern_app_jumpstart_workshop.git
+    targetRevision: argocd_from_helm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
