@@ -2,20 +2,28 @@
 
 This folder contains the resources needed to build and maintain the base UDF blueprint for this lab.
 
+After initial setup, the script will pull the latest version of the repo and copy the necessary files
+for each service.  This helps avoid the need to nominate new UDF blueprint versions. 
+
+## Initial Setup
+
+Clone the Modern App Jumpstart Workshop repository to the /root folder
+
+```bash
+cd /root
+git clone https://github.com/f5devcentral/modern_app_jumpstart_workshop.git
+/root/modern_app_jumpstart_workshop/setup/scripts/udf-setup.sh
+```
+
+## Config
+
+Contains configuration files for services like NGINX
+
 ## Manifests
 
 The manifests folder contains manifests that need to be copied to the
 `/var/lib/rancher/k3s/server/manifests` folder on the k3s server.
 
-To configure setup on a new k3s server, run the following steps:
+## Services
 
-```bash
-git clone https://github.com/f5devcentral/modern_app_jumpstart_workshop.git
-cp /root/modern_app_jumpstart_workshop/setup/manifests/* /var/lib/rancher/k3s/server/manifests
-```
-
-You can check the logs by:
-
-```bash
-journalctl -u k3s.service
-```
+These are systemd services
