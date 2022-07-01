@@ -1,10 +1,10 @@
 #!/bin/bash
-
+PWD=/root/modern_app_jumpstart_workshop/setup/scripts
 # get latest version of scripts
 git pull
 
 # Setup the gen_kubeconfig script
-gen_kubeconfig.sh
+$PWD/gen_kubeconfig.sh
 
 # install manifests
-manifests.sh
+$PWD/manifests.sh
