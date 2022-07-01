@@ -7,7 +7,7 @@ for each service.  This helps avoid the need to nominate new UDF blueprint versi
 
 ## Initial Setup
 
-check out the Modern App Jumpstart Workshop repository to the /root folder
+Clone the Modern App Jumpstart Workshop repository to the /root folder
 
 ```bash
 cd /root
