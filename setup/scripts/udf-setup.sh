@@ -1,6 +1,8 @@
 #!/bin/bash
 PWD=/root/modern_app_jumpstart_workshop/setup
+
 # get latest version of scripts
+git fetch
 git pull
 
 # Check if systemctl service is installed 
