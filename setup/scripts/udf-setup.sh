@@ -4,7 +4,7 @@ PWD=/root/modern_app_jumpstart_workshop/setup
 git pull
 
 # Check if systemctl service is installed 
-if !  systemctl list-units --full -all | grep -Fq "udf-setup.service"
+if ! systemctl list-units --full -all | grep -Fq "udf-setup.service"; then
   cp $PWD/services/udf-setup.service /etc/systemd/system/
   systemctl daemon-reload
   systemctl enable udf-setup
