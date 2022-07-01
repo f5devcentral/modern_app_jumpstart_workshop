@@ -1,10 +1,18 @@
 #!/bin/bash
-PWD=/root/modern_app_jumpstart_workshop/setup/scripts
+PWD=/root/modern_app_jumpstart_workshop/setup
 # get latest version of scripts
 git pull
 
+# Check if systemctl service is installed 
+if !  systemctl list-units --full -all | grep -Fq "udf-setup.service"
+  cp $PWD/services/udf-setup.service /etc/systemd/system/
+  systemctl daemon-reload
+  systemctl enable udf-setup
+  systemctl start udf-setup
+fi
+
 # Setup the gen_kubeconfig script
-$PWD/gen_kubeconfig.sh
+$PWD/scripts/gen_kubeconfig.sh
 
 # install manifests
-$PWD/manifests.sh
+$PWD/scripts/manifests.sh
