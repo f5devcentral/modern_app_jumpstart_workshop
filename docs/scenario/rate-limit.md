@@ -1,4 +1,4 @@
-## Introduce API rate-limiting
+# Introduce API rate-limiting
 
 Currently, there is no limitation on the rate that clients may query the product catalog. We would like to implement a rate limiting feature on the API to prevent a general degradation of service condition caused by unwanted users of the Brewz site.
 
