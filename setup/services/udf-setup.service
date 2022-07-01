@@ -1,0 +1,9 @@
+[Unit]
+Description=Setup UDF
+After=network.target
+
+[Service]
+ExecStart=/root/modern_app_jumpstart_workshop/setup/scripts/udf-setup.sh
+
+[Install]
+WantedBy=default.target

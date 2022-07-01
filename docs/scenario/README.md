@@ -11,7 +11,7 @@ After a few months of developing this, the Brewz company exposed this to their c
 
 **Mission 1:**
 
-- Break monolithic VM application into separate “microservices” to enable per-component scalability.
+- Break monolithic VM application into separate "microservices" to enable per-component scalability.
 - Host application in Kubernetes for service automation and orchestration. 
 
   - [Setup](setup.md)
@@ -35,4 +35,6 @@ After a few months of developing this, the Brewz company exposed this to their c
 **Mission 5:** 
 
 - Acquire application performance visibility
+
+  - [Grafana-dashboard](grafana-dashboard.md)
 
