@@ -4,15 +4,15 @@ metadata:
   name: udf-sa
   namespace: kube-system
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: udf-sa
+  name: udf-sa-cluster-admin
   namespace: kube-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: udf-sa
+  name: cluster-admin
 subjects:
   - kind: ServiceAccount
     name: udf-sa
