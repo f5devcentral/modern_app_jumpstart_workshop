@@ -9,7 +9,7 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
-  project: default
+  project: udf
   source:
     chart: prometheus
     helm:
