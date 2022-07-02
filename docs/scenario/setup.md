@@ -92,4 +92,5 @@ Click anywhere in the **brewz** application card pictured above. You will be pre
 
 ![Argo sync summary](../assets/argo_sync_details_1.png)
 
-
+## Next Steps
+Now you will apply [rate limiting to the Brewz application](rate-limit.md).
