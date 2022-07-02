@@ -2,6 +2,7 @@
 PWD=/root/modern_app_jumpstart_workshop/setup
 
 # get latest version of scripts
+cd $PWD
 git fetch
 git pull
 
