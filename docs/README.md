@@ -25,3 +25,9 @@ At the beginning of the workshop we will walk through a common scenario that a d
 In this lab, you will build and install the NGINX Plus Ingress Controller into your K3s cluster.  You will also take a deeper look at the VirtualServer Resource and some of the common configurations a modern application might need.
 
 [Start Ingress Lab](ingress/README.md)
+
+## F5 Distributed Cloud Kubernetes Site
+
+In this lab, you will create an F5 Distributed Cloud Kubernetes Site using our existing K3s cluster.  You will then publish the Brewz API service on the Internet without the need for a K8s ingress service.
+
+[Start F5 XC Kubernetes Site Lab](f5xc_k8s_site/README.md)
