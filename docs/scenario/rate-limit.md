@@ -74,3 +74,6 @@ ab -n 20 -c 10 $BREWZ_URL/api/products
 ```
 
 Note that ApacheBench should report `Complete requests: 20` however, `Failed requests` and `Non-2xx responses` should start to appear in its results with non-zero values. Why? When the number of requests per second per unique client IP configured in the rate limit policy had been exceeded, NGINX Ingress Controller started to respond with a `503 Service Unavailable` HTTP response, which signified an error response to ApacheBench.
+
+## Next Steps
+Achieve granular scalability and non-disruptive application deployments in [Refactor-to-microservices](refactor.md).

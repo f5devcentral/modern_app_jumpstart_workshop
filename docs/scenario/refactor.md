@@ -16,7 +16,7 @@ Let's make it happen...
 
 ## Update manifests to add additional microservice routes
 
-THe goal of this refactoring is to make changes to the deployment architecture without necessitating changes to the services' code. While this may not always be the case, we are in luck: the changes we need to make are simply to make HTTP path-based routing decisions to override where the existing api calls are being serviced. This can be accomplish by simply updating the `virtual-server.yml` manifest's **Virtual Server Route** configuration. 
+The goal of this refactoring is to make changes to the deployment architecture without necessitating changes to the services' code. While this may not always be the case, we are in luck: the changes we need to make are simply to make HTTP path-based routing decisions to override where the existing api calls are being serviced. This can be accomplish by simply updating the `virtual-server.yml` manifest's **Virtual Server Route** configuration. 
 
 In VSCode, edit your forked repo's copy of the `virtual-server.yml` to make it look like the following:
 
@@ -122,3 +122,6 @@ How many pods for the `inventory` service do you see?
 
 ## Remove unused code
 While out of scope for this lab, it would behoove the developers of the Brewz site to remove the now-unnecessary lines of code in the `api` service that previously performed these simple passthrough service calls. Once the code has been removed, only the `api` service's underlying pods need to be updated as opposed to the entire deployment, reducing the potential "blast radius" of changes. We'll touch on some common, non-disruptive deployment techniques later in this lab.
+
+## Next Steps
+Acquire application performance visibility with [Grafana](grafana-dashboard.md).
