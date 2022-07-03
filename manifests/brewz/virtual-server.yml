@@ -25,7 +25,7 @@ spec:
     - path: /
       matches:
         - conditions:
-          - cookie: "site-version"
+          - cookie: "version"
             value: "dark"
           action:
             pass: spa-dark
