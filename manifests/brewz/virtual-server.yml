@@ -23,14 +23,14 @@ spec:
       port: 8001
   routes:
     - path: /
-      # matches:
-      #   - conditions:
-      #     - cookie: "version"
-      #       value: "dark"
-      #     action:
-      #       pass: spa-dark
+      matches:
+        - conditions:
+            - header: "user-agent"
+              value: ".*Firefox.*"
+          action:
+            pass: spa-dark
       action:
-        pass: spa-dark
+        pass: spa
     - path: /api
       action:
         pass: api
