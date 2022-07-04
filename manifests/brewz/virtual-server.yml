@@ -27,21 +27,14 @@ spec:
       port: 8001
   routes:
     - path: /
-      splits:
-        - weight: 50
-          action:
-            pass: spa
-        - weight: 50
+      matches:
+        - conditions:
+            - header: "user-agent"
+              value: ".*Firefox.*"
           action:
             pass: spa-dark
-      # matches:
-      #   - conditions:
-      #       - cookie: app_version
-      #         value: dark
-      #     action:
-      #       pass: spa-dark
-      # action:
-      #   pass: spa
+      action:
+        pass: spa
     - path: /api
       action:
         pass: api
