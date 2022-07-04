@@ -29,8 +29,8 @@ spec:
     - path: /
       matches:
         - conditions:
-            - header: "user-agent"
-              value: ".*Firefox.*"
+            - cookie: app_version
+              value: dark
           action:
             pass: spa-dark
       action:
