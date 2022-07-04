@@ -7,7 +7,7 @@ spec:
   http-snippets: |
     log_format k8s '$remote_addr - $remote_user [$time_local] "$request" $status upstream: $upstream_addr $body_bytes_sent "$http_referer"  "$http_user_agent" "$http_x_forwarded_for" "$resource_name" "$resource_type" "$resource_namespace" "$service"';
   server-snippets: |
-    access_log  /dev/stdout  k8s;
+    access_log /dev/stdout k8s;
   host: brewz.f5demo.com
   upstreams:
     - name: spa
@@ -29,8 +29,8 @@ spec:
     - path: /
       matches:
         - conditions:
-            - header: "user-agent"
-              value: ".*Firefox.*"
+            - cookie: app_version
+              value: dark
           action:
             pass: spa-dark
       action:
