@@ -22,7 +22,7 @@ Use the following settings:
   - Recommendations: recommendations.default
   - spa: spa.default
 - Site: the site you created in the previous step
-- Select Network on the site: Outside
+- Select Network on the site: Outside Interface
 - port number: 8000
 
 ## Configure the Virtual Server
