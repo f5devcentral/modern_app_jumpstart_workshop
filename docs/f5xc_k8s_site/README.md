@@ -6,6 +6,10 @@ In this lab, you will evaluate alternative options for publishing services from 
 
 - [F5 XC Create a Kubernetes Site Docs](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site)
 
+## Prerequisites
+
+This lab assumes that you have already completed the [NGINX Ingress lab](../ingress/README.md) and have running instances of the Brewz microservices in your K8s cluster. If not, please complete those steps first.
+
 ## K8s Site Deployment  
 
 1. [Create a site token](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site)
