@@ -30,7 +30,9 @@ After a few months of developing this, the Brewz company exposed this to their c
 
 **Mission 4:** 
 
-- TBD (something around app security? Authn/AuthZ?)
+- Introduce Deployment Patterns
+
+  - [Example deployment pattern: A/B Testing](ab-testing.md)
 
 **Mission 5:** 
 
