@@ -5,7 +5,7 @@ metadata:
   name: brewz
 spec:
   http-snippets: |
-    log_format k8s '$remote_addr - $remote_user [$time_local] "$request" $status upstream: $upstream_addr $body_bytes_sent "$http_referer"  "$http_user_agent" "$http_x_forwarded_for" "$resource_name" "$resource_type" "$resource_namespace" "$service"';
+    log_format k8s '$remote_addr - $remote_user [$time_local] "$request" $status upstream: $upstream_addr $body_bytes_sent "$http_referer"  "$http_user_agent" "$http_x_forwarded_for" "$resource_name" "$resource_type" "$resource_namespace" "$service" app_version cookie: "$cookie_app_version"';
   server-snippets: |
     access_log /dev/stdout k8s;
   host: brewz.f5demo.com
