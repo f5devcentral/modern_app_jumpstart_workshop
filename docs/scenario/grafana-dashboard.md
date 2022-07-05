@@ -33,11 +33,11 @@ Grafana has been pre-installed using Helm based on [this guidance](https://githu
 
     Note: In this lab environment, we have deployed a single NGINX Ingress Controller instance. If you had additional instances deployed, you can filter the instance label just below the dashboard title (top left corner). This allows you to filter metrics per instance. By default, all instances are selected.
 
-1. By default, the dashboard is set to refresh every 5 seconds. Using ApacheBench (as earlier in the lab), generate traffic to the Brewz application and watch the effect on the charts in the dashboard:
+1. By default, the dashboard is set to refresh every 5 seconds. Using Hey (as earlier in the lab), generate traffic to the Brewz application and watch the effect on the charts in the dashboard:
 
     ```bash
     BREWZ_URL=<Your Brewz UDF access method url>
-    ab -n 200 -c 10 $BREWZ_URL/api/products
+    hey -n 200 -c 10 $BREWZ_URL/api/products
     ```
 
     <img src="../assets/grafana-dashboard-traffic.png" alt="NIC Grafana Dashboard with traffic" width="600"/>
