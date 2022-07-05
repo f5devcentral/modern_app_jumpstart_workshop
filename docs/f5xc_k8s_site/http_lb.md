@@ -2,16 +2,35 @@
 
 In this step, we will leverage the F5 Distributed cloud to publish the Brewz API directly from our Kubernetes cluster without the need for an Ingress service.
 
-## Configure Origin Pool
+## Create Origin Pools
+
+In this step, you need to create 4 origin pools:
+
+- API
+- Inventory
+- Recommendations
+- Static Page Application (SPA)
 
 Follow the [F5 Distributed Cloud Origin Pool docs](https://docs.cloud.f5.com/docs/how-to/app-networking/origin-pools) instructions.
 
 Use the following settings:
 
 - Select Type of Origin Server: k8s Service Name of Origin Server on given Sites
-- Service Name: api.default
+- Service:
+  - API:
+    - Service Name: api.default
+    - Port: 8000
+  - Inventory:
+    - Service Name: inventory.default
+    - Port: 8002
+  - Recommendations:
+    - Service Name: recommendations.default
+    - Port: 8001
+  - spa:
+    - Service Name: spa.default
+    - Port: 80
 - Site: the site you created in the previous step
-- Select Network on the site: Outside
+- Select Network on the site: Outside Interface
 - port number: 8000
 
 ## Configure the Virtual Server
@@ -21,8 +40,37 @@ Follow the [F5 Distributed Cloud HTTP Load Balancer docs](https://docs.cloud.f5.
 Use the following settings:
 
 - List of Domains: brewz-username.lab-app.f5demos.com
-- Origin Pool: the pool you created in the previous step
+- Automatically Manage DNS Records: Check
+- Origin Pool: the SPA origin pool
 
-At this point, you should have an HTTP LB that you can access the Brewz API at:
+### Routes
 
-`<http://brewz-username.lab-app.f5demos.com/api/products>`
+In this step, you will configure the HTTP routes to direct requests to the appropriate microservice.
+
+Please review the [How to Setup path-based routing](https://f5cloud.zendesk.com/hc/en-us/articles/4405130078103-How-to-setup-path-based-routing-or-application-load-balancing) for detailed instructions on how to configure routes for an HTTP load balancer.
+
+You will need to build a route for the Brewz microservices: API, inventory, and recommendations.
+
+The following settings should be modified from their default:
+
+- HTTP Method: ANY
+
+**Note:** The order of the defined routes maters since we're using the prefix path match setting.  The API route needs to be the last in the order.
+
+Prefixes:
+
+- Inventory: /api/inventory
+- Recommendations: /api/recommendations
+- API: /api
+
+Now we also need a route to direct /images requests to the API service.
+
+Follow the same steps as above, but change the *HTTP Method* to *GET* and the *Origin Pools* to your API origin pool.
+
+Once you create the */images* path, drag it above the */api* path to change its order; we want */api* to be the last path processed. 
+
+## Testing
+
+At this point, you should have an HTTP LB that you can access the Brewz app at:
+
+`<http://brewz-username.lab-app.f5demos.com/>`
