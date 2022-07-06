@@ -8,7 +8,7 @@ grafana:
           url: http://prometheus-server
   dashboards:
     default:
-      local-dashboard:
+      nginx:
         url: https://raw.githubusercontent.com/nginxinc/kubernetes-ingress/main/grafana/NGINXPlusICDashboard.json
   service:
     type: NodePort
