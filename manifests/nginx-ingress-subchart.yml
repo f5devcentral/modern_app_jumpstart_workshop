@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     path: manifests/nginx-ingress-subchart.yml
-    repoURL: https://github.com/<GITHUB_USER>/modern_app_jumpstart_workshop.git
-    targetRevision: HEAD
+    repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+    targetRevision: day3-setup
   destination:
     namespace: nginx-ingress
     server: https://kubernetes.default.svc
