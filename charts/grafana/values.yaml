@@ -1,9 +1,11 @@
 grafana:
   datasources:
-    - name: Prometheus
-      type: prometheus
-      url: http://prometheus-server
-      access: Server
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Prometheus
+          type: prometheus
+          url: http://prometheus-server
   service:
     type: NodePort
     nodePort: 32517
