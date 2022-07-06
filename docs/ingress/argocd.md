@@ -6,6 +6,8 @@ In our workshop, we will use Argo CD to deploy our microservices and resources.
 
 ## Install Argo CD
 
+On your laptop run:
+
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
@@ -58,7 +60,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 ## Login
 
-Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `admin` user and the password you obtain in the previous step.
+Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `admin` user and the password you obtained in the previous step.
 
 ## Next Steps
 

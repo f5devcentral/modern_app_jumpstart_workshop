@@ -42,7 +42,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
     echo $TAG
     ```
 
-1. Open the *charts/nginx-plus-ingress/values.yaml* file in your forked version of the repository.
+1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the repository.
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -74,7 +74,7 @@ prometheus:
 
 Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
-1. Open the *manifests/nginx-ingress-subchart.yml* file in your forked version of the repository.
+1. Open the `manifests/nginx-ingress-subchart.yml` file in your forked version of the repository.
 2. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -105,7 +105,7 @@ spec:
       selfHeal: true
       prune: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
 ```
 
 ## Install NGINX Plus Ingress Argo CD Application
