@@ -92,7 +92,7 @@ metadata:
 spec:
   project: default
   source:
-    path: manifests/nginx-ingress-subchart.yml
+    path: charts/nginx-plus-ingress
     repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
     targetRevision: HEAD
   destination:
