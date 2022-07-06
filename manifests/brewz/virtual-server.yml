@@ -4,10 +4,6 @@ kind: VirtualServer
 metadata:
   name: brewz
 spec:
-  http-snippets: |
-    log_format k8s '$remote_addr - $remote_user [$time_local] "$request" $status upstream: $upstream_addr $body_bytes_sent "$http_referer"  "$http_user_agent" "$http_x_forwarded_for" "$resource_name" "$resource_type" "$resource_namespace" "$service" cookies: "$http_cookie"';
-  server-snippets: |
-    access_log /dev/stdout k8s;
   host: brewz.f5demo.com
   upstreams:
     - name: spa
@@ -24,6 +20,9 @@ spec:
       port: 8002
     - name: recommendations
       service: recommendations
+      port: 8001
+    - name: recommendations-v2
+      service: recommendations-v2
       port: 8001
   routes:
     - path: /
@@ -50,6 +49,18 @@ spec:
         proxy:
           upstream: recommendations
           rewritePath: /api/recommendations
+    - path: /api/recommendations
+      splits:
+        - weight: 90
+          action:
+            proxy:
+              upstream: recommendations
+              rewritePath: /api/recommendations
+        - weight: 10
+          action:
+            proxy:
+              upstream: recommendations-v2
+              rewritePath: /api/recommendations
     - path: /images
       action:
         proxy:
