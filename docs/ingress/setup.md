@@ -46,7 +46,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
 1. Run the following commands on the K3s server:
 
     ```bash
-    export KUBECONFIG=/etc/rancher/k3s/config-udf.yaml
+    NEWCFG=/etc/rancher/k3s/k3s.yaml
 
     # Get the UDF Access Method
     HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "K3s API") | .host' -r`
@@ -62,22 +62,22 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     done
 
     # Add the UDF K8s API 
-    kubectl config set-cluster udf  --server=https://$HOST:443 
-    kubectl config --kubeconfig=$KUBECONFIG set clusters.udf.certificate-authority-data $CA
+    kubectl --kubeconfig=$NEWCFG config set-cluster udf  --server=https://$HOST:443 
+    kubectl --kubeconfig=$NEWCFG config set clusters.udf.certificate-authority-data $CA
 
     # set the token
     TOKENNAME=`kubectl -n kube-system get serviceaccount/udf-sa -o jsonpath='{.secrets[0].name}'`
     TOKEN=`kubectl -n kube-system get secret $TOKENNAME -o jsonpath='{.data.token}' | base64 --decode`
-    kubectl config --kubeconfig=$KUBECONFIG set-credentials udf-sa --token=$TOKEN
+    kubectl --kubeconfig=$NEWCFG config set-credentials udf-sa --token=$TOKEN
 
     # Set context
-    kubectl config set-context udf --cluster=udf --namespace=default --user=udf-sa
+    kubectl --kubeconfig=$NEWCFG config set-context udf --cluster=udf --namespace=default --user=udf-sa
 
     # Set current context
-    kubectl config set current-context udf
+    kubectl --kubeconfig=$NEWCFG config set current-context udf
 
     # Display kubeconfig file
-    cat $KUBECONFIG
+    cat $NEWCFG
     ```
 
 1. Copy the output from the kubeconfig file and save it to your laptop.
@@ -87,10 +87,10 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     # Export kubeconfig location
     export KUBECONFIG=~/Downloads/config-udf.yaml
 
-    # Test kubeconfig, you should see the ubuntu node
+    # Test kubeconfig, you should see the k3s node
     kubectl get nodes
     ```
 
 # Next Steps
 
-Now you can build the [NGINX Plus Ingress Controller container](build_nic.md)
+Next, we will [install Argo CD](argocd.md)
