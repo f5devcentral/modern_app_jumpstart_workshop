@@ -54,6 +54,8 @@ kubectl apply -f manifests/grafana-subchart.yml
 
 You should now see a new Grafana application in your Argo CD dashboard.  Click on the Grafana application and verify there are no errors.
 
+**Note:** A Prometheus datasource and a Dashboard for NGINX Ingress Controller have been pre-configured in Grafana. These can be seen in your `charts/grafana/values.yaml` file. We will utilize these in an upcoming exercise.
+
 ## Next Steps
 
 Next, you will [install the Brewz Application](brewz.md)
