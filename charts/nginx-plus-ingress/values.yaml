@@ -5,8 +5,8 @@ controller:
     enable: true
   enableSnippets: true
   image:
-    repository: ghcr.io/<GITHUB_USER>/nginx-plus-ingress
-    tag: <TAG>
+    repository: ghcr.io/aknot242/nginx-plus-ingress
+    tag: 2.2.2-SNAPSHOT-a88b7fe
   nginxPlus: true
   nginxStatus:
     allowCidrs: 9000
