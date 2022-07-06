@@ -1,29 +1,25 @@
 # Install Brewz with ArgoCD
 
-I this section, you will deploy the Brewz microservices using Argo CD.
+In this section, you will deploy the Brewz microservices using Argo CD.
 
-## Setup Your Repository and deploy Brewz in Argo CD
+## Update Argo CD Application Manifest
 
-Save the following contents to `argocd_brewz.yml`
+You will need to update the Brewz Argo CD manifest to match your environment.  
 
-**Note:** Replace OWNER with your GitHub username
+1. Open the *manifests/brewz-subchart.yml* file in your forked version of the repository.
+2. Find the following variables and replace them with your information:
+
+    | Variable        | Value           |
+    |-----------------|-----------------|
+    | <GITHUB_USER>   | github username |
+
+Your file should look similar to the example below:
 
 ```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: private-repo
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  type: git
-  url: https://github.com/OWNER/modern_app_jumpstart_workshop
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-cd-demo
+  name: brewz
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -31,7 +27,7 @@ spec:
   project: default
   source:
     path: manifests/brewz
-    repoURL: https://github.com/OWNER/modern_app_jumpstart_workshop.git
+    repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
     targetRevision: HEAD
   destination:
     namespace: default
@@ -42,8 +38,13 @@ spec:
       prune: true
 ```
 
-Now, apply the manifest:
-`kubectl apply -f argocd_brewz.yml`
+## Deploy the manifest
+
+To deploy the Brewz Argo CD application, run the following command:
+
+```bash
+kubectl apply -f manifests/brewz-subchart.yml
+```
 
 ## View the Argo CD Application
 
