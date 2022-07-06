@@ -1,4 +1,9 @@
 grafana:
+  datasources:
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-server
+      access: Server
   service:
     type: NodePort
     nodePort: 32517
