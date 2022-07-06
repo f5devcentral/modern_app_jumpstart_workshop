@@ -6,7 +6,7 @@ nginx-ingress:
       enable: true
     enableSnippets: true
     image:
-      repository: ghcr.io/aknot242/nginx-ingress-controller-container
+      repository: ghcr.io/aknot242/nginx-plus-ingress
       tag: 2.2.2-SNAPSHOT-a88b7fe
     nginxplus: true
     nginxStatus:
