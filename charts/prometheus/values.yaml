@@ -1,2 +1,3 @@
-pushgateway:
-  enabled: false
+prometheus:
+  pushgateway:
+    enabled: false
