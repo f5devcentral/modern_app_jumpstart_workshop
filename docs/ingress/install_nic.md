@@ -51,6 +51,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
     | &lt;TAG>        | tag value from previous command|
 
 Your file should look similar to the example below:
+
 ```yaml
 controller:
   appprotect: 
@@ -81,6 +82,7 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
     | <GITHUB_USER>   | github username |
 
 Your file should look similar to the example below:
+
 ```yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -109,6 +111,7 @@ spec:
 ## Install NGINX Plus Ingress Argo CD Application
 
 Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to Argo CD with the following command:
+
 ```bash
 kubectl apply -f manifests/nginx-ingress-subchart.yml
 ```
@@ -264,4 +267,4 @@ Now, open the *Dashboard* UDF Access Method on the K3 server.
 
 ## Next Steps
 
-Now you can continue to configuring [ArgoCD](argocd.md)
+Now you can [install Prometheus](install_prometheus.md).
