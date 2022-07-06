@@ -205,7 +205,7 @@ Containers:
       -prometheus-metrics-listen-port=9113
       -prometheus-tls-secret=
       -enable-custom-resources=true
-      -enable-snippets=false
+      -enable-snippets=true
       -enable-tls-passthrough=false
       -enable-preview-policies=false
       -ready-status=true

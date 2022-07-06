@@ -39,6 +39,7 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.image.tag=$TAG \
   --set controller.serviceAccount.imagePullSecretName=ghcr \
   --set controller.nginxplus=true \
+  --set controller.enableSnippets=true \
   --set controller.appprotect.enable=true \
   --set controller.appprotectdos.enable=true \
   --set controller.nginxStatus.port=9000 \
