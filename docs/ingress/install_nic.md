@@ -16,37 +16,105 @@ While you could leverage the PAT created in the build steps, the best practice i
     export GITHUB_TOKEN=your_access_token
     ```
 
-## Deploy NGINX Ingress Controller Container
+## Create Kubernetes Secret
 
-Run the following commands to deploy the NGINX Plus Ingress Controller:
+In order to pull the NGINX Plus Ingress container from your private registry, the K8s cluster will need to have access to the GitHub PAT you created previously.  To accomplish this, you will create a docker-registry secret with the commands below:
 
 ```bash
 # Create nginx-ingress namespace
 kubectl create namespace nginx-ingress
 
+export GITHUB_USER=your_github_username
+export GITHUB_TOKEN=your_github_ro_pat
+
 # create container registry secret
 kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
-
-# add nginx helm repo
-helm repo add nginx-stable https://helm.nginx.com/stable
-
-# Find your nginx tag version
-TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
-
-# install NGINX Plus Ingress Controller
-helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
-  --set controller.image.repository=ghcr.io/$GITHUB_USER/nginx-plus-ingress \
-  --set controller.image.tag=$TAG \
-  --set controller.serviceAccount.imagePullSecretName=ghcr \
-  --set controller.nginxplus=true \
-  --set controller.appprotect.enable=true \
-  --set controller.appprotectdos.enable=true \
-  --set controller.nginxStatus.port=9000 \
-  --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
-  --set prometheus.create=true
 ```
 
-The helm output should state:`The NGINX Ingress Controller has been installed.`
+## Update Helm Values and Argo CD Application Manifest
+
+Before you can deploy the NGINX Ingress Controller, you will need to modify the Helm chart values to match your environment.
+
+1. Find your NGINX Plus Ingress Controller container tag with the following command:
+
+    ```bash
+    TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
+    echo $TAG
+    ```
+
+1. Open the *charts/nginx-plus-ingress/values.yaml* file in your forked version of the repository.
+1. Find the following variables and replace them with your information:
+
+    | Variable        | Value           |
+    |-----------------|-----------------|
+    | <GITHUB_USER>   | github username |
+    | &lt;TAG>        | tag value from previous command|
+
+Your file should look similar to the example below:
+
+```yaml
+controller:
+  appprotect: 
+    enable: true
+  appprotectdos:
+    enable: true
+  enableSnippets: true
+  image:
+    repository: ghcr.io/codygreen/nginx-plus-ingress
+    tag: 2.2.2-SNAPSHOT-a88b7fe
+  nginxPlus: true
+  nginxStatus:
+    allowCidrs: 9000
+    port: 9000
+  serviceAccount:
+    imagePullSecretName: ghcr
+prometheus:
+  create: true
+```
+
+Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
+
+1. Open the *manifests/nginx-ingress-subchart.yml* file in your forked version of the repository.
+2. Find the following variables and replace them with your information:
+
+    | Variable        | Value           |
+    |-----------------|-----------------|
+    | <GITHUB_USER>   | github username |
+
+Your file should look similar to the example below:
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-plus-ingress
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    path: charts/nginx-plus-ingress
+    repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+    targetRevision: HEAD
+  destination:
+    namespace: nginx-ingress
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+    - CreateNamespace=true
+```
+
+## Install NGINX Plus Ingress Argo CD Application
+
+Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to Argo CD with the following command:
+
+```bash
+kubectl apply -f manifests/nginx-ingress-subchart.yml
+```
 
 ## Verify Install
 
@@ -137,7 +205,7 @@ Containers:
       -prometheus-metrics-listen-port=9113
       -prometheus-tls-secret=
       -enable-custom-resources=true
-      -enable-snippets=false
+      -enable-snippets=true
       -enable-tls-passthrough=false
       -enable-preview-policies=false
       -ready-status=true
@@ -199,4 +267,4 @@ Now, open the *Dashboard* UDF Access Method on the K3 server.
 
 ## Next Steps
 
-Now you can continue to configuring [ArgoCD](argocd.md)
+Now you can [install Prometheus](install_prometheus.md).

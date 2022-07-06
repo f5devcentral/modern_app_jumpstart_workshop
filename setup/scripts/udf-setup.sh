@@ -2,6 +2,7 @@
 PWD=/root/modern_app_jumpstart_workshop/setup
 
 # get latest version of scripts
+cd $PWD
 git fetch
 git pull
 
@@ -18,3 +19,6 @@ $PWD/scripts/gen_kubeconfig.sh
 
 # install manifests
 $PWD/scripts/manifests.sh
+
+# setup nginx
+$PWD/scripts/nginx.sh

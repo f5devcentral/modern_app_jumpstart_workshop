@@ -2,7 +2,7 @@
 
 In this step, you will build a copy of the NGINX Plus Ingress Controller container and push it to your private container registry.
 
-**Note:** We **HIGHLY** discourage you from publishing your NGINX Plus containers to a public registry. Please ensure you are publishing the containers from this lab to a private registry such as [GitHub Package](https://github.com/features/packages) or [Docker Hub](https://hub.docker.com/).
+**Note:** We **HIGHLY** discourage you from publishing your NGINX Plus containers to a public registry. Please ensure you are publishing the containers from this lab to a private registry such as [GitHub Packages](https://github.com/features/packages) or [Docker Hub](https://hub.docker.com/).
 
 You can also reference the official [NGINX Ingress Controller documentation](https://docs.nginx.com/nginx-ingress-controller/) for additional details.
 
