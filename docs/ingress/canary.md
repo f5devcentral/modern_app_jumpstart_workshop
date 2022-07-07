@@ -6,7 +6,7 @@
 
 1. Click on the **Grafana** access method in the **k3s** component in the UDF deployment. 
 
-1. When presented for login credentials, enter `admin` as the username. To acquire the password, you must from your local machine interrogate k8s for the secret containing the password:
+1. When presented for login credentials, enter `admin` as the username. To acquire the password, you must run the following command from your local machine to interrogate the K8s API for the secret containing the password:
 
     ```bash
     kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
