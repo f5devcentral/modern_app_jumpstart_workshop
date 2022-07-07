@@ -54,28 +54,26 @@ We need to deploy the new variant of the spa application, so we can conditionall
 1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yml` file:
 
     ```yaml
-    - name: spa-dark
-      service: spa-dark
-      port: 80
+        - name: spa-dark
+        service: spa-dark
+        port: 80
     ```
 
 1. Modify the existing `/` path in the `routes` section of the file so it looks like this and save it:
 
     ```yaml
-    - path: /
-      matches:
-        - conditions:
-          - cookie: "app_version"
-            value: "dark"
-          action:
-            pass: spa-dark
-      action:
-        pass: spa
+        - path: /
+        matches:
+          - conditions:
+              - cookie: "app_version"
+                value: "dark"
+            action:
+              pass: spa-dark
     ```
 
-    Note: The result of these additions to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
+    Note: The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
 
-1. Commit the `manifests/brewz/virtual-server.yml` and  `manifests/brewz/app.yml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yml` and `manifests/brewz/app.yml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 1. Open the `Brewz` UDF access method on the `k3s` component. Note that the application looks the same as it has been in previous labs.
 
@@ -83,7 +81,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
 1. Manually add the `app_version` cookie with a value of `dark` to the developer tools window. Methods vary depending on which browser you are using, but if using Chrome click on the Application tab, and expand the cookies section for the UDF url you are accessing. Add a new cookie by double clicking the table after the existing cookie entries. Enter `app_version` in the first column, hit tab and enter `dark` in the next column. The rest of the defaults will suffice. When complete, it should look similar to this screenshot:
 
-    <img src="../assets/chrome-cookie.png" alt="Cookke view in Chrome Developer Tools panel" width="600"/>
+    <img src="../assets/chrome-cookie.png" alt="Cookie view in Chrome Developer Tools panel" width="600"/>
 
 1. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
 
