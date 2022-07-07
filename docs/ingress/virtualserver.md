@@ -262,7 +262,7 @@ Now that your secret is created, let's take a look at it.
 Run the following command from your laptop:
 
 ```shell
-kubectl describe secret brewz-tls -n nginx-ingress
+kubectl describe secret brewz-tls
 ```
 
 Your output should look similar to:
