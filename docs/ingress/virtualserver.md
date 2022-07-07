@@ -1,6 +1,6 @@
 # VirtualServer and VirtualServerRoute Resources
 
-VirtualServer and VirtualServerRoute resources were added into NGINX Ingress Controller started in version 1.5 and are implemented via [Customer Resources (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
+VirtualServer and VirtualServerRoute resources were added into NGINX Ingress Controller started in version 1.5 and are implemented via [Custom Resources (CRDs)](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/).
 
 The resources enable use cases not supported with the Ingress resource, such as traffic splitting and advanced content-based routing.
 
@@ -101,7 +101,7 @@ For a full list of Upstream attributes, please refer to the [docs](https://docs.
 
 One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add a `healthCheck` resource; example below.
+In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add a `healthCheck` resource to the `api` upstream; example below.
 
 ```yaml
 ---
@@ -160,7 +160,7 @@ curl -k https://$HOST/api/products/1234
 
 Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add an `errorPages` resource; example below.
+In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -347,4 +347,4 @@ Notice that the virtual server is now listening on port *80* and *443*.
 
 ## Next Steps
 
-You have completed the NGINX Plus portion of the Ingress lab.
+Next, you will [look at the Canary deployment pattern](canary.md).
