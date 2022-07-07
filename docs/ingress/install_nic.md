@@ -40,8 +40,10 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 1. Find your NGINX Plus Ingress Controller container tag with the following command:
 
     ```bash
+    #{% raw %}
     TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
     echo $TAG
+    #{% endraw %}
     ```
 
 1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the repository.

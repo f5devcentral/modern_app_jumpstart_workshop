@@ -21,6 +21,7 @@ While you could leverage the PAT created in the build steps, the best practice i
 Run the following commands to deploy the NGINX Plus Ingress Controller:
 
 ```bash
+#{% raw %}
 # Create nginx-ingress namespace
 kubectl create namespace nginx-ingress
 
@@ -45,4 +46,5 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set controller.nginxStatus.port=9000 \
   --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
   --set prometheus.create=true
+#{% endraw %}
 ```
