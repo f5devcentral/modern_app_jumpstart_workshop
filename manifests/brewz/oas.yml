@@ -118,7 +118,8 @@ paths:
             schema:
               properties:
                 productId:
-                  type: number
+                  type: string
+                  pattern: "^\\d{3,}$"
               required:
                 - productId
               type: object
