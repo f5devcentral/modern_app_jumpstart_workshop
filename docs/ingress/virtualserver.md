@@ -138,6 +138,8 @@ spec:
           rewritePath: /images
 ```
 
+Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
 
 ```bash
@@ -205,6 +207,8 @@ spec:
           upstream: api
           rewritePath: /images
 ```
+
+Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
 
@@ -336,6 +340,8 @@ spec:
           upstream: api
           rewritePath: /images
 ```
+
+Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, let's check the status of our virtual server:
 
