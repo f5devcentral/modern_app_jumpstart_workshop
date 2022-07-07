@@ -119,7 +119,10 @@ paths:
               properties:
                 productId:
                   type: number
+              required:
+                - productId
               type: object
+              additionalProperties: false
       responses:
         "200":
           description: Item created
