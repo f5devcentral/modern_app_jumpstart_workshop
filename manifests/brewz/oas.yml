@@ -162,5 +162,3 @@ paths:
           description: Item deleted
       summary: Delete user carts
     parameters: []
-servers:
-  - url: /
