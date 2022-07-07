@@ -45,17 +45,10 @@ spec:
           upstream: inventory
           rewritePath: /api/inventory
     - path: /api/recommendations
-      splits:
-        - weight: 100
-          action:
-            proxy:
-              upstream: recommendations
-              rewritePath: /api/recommendations
-        - weight: 0
-          action:
-            proxy:
-              upstream: recommendations-v2
-              rewritePath: /api/recommendations
+      action:
+        proxy:
+          upstream: recommendations
+          rewritePath: /api/recommendations
     - path: /images
       action:
         proxy:
