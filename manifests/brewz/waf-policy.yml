@@ -7,7 +7,7 @@ spec:
   waf:
     enable: true
     apPolicy: "default/brewz-api-security-policy"
-    # securityLog:
-    #   enable: true
-    #   apLogConf: "default/logconf"
-    #   logDest: "syslog:server=syslog-svc.default:514"
+    securityLog:
+      enable: true
+      apLogConf: "default/logconf"
+      logDest: "stderr"
