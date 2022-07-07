@@ -95,7 +95,7 @@ The development team has developed and created a container image of the recommen
                   rewritePath: /api/recommendations
     ```
 
-    Note: The result of these changes to the file will configure NGINX Ingress Controller to route roughly 90% of requests to the `/api/recommendations` location to the `recommendations` upstream, and the remaining 10% to the `recommendations-v2` upstream.
+    Note: The result of these changes to the file will configure NGINX Ingress Controller to route roughly 90% of requests to the `/api/recommendations` path to the `recommendations` upstream, and the remaining 10% to the `recommendations-v2` upstream.
 
 1. Commit the `manifests/brewz/virtual-server.yml` and `manifests/brewz/app.yml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
