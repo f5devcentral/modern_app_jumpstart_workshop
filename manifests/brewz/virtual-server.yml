@@ -5,8 +5,8 @@ metadata:
   name: brewz
 spec:
   host: brewz.f5demo.com
-  policies:
-    - name: brewz-api-security-policy
+  # policies:
+  #   - name: brewz-api-security-policy
   upstreams:
     - name: spa
       service: spa
