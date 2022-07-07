@@ -78,4 +78,4 @@ spec:
       maskData: true
       usSocialSecurityNumbers: true
     open-api-files:
-      - link: https://github.com/f5devcentral/modern_app_jumpstart_workshop/tree/main/manifests/brewz/oas.yml
+      - link: https://github.com/aknot242/modern_app_jumpstart_workshop/tree/main/manifests/brewz/oas.yml
