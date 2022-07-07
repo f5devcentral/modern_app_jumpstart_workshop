@@ -128,7 +128,7 @@ The DevOps and the application owners aren't willing to allow this error conditi
 
 1. Commit the `manifests/brewz/virtual-server.yml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-1. Once deployed, once again use the **Hey** utility on your laptop to request the **recommendations** service directly as if the Brews SPA application was doing so:
+1. Once deployed, use the **Hey** utility on your laptop to request the **recommendations** service directly as if the Brews SPA application was doing so:
 
     ```bash
     BREWZ_URL=<Your Brewz UDF access method url>
