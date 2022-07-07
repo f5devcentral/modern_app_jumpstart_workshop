@@ -9,4 +9,4 @@ spec:
     max_message_size: 64k
     max_request_size: any
   filter:
-    request_type: all
+    request_type: blocked
