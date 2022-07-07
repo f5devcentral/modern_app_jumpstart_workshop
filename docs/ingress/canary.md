@@ -12,7 +12,7 @@
     kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
     ```
 
-1. Select the **NGINX Plus Ingress Controller** dashboard from the **Dashboards** menu. The dashboard should appear:
+1. Select the **NGINX Plus Ingress Controller** dashboard from the Grafana **Dashboards** menu. The dashboard should appear:
 
     <img src="../assets/grafana-nginx-ingress-dashboard.png" alt="NGINX Plus Ingress Controller dashboard" width="600"/>
 
