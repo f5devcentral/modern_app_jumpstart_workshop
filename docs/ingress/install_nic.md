@@ -111,6 +111,7 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
         syncOptions:
           - CreateNamespace=true
     ```
+
 1. Save the file. Stage both changed files, and commit them to your local repository. Push the changes to your remote repository.
 
 ## Install NGINX Plus Ingress Argo CD Application
