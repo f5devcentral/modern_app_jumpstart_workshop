@@ -6,9 +6,8 @@ info:
 paths:
   "/api/config/database":
     get:
-      description: ""
-      operationId: >-
-        get-api-config-database
+      description: "Get database configuration"
+      operationId: get-api-config-database
       parameters: []
       responses:
         "200":
@@ -17,9 +16,8 @@ paths:
     parameters: []
   "/api/inventory":
     get:
-      description: ""
-      operationId: >-
-        get-api-inventory
+      description: "Get current inventory"
+      operationId: get-api-inventory
       parameters: []
       responses:
         "200":
@@ -28,9 +26,8 @@ paths:
     parameters: []
   "/api/products":
     get:
-      description: ""
-      operationId: >-
-        get-api-products
+      description: "Get current products"
+      operationId: get-api-products
       parameters: []
       responses:
         "200":
@@ -40,8 +37,7 @@ paths:
   "/api/products/{productId}":
     get:
       description: "Get Product"
-      operationId: >-
-        get-api-products-productId
+      operationId: get-api-products-productId
       parameters:
         - name: productId
           in: path
@@ -53,9 +49,8 @@ paths:
           description: Product
   "/api/recommendations":
     get:
-      description: ""
-      operationId: >-
-        get-api-recommendations
+      description: "Get product recommendations"
+      operationId: get-api-recommendations
       parameters: []
       responses:
         "200":
@@ -64,9 +59,8 @@ paths:
     parameters: []
   "/api/stats":
     get:
-      description: ""
-      operationId: >-
-        get-api-stats
+      description: "Get health of main API"
+      operationId: get-api-stats
       parameters: []
       responses:
         "200":
@@ -75,9 +69,8 @@ paths:
     parameters: []
   "/api/stats/database":
     get:
-      description: ""
-      operationId: >-
-        get-api-stats-database
+      description: "Get health of database"
+      operationId: get-api-stats-database
       parameters: []
       responses:
         "200":
@@ -86,9 +79,8 @@ paths:
     parameters: []
   "/api/stats/inventory":
     get:
-      description: ""
-      operationId: >-
-        get-api-stats-inventory
+      description: "Get health of inventory API"
+      operationId: get-api-stats-inventory
       parameters: []
       responses:
         "200":
@@ -98,8 +90,7 @@ paths:
   "/api/users/{userId}/cart":
     get:
       description: "Get user cart"
-      operationId: >-
-        get-api-users-userId-cart
+      operationId: get-api-users-userId-cart
       parameters:
         - name: userId
           in: path
@@ -112,9 +103,8 @@ paths:
       summary: List api users
     parameters: []
     post:
-      description: ""
-      operationId: >-
-        post-api-users-userId-cart
+      description: "Add product to user cart"
+      operationId: post-api-users-userId-cart
       parameters:
         - name: userId
           in: path
@@ -122,20 +112,13 @@ paths:
             type: number
           required: true
       requestBody:
+        required: true
         content:
           application/json:
-            examples:
-              example-0001:
-                value:
-                  productId: "901"
-              example-0002:
-                value:
-                  productId: "789"
-              example-0003:
-                value:
-                  productId: "901"
             schema:
-              properties: {}
+              properties:
+                productId:
+                  type: number
               type: object
       responses:
         "200":
@@ -143,9 +126,8 @@ paths:
       summary: Create api id
   "/api/users/{userId}/cart/{productId}":
     delete:
-      description: ""
-      operationId: >-
-        delete-api-users-userId-cart-productId
+      description: "Delete product from user cart"
+      operationId: delete-api-users-userId-cart-productId
       parameters:
         - name: userId
           in: path
