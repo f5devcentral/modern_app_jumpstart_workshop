@@ -11,7 +11,7 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
     | Variable        | Value           |
     |-----------------|-----------------|
-    | <GITHUB_USER>   | github username |
+    | \<GITHUB_USER\>   | github username |
 
     Your file should look similar to the example below:
 

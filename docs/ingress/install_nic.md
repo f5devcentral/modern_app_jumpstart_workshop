@@ -51,7 +51,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
     | Variable        | Value           |
     |-----------------|-----------------|
-    | <GITHUB_USER>   | github username |
+    | \<GITHUB_USER\>   | github username |
     | &lt;TAG>        | tag value from previous command|
 
     Your file should look similar to the example below:
