@@ -2,6 +2,8 @@
 
 For this step, we will pull the NGINX Plus Ingress Controller image from your private registry and deploy it into your K3s deployment.
 
+We will use Argo CD to deploy NGINX Ingress Controller for us. However, if you wanted to do this using the Helm CLI, you may use [this procedure](install_nic_helm.md) as a reference.
+
 **Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
 
 ## Create a Read-Only GitHub PAT (Personal Access Token)
@@ -50,63 +52,66 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
     | <GITHUB_USER>   | github username |
     | &lt;TAG>        | tag value from previous command|
 
-Your file should look similar to the example below:
+    Your file should look similar to the example below:
 
-```yaml
-controller:
-  appprotect: 
-    enable: true
-  appprotectdos:
-    enable: true
-  enableSnippets: true
-  image:
-    repository: ghcr.io/codygreen/nginx-plus-ingress
-    tag: 2.2.2-SNAPSHOT-a88b7fe
-  nginxPlus: true
-  nginxStatus:
-    allowCidrs: 9000
-    port: 9000
-  serviceAccount:
-    imagePullSecretName: ghcr
-prometheus:
-  create: true
-```
+    ```yaml
+    controller:
+      appprotect: 
+        enable: true
+      appprotectdos:
+        enable: true
+      enableSnippets: true
+      image:
+        repository: ghcr.io/codygreen/nginx-plus-ingress
+        tag: 2.2.2-SNAPSHOT-a88b7fe
+      nginxPlus: true
+      nginxStatus:
+        allowCidrs: 9000
+        port: 9000
+      serviceAccount:
+        imagePullSecretName: ghcr
+    prometheus:
+      create: true
+    ```
+
+1. Save the file.
 
 Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
 1. Open the `manifests/nginx-ingress-subchart.yml` file in your forked version of the repository.
-2. Find the following variables and replace them with your information:
+1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
     |-----------------|-----------------|
     | <GITHUB_USER>   | github username |
 
-Your file should look similar to the example below:
+    Your file should look similar to the example below:
 
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: nginx-plus-ingress
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  source:
-    path: charts/nginx-plus-ingress
-    repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
-    targetRevision: HEAD
-  destination:
-    namespace: nginx-ingress
-    server: https://kubernetes.default.svc
-  syncPolicy:
-    automated:
-      selfHeal: true
-      prune: true
-    syncOptions:
-      - CreateNamespace=true
-```
+    ```yaml
+    apiVersion: argoproj.io/v1alpha1
+    kind: Application
+    metadata:
+      name: nginx-plus-ingress
+      namespace: argocd
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: default
+      source:
+        path: charts/nginx-plus-ingress
+        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+        targetRevision: HEAD
+      destination:
+        namespace: nginx-ingress
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true
+    ```
+1. Save the file. Stage both changed files, and commit them to your local repository. Push the changes to your remote repository.
 
 ## Install NGINX Plus Ingress Argo CD Application
 
@@ -160,33 +165,37 @@ kubectl describe pod $NIC_POC -n nginx-ingress
 The output should look similar to:
 
 ```bash
-Name:         nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj
+Name:         nginx-plus-ingress-nginx-ingress-785b67bf4-vgtdl
 Namespace:    nginx-ingress
 Priority:     0
-Node:         ubuntu/10.1.1.5
-Start Time:   Tue, 28 Jun 2022 19:11:52 -0500
+Node:         k3s/10.1.1.5
+Start Time:   Wed, 06 Jul 2022 09:07:17 -0700
 Labels:       app=nginx-plus-ingress-nginx-ingress
-              pod-template-hash=7547565fbc
+              pod-template-hash=785b67bf4
 Annotations:  prometheus.io/port: 9113
               prometheus.io/scheme: http
               prometheus.io/scrape: true
 Status:       Running
-IP:           10.42.0.7
+IP:           10.42.0.22
 IPs:
-  IP:           10.42.0.7
-Controlled By:  ReplicaSet/nginx-plus-ingress-nginx-ingress-7547565fbc
+  IP:           10.42.0.22
+Controlled By:  ReplicaSet/nginx-plus-ingress-nginx-ingress-785b67bf4
 Containers:
   nginx-plus-ingress-nginx-ingress:
-    Container ID:  containerd://effa0ec43ba7cba5ea5c1e9cfc0f0fa2397e4dacc5b6a602200597b5520ecd19
+    Container ID:  containerd://69e9e416438c2cc2330df627cc7605640f6c196092a4ea3f7ff421c3bcfbbcd7
     Image:         ghcr.io/codygreen/nginx-plus-ingress:2.2.2-SNAPSHOT-a88b7fe
-    Image ID:      ghcr.io/codygreen/nginx-plus-ingress@sha256:af2db8b7fa32a2b021ea6e2a453bca4c05f6a1897dd1c3c82fbee42d9a49c0b8
+    Image ID:      ghcr.io/codygreen/nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
     Ports:         80/TCP, 443/TCP, 9113/TCP, 8081/TCP
     Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
     Args:
       -nginx-plus=true
       -nginx-reload-timeout=60000
-      -enable-app-protect=false
-      -enable-app-protect-dos=false
+      -enable-app-protect=true
+      -enable-app-protect-dos=true
+      -app-protect-dos-debug=false
+      -app-protect-dos-max-daemons=0
+      -app-protect-dos-max-workers=0
+      -app-protect-dos-memory=0
       -nginx-configmaps=$(POD_NAMESPACE)/nginx-plus-ingress-nginx-ingress
       -default-server-tls-secret=$(POD_NAMESPACE)/nginx-plus-ingress-nginx-ingress-default-server-tls
       -ingress-class=nginx
@@ -195,7 +204,7 @@ Containers:
       -nginx-debug=false
       -v=1
       -nginx-status=true
-      -nginx-status-port=8080
+      -nginx-status-port=9000
       -nginx-status-allow-cidrs=0.0.0.0/0
       -report-ingress-status
       -external-service=nginx-plus-ingress-nginx-ingress
@@ -208,19 +217,21 @@ Containers:
       -enable-snippets=true
       -enable-tls-passthrough=false
       -enable-preview-policies=false
+      -enable-cert-manager=false
+      -enable-oidc=false
       -ready-status=true
       -ready-status-port=8081
       -enable-latency-metrics=false
     State:          Running
-      Started:      Tue, 28 Jun 2022 19:12:05 -0500
+      Started:      Wed, 06 Jul 2022 09:07:24 -0700
     Ready:          True
     Restart Count:  0
     Readiness:      http-get http://:readiness-port/nginx-ready delay=0s timeout=1s period=1s #success=1 #failure=3
     Environment:
       POD_NAMESPACE:  nginx-ingress (v1:metadata.namespace)
-      POD_NAME:       nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj (v1:metadata.name)
+      POD_NAME:       nginx-plus-ingress-nginx-ingress-785b67bf4-vgtdl (v1:metadata.name)
     Mounts:
-      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5vpws (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tp2v4 (ro)
 Conditions:
   Type              Status
   Initialized       True
@@ -228,7 +239,7 @@ Conditions:
   ContainersReady   True
   PodScheduled      True
 Volumes:
-  kube-api-access-5vpws:
+  kube-api-access-tp2v4:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
