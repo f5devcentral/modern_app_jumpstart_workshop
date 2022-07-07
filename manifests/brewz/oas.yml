@@ -1,0 +1,166 @@
+openapi: 3.0.0
+info:
+  title: brews-api
+  version: 1.0.0
+  description: brews-api
+paths:
+  "/api/config/database":
+    get:
+      description: ""
+      operationId: >-
+        get-api-config-database
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List configs
+    parameters: []
+  "/api/inventory":
+    get:
+      description: ""
+      operationId: >-
+        get-api-inventory
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List apis
+    parameters: []
+  "/api/products":
+    get:
+      description: ""
+      operationId: >-
+        get-api-products
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List apis
+    parameters: []
+  "/api/products/{productId}":
+    get:
+      description: "Get Product"
+      operationId: >-
+        get-api-products-productId
+      parameters:
+        - name: productId
+          in: path
+          schema:
+            type: number
+          required: true
+      responses:
+        "200":
+          description: Product
+  "/api/recommendations":
+    get:
+      description: ""
+      operationId: >-
+        get-api-recommendations
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List apis
+    parameters: []
+  "/api/stats":
+    get:
+      description: ""
+      operationId: >-
+        get-api-stats
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List apis
+    parameters: []
+  "/api/stats/database":
+    get:
+      description: ""
+      operationId: >-
+        get-api-stats-database
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List stats
+    parameters: []
+  "/api/stats/inventory":
+    get:
+      description: ""
+      operationId: >-
+        get-api-stats-inventory
+      parameters: []
+      responses:
+        "200":
+          description: Success
+      summary: List stats
+    parameters: []
+  "/api/users/{userId}/cart":
+    get:
+      description: "Get user cart"
+      operationId: >-
+        get-api-users-userId-cart
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: number
+          required: true
+      responses:
+        "200":
+          description: Success
+      summary: List api users
+    parameters: []
+    post:
+      description: ""
+      operationId: >-
+        post-api-users-userId-cart
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: number
+          required: true
+      requestBody:
+        content:
+          application/json:
+            examples:
+              example-0001:
+                value:
+                  productId: "901"
+              example-0002:
+                value:
+                  productId: "789"
+              example-0003:
+                value:
+                  productId: "901"
+            schema:
+              properties: {}
+              type: object
+      responses:
+        "200":
+          description: Item created
+      summary: Create api id
+  "/api/users/{userId}/cart/{productId}":
+    delete:
+      description: ""
+      operationId: >-
+        delete-api-users-userId-cart-productId
+      parameters:
+        - name: userId
+          in: path
+          schema:
+            type: number
+          required: true
+        - name: productId
+          in: path
+          schema:
+            type: number
+          required: true
+      responses:
+        "200":
+          description: Item deleted
+      summary: Delete user carts
+    parameters: []
+servers:
+  - url: /
