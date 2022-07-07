@@ -46,12 +46,12 @@ spec:
           rewritePath: /api/inventory
     - path: /api/recommendations
       splits:
-        - weight: 90
+        - weight: 100
           action:
             proxy:
               upstream: recommendations
               rewritePath: /api/recommendations
-        - weight: 10
+        - weight: 0
           action:
             proxy:
               upstream: recommendations-v2
