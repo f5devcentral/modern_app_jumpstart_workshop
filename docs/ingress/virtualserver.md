@@ -288,9 +288,8 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
 In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add the following fields to the virtual server:
 
 ```yaml
-secret: brewz-tls
-redirect:
-  enable: true
+tls:
+  secret: brewz-tls
 ```
 
 The final file should look like the example below:
