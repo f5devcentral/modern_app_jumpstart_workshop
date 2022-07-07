@@ -140,4 +140,4 @@ The DevOps and the application owners aren't willing to allow this error conditi
 
 ## Next Steps
 
-You have completed the NGINX Plus portion of the Ingress lab.
+Next, you will [add API protection with NGINX App Protect WAF](waf.md).
