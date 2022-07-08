@@ -253,7 +253,7 @@ Now that we have a self-signed certificate, we need to add it to our K8s cluster
 
 Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
 
-```shell
+```bash
 sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned.key --cert=/etc/ssl/certs/brewz-selfsigned.crt
 ```
 
@@ -261,7 +261,7 @@ Now that your secret is created, let's take a look at it.
 
 Run the following command from your laptop:
 
-```shell
+```bash
 kubectl describe secret brewz-tls
 ```
 
@@ -346,21 +346,21 @@ Now, let's check the status of our virtual server.
 
 1. Check the state of the Virtual Server, it should be *Valid*:
 
-    ```shell
+    ```bash
     kubectl get vs
     ```
 
 1. Open a **WebShell** for the K3s server in the UDF deployment
 1. Check the SSL certificate on the NGINX Ingress, notice the CN is NGINXIngressController
 
-    ```shell
-   echo | openssl s_client -connect 10.1.1.5:443 2> /dev/null| grep subject=
+    ```bash
+    echo | openssl s_client -connect 10.1.1.5:443 2> /dev/null | grep subject=
     ```
 
 1. Now, check the SSL certificate for the **brewz.f5demo.com** Virtual Server, notice the certificate information you entered when you created the cert:
 
-    ```shell
-    echo | openssl s_client -connect 10.1.1.5:443  -servername brewz.f5demo.com 2> /dev/null |grep subject=
+    ```bash
+    echo | openssl s_client -connect 10.1.1.5:443  -servername brewz.f5demo.com 2> /dev/null | grep subject=
     ```
 
 ## Next Steps

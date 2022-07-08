@@ -62,13 +62,13 @@ Now that Argo CD has deployed out application let's take a look at the NGINX Ing
 
 **Note:** Refer to the [VirtualServer docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) for more information.
 
-```shell
+```bash
 kubectl get virtualserver
 ```
 
 Your output should look similar to:
 
-```shell
+```bash
 NAME    STATE   HOST               IP         PORTS      AGE
 brewz   Valid   brewz.f5demo.com   10.1.1.5   [80,443]   29m
 ```

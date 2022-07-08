@@ -132,7 +132,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
 
 To check our pod run the following command:
 
-```shell
+```bash
 kubectl get pods -n nginx-ingress
 ```
 
@@ -145,7 +145,7 @@ nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj   1/1     Running   0         
 
 To check our service run the following command:
 
-```shell
+```bash
 kubectl get svc -n nginx-ingress
 ```
 
@@ -160,7 +160,7 @@ nginx-plus-ingress-nginx-ingress   LoadBalancer   10.43.129.144   10.1.1.5      
 
 Now that we know our NGINX Ingress Controller Pod is up and running, let's dig into some of the pod details.
 
-```shell
+```bash
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
 kubectl describe pod $NIC_POC -n nginx-ingress
 ```
