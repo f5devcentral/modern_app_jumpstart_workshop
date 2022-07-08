@@ -6,7 +6,7 @@ In this step, you will use GitOps to install Prometheus leveraging Argo CD.
 
 You will need to update the Prometheus Argo CD manifest to match your environment.
 
-1. Open the `manifests/prometheus-subchart.yml` file in your forked version of the repository.
+1. Open the `manifests/prometheus-subchart.yaml` file in your forked version of the repository.
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -46,7 +46,7 @@ You will need to update the Prometheus Argo CD manifest to match your environmen
 To deploy the Prometheus Argo CD application, run the following command:
 
 ```bash
-kubectl apply -f manifests/prometheus-subchart.yml
+kubectl apply -f manifests/prometheus-subchart.yaml
 ```
 
 ## Verify Install

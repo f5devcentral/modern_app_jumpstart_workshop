@@ -30,7 +30,7 @@
 
 The development team has developed and created a container image of the recommendations service in the registry. We will deploy this new version of the service alongside the existing version, but at first only send a portion of incoming requests to this new version of the service. We will monitor the health of this new service's upstream in the Grafana dashboard, and will either continue the rollout, or back out the change if errors occur. Let's do it.
 
-1. In VSCode, append the following new `Deployment` and `Service` resources to the `manifests/brewz/app.yml` file, and save it:
+1. In VSCode, append the following new `Deployment` and `Service` resources to the `manifests/brewz/app.yaml` file, and save it:
 
     ```yaml
 
@@ -70,7 +70,7 @@ The development team has developed and created a container image of the recommen
 
     ```
 
-1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yml` file:
+1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
 
     ```yaml
         - name: recommendations-v2
@@ -97,7 +97,7 @@ The development team has developed and created a container image of the recommen
 
     Note: The result of these changes to the file will configure NGINX Ingress Controller to route roughly 90% of requests to the `/api/recommendations` path to the `recommendations` upstream, and the remaining 10% to the `recommendations-v2` upstream.
 
-1. Commit the `manifests/brewz/virtual-server.yml` and `manifests/brewz/app.yml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
     **Note:** Once the configuration is deployed, NGINX Ingress Controller will reload NGINX, and the **Reloads** metric on the Grafana dashboard should increment.
 

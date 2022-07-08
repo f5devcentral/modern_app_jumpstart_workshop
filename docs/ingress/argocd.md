@@ -16,7 +16,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ## Expose the Argo CD Server API/UI
 
-Save the following manifest locally to `argocd-nodeport.yml`
+Save the following manifest locally to `argocd-nodeport.yaml`
 
 ```yml
 apiVersion: v1
@@ -49,7 +49,7 @@ spec:
 Now, apply the manifest:
 
 ```bash
-kubectl apply -f argocd-nodeport.yml
+kubectl apply -f argocd-nodeport.yaml
 ```
 
 ## Obtain the Argo CD password

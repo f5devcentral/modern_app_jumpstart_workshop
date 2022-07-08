@@ -80,7 +80,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
-1. Open the `manifests/nginx-ingress-subchart.yml` file in your forked version of the repository.
+1. Open the `manifests/nginx-ingress-subchart.yaml` file in your forked version of the repository.
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -121,7 +121,7 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
 Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to Argo CD with the following command:
 
 ```bash
-kubectl apply -f manifests/nginx-ingress-subchart.yml
+kubectl apply -f manifests/nginx-ingress-subchart.yaml
 ```
 
 ## Verify Install
