@@ -82,4 +82,4 @@ spec:
       maskData: true
       usSocialSecurityNumbers: true
     open-api-files:
-      - link: https://raw.githubusercontent.com/f5devcentral/modern_app_jumpstart_workshop/main/docs/ingress/source-manifests/oas.yml
+      - link: https://raw.githubusercontent.com/f5devcentral/modern_app_jumpstart_workshop/main/docs/ingress/source-manifests/oas.yaml
