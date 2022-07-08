@@ -340,7 +340,7 @@ spec:
           rewritePath: /images
 ```
 
-Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, let's check the status of our virtual server.
 
@@ -357,7 +357,7 @@ Now, let's check the status of our virtual server.
    echo | openssl s_client -connect 10.1.1.5:443 2> /dev/null| grep subject=
     ```
 
-1. Now, check the SSL certificate for the brewz.f5demo.com Virtual Server, notice the certificate information you entered when you created the cert:
+1. Now, check the SSL certificate for the **brewz.f5demo.com** Virtual Server, notice the certificate information you entered when you created the cert:
 
     ```shell
     echo | openssl s_client -connect 10.1.1.5:443  -servername brewz.f5demo.com 2> /dev/null |grep subject=
