@@ -31,7 +31,7 @@ spec:
       matches:
         - conditions:
             - cookie: app_version
-              value: dark
+              value: darkest
           action:
             pass: spa-dark
       action:
