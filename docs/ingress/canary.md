@@ -78,7 +78,7 @@ The development team has developed and created a container image of the recommen
           port: 8001
     ```
 
-1. Modify the existing `/api/recommendations` path in the `routes` section of the file so it looks like this and save it:
+1. Modify the existing `/api/recommendations` path in the `routes` section of the file so it looks like this and save it - ensure you remove the existing action:
 
     ```yaml
         - path: /api/recommendations

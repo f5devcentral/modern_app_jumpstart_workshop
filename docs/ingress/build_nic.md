@@ -58,12 +58,14 @@ To publish the NGINX Ingress Controller container to your private registry follo
 1. run the *docker login* command to log into the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
 
     ```bash
+    #{% raw %}
     # Login to GitHub Packages
     echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin 
     # Find your container tag
     TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
     # Publish the container
     docker push ghcr.io/$GITHUB_USER/nginx-plus-ingress:$TAG
+    #{% endraw %}
 
 ## Next Steps
 

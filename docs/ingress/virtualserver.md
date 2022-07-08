@@ -138,6 +138,8 @@ spec:
           rewritePath: /images
 ```
 
+Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
 
 ```bash
@@ -206,6 +208,8 @@ spec:
           rewritePath: /images
 ```
 
+Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+
 Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
 
 ```bash
@@ -258,7 +262,7 @@ Now that your secret is created, let's take a look at it.
 Run the following command from your laptop:
 
 ```shell
-kubectl describe secret brewz-tls -n nginx-ingress
+kubectl describe secret brewz-tls
 ```
 
 Your output should look similar to:
@@ -284,9 +288,8 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
 In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add the following fields to the virtual server:
 
 ```yaml
-secret: brewz-tls
-redirect:
-  enable: true
+tls:
+  secret: brewz-tls
 ```
 
 The final file should look like the example below:
@@ -337,13 +340,28 @@ spec:
           rewritePath: /images
 ```
 
-Now, let's check the status of our virtual server:
+Commit the `manifests/brewz/virtual-server.yml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-```shell
-kubectl get vs
-```
+Now, let's check the status of our virtual server.
 
-Notice that the virtual server is now listening on port *80* and *443*.
+1. Check the state of the Virtual Server, it should be *Valid*:
+
+    ```shell
+    kubectl get vs
+    ```
+
+1. Open a **WebShell** for the K3s server in the UDF deployment
+1. Check the SSL certificate on the NGINX Ingress, notice the CN is NGINXIngressController
+
+    ```shell
+   echo | openssl s_client -connect 10.1.1.5:443 2> /dev/null| grep subject=
+    ```
+
+1. Now, check the SSL certificate for the **brewz.f5demo.com** Virtual Server, notice the certificate information you entered when you created the cert:
+
+    ```shell
+    echo | openssl s_client -connect 10.1.1.5:443  -servername brewz.f5demo.com 2> /dev/null |grep subject=
+    ```
 
 ## Next Steps
 
