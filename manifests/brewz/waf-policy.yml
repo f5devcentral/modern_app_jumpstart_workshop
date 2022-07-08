@@ -10,4 +10,4 @@ spec:
     securityLog:
       enable: true
       apLogConf: "default/logconf"
-      logDest: "stderr"
+      logDest: "syslog:server=logging-fluentd.monitoring.svc.cluster.local:5140"
