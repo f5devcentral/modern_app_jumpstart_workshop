@@ -4,7 +4,7 @@
 
 ## Examine NGINX Dashboard in Grafana
 
-1. Click on the **Grafana** access method in the **k3s** component in the UDF deployment. 
+1. Click on the **Grafana** access method in the **k3s** component in the UDF deployment.
 
 1. When presented for login credentials, enter `admin` as the username. To acquire the password, you must run the following command from your local machine to interrogate the K8s API for the secret containing the password:
 
@@ -22,7 +22,7 @@
 
     Note that there are various filters you can use to examine a subset of the data. By default, the dashboard will consume NGINX Plus Prometheus metrics from all namespaces, so you may wish to filter on the `default` namespace. Additionally, you may also filter data that appears in the **Upstream Metrics** portion of the dashboard to specific upstreams by use of the **Upstream Server** menu.
 
-1. Open the **Brewz** UDF access method of the **k3s** component, and exercise various functions of the application. 
+1. Open the **Brewz** UDF access method of the **k3s** component, and exercise various functions of the application.
 
 1. Return to the Grafana dashboard. You should start to see **Ingress Metrics** such as **Success Rates Over Time** and **Upstream Success Rate** charts start to trend upward. This is a good indication that the application is operating correctly.
 
@@ -116,19 +116,22 @@ The development team has developed and created a container image of the recommen
 
 The DevOps and the application owners aren't willing to allow this error condition to continue, so it is decided to route all traffic back to the older version of the recommendations service so that the team can investigate offline without affecting customers. While Kubernetes and Argo CD both have rollback capabilities, we have made the decision to effectively revert the change so that all traffic is once again routed to the older version of the recommendations service.
 
-1. In VSCode, modify the existing `/api/recommendations` back to its original values and save it:
+1. In VSCode, open a terminal and run the following commands to revert your previous git commit:
 
-    ```yaml
-        - path: /api/recommendations
-          action:
-            proxy:
-              upstream: recommendations
-              rewritePath: /api/recommendations
+    ```bash
+    # Find your last commit ID
+    git log -1
+
+    # revert your commit
+    git revert your_commit_id
+
+    # Update origin 
+    git push origin
     ```
 
-1. Commit the `manifests/brewz/virtual-server.yml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Argo CD will pick up the most recent changes, and deploy them for you.  Check the brewz virtualserver resource under the brewz application to check that the revert was successful.
 
-1. Once deployed, use the **Hey** utility on your laptop to request the **recommendations** service directly as if the Brews SPA application was doing so:
+1. Once the revert is successful, use the **Hey** utility on your laptop to request the **recommendations** service directly as if the Brews SPA application was doing so:
 
     ```bash
     BREWZ_URL=<Your Brewz UDF access method url>
@@ -136,7 +139,6 @@ The DevOps and the application owners aren't willing to allow this error conditi
     ```
 
 1. As this is running, monitor the success and error rates in the Grafana dashboard. What do you see? The upstream error rates should return to zero and no longer reporting server errors.
-
 
 ## Next Steps
 
