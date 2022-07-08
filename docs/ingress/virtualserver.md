@@ -16,7 +16,7 @@ The action resource defines an action to perform for a request and is the basis 
 
 The *pass* action passes the request to an upstream that is defined in the resource.  
 
-In the Brewz `virtual-server.yml` manifest, the *spa* and *api* services leverage this method.
+In the Brewz `virtual-server.yaml` manifest, the *spa* and *api* services leverage this method.
 
 ```yaml
 ...
@@ -50,7 +50,7 @@ The *return* action returns a preconfigured response.
 
 The *proxy* action passes a request to an upstream with the ability to modify the request/response.  
 
-In the Brewz `virtual-server.yml` manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
+In the Brewz `virtual-server.yaml` manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
 
 ```yaml
 ...
@@ -66,7 +66,7 @@ In the Brewz `virtual-server.yml` manifest, the */images* path uses this method 
 
 The upstream defines a destination for the routing configuration. The upstream's name must be a valid DNS label as defined in RFC 1035.
 
-In the Brewz `virtual-server.yml` manifest, we define a very simple upstream configuration for the *spa* and *api* services:
+In the Brewz `virtual-server.yaml` manifest, we define a very simple upstream configuration for the *spa* and *api* services:
 
 ```yaml
 ...
@@ -101,7 +101,7 @@ For a full list of Upstream attributes, please refer to the [docs](https://docs.
 
 One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add a `healthCheck` resource to the `api` upstream; example below.
+In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add a `healthCheck` resource to the `api` upstream; example below.
 
 ```yaml
 ---
@@ -138,7 +138,7 @@ spec:
           rewritePath: /images
 ```
 
-Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
 
@@ -162,7 +162,7 @@ curl -k https://$HOST/api/products/1234
 
 Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
+In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -208,7 +208,7 @@ spec:
           rewritePath: /images
 ```
 
-Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
 
@@ -253,7 +253,7 @@ Now that we have a self-signed certificate, we need to add it to our K8s cluster
 
 Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
 
-```shell
+```bash
 sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned.key --cert=/etc/ssl/certs/brewz-selfsigned.crt
 ```
 
@@ -261,7 +261,7 @@ Now that your secret is created, let's take a look at it.
 
 Run the following command from your laptop:
 
-```shell
+```bash
 kubectl describe secret brewz-tls
 ```
 
@@ -285,7 +285,7 @@ tls.key:  1704 bytes
 
 The final step is to update our Brewz VirtualServer resource to leverage the new TLS certificate.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add the following fields to the virtual server:
+In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add the following fields to the virtual server:
 
 ```yaml
 tls:
@@ -340,27 +340,27 @@ spec:
           rewritePath: /images
 ```
 
-Commit the `manifests/brewz/virtual-server.yml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, let's check the status of our virtual server.
 
 1. Check the state of the Virtual Server, it should be *Valid*:
 
-    ```shell
+    ```bash
     kubectl get vs
     ```
 
 1. Open a **WebShell** for the K3s server in the UDF deployment
 1. Check the SSL certificate on the NGINX Ingress, notice the CN is NGINXIngressController
 
-    ```shell
-   echo | openssl s_client -connect 10.1.1.5:443 2> /dev/null| grep subject=
+    ```bash
+    echo | openssl s_client -connect 10.1.1.5:443 2> /dev/null | grep subject=
     ```
 
 1. Now, check the SSL certificate for the **brewz.f5demo.com** Virtual Server, notice the certificate information you entered when you created the cert:
 
-    ```shell
-    echo | openssl s_client -connect 10.1.1.5:443  -servername brewz.f5demo.com 2> /dev/null |grep subject=
+    ```bash
+    echo | openssl s_client -connect 10.1.1.5:443  -servername brewz.f5demo.com 2> /dev/null | grep subject=
     ```
 
 ## Next Steps

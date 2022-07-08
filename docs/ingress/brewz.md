@@ -6,7 +6,7 @@ In this section, you will deploy the Brewz microservices using Argo CD.
 
 You will need to update the Brewz Argo CD manifest to match your environment.  
 
-1. Open the `manifests/brewz-subchart.yml` file in your forked version of the repository.
+1. Open the `manifests/brewz-subchart.yaml` file in your forked version of the repository.
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -45,7 +45,7 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 To deploy the Brewz Argo CD application, run the following command:
 
 ```bash
-kubectl apply -f manifests/brewz-subchart.yml
+kubectl apply -f manifests/brewz-subchart.yaml
 ```
 
 ## View the Argo CD Application
@@ -62,13 +62,13 @@ Now that Argo CD has deployed out application let's take a look at the NGINX Ing
 
 **Note:** Refer to the [VirtualServer docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) for more information.
 
-```shell
+```bash
 kubectl get virtualserver
 ```
 
 Your output should look similar to:
 
-```shell
+```bash
 NAME    STATE   HOST               IP         PORTS      AGE
 brewz   Valid   brewz.f5demo.com   10.1.1.5   [80,443]   29m
 ```

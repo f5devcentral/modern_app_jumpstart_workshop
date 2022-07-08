@@ -51,9 +51,9 @@ kubectl get nodes
 
 ```bash
 cd manifests/brewz
-kubectl apply -f mongo-init.yml
-kubectl apply -f app.yml
-kubectl apply -f virtual-server.yml
+kubectl apply -f mongo-init.yaml
+kubectl apply -f app.yaml
+kubectl apply -f virtual-server.yaml
 ```
 
 Use the **Brewz** UDF access method to explore the deployed app in your browser. Click the "BREWZ" title link to navigate to the main product catalog.

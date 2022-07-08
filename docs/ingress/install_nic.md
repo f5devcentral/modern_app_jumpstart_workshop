@@ -80,12 +80,12 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
-1. Open the `manifests/nginx-ingress-subchart.yml` file in your forked version of the repository.
+1. Open the `manifests/nginx-ingress-subchart.yaml` file in your forked version of the repository.
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
     |-----------------|-----------------|
-    | <GITHUB_USER>   | github username |
+    | \<GITHUB_USER\>   | github username |
 
     Your file should look similar to the example below:
 
@@ -121,7 +121,7 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
 Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to Argo CD with the following command:
 
 ```bash
-kubectl apply -f manifests/nginx-ingress-subchart.yml
+kubectl apply -f manifests/nginx-ingress-subchart.yaml
 ```
 
 ## Verify Install
@@ -132,7 +132,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
 
 To check our pod run the following command:
 
-```shell
+```bash
 kubectl get pods -n nginx-ingress
 ```
 
@@ -145,7 +145,7 @@ nginx-plus-ingress-nginx-ingress-7547565fbc-f8nqj   1/1     Running   0         
 
 To check our service run the following command:
 
-```shell
+```bash
 kubectl get svc -n nginx-ingress
 ```
 
@@ -160,7 +160,7 @@ nginx-plus-ingress-nginx-ingress   LoadBalancer   10.43.129.144   10.1.1.5      
 
 Now that we know our NGINX Ingress Controller Pod is up and running, let's dig into some of the pod details.
 
-```shell
+```bash
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
 kubectl describe pod $NIC_POC -n nginx-ingress
 ```

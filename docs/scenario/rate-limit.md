@@ -13,7 +13,7 @@ Note that Hey should report`Status code distribution: [200] 20 responses` in its
 
 We will create a rate limiting policy for NGINX Ingress Controller, and attach it specifically to the `/api` VirtualServerRoute that has already been defined.
 
-Open your forked workshop GitHub repo in VSCode. Ensure you are working on the `main` branch, and it is up to date. Create a `manifests/brewz/rate-limit.yml` file with the following contents, and save the file:
+Open your forked workshop GitHub repo in VSCode. Ensure you are working on the `main` branch, and it is up to date. Create a `manifests/brewz/rate-limit.yaml` file with the following contents, and save the file:
 
 ```yaml
 ---
@@ -30,7 +30,7 @@ spec:
     zoneSize: 10M
 ```
 
-Edit the existing `manifests/brewz/virtual-server.yml` file to add the rate limiting policy to the /api path. The file should now look like this:
+Edit the existing `manifests/brewz/virtual-server.yaml` file to add the rate limiting policy to the /api path. The file should now look like this:
 
 ```yaml
 ---
