@@ -40,8 +40,10 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 1. Find your NGINX Plus Ingress Controller container tag with the following command:
 
     ```bash
+    #{% raw %}
     TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
     echo $TAG
+    #{% endraw %}
     ```
 
 1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the repository.
@@ -49,7 +51,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
     | Variable        | Value           |
     |-----------------|-----------------|
-    | <GITHUB_USER>   | github username |
+    | \<GITHUB_USER\>   | github username |
     | &lt;TAG>        | tag value from previous command|
 
     Your file should look similar to the example below:
@@ -111,6 +113,7 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
         syncOptions:
           - CreateNamespace=true
     ```
+
 1. Save the file. Stage both changed files, and commit them to your local repository. Push the changes to your remote repository.
 
 ## Install NGINX Plus Ingress Argo CD Application
