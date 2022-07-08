@@ -16,9 +16,9 @@ Let's make it happen...
 
 ## Update manifests to add additional microservice routes
 
-The goal of this refactoring is to make changes to the deployment architecture without necessitating changes to the services' code. While this may not always be the case, we are in luck: the changes we need to make are simply to make HTTP path-based routing decisions to override where the existing api calls are being serviced. This can be accomplish by simply updating the `virtual-server.yml` manifest's **Virtual Server Route** configuration. 
+The goal of this refactoring is to make changes to the deployment architecture without necessitating changes to the services' code. While this may not always be the case, we are in luck: the changes we need to make are simply to make HTTP path-based routing decisions to override where the existing api calls are being serviced. This can be accomplish by simply updating the `virtual-server.yaml` manifest's **Virtual Server Route** configuration. 
 
-In VSCode, edit your forked repo's copy of the `virtual-server.yml` to make it look like the following:
+In VSCode, edit your forked repo's copy of the `virtual-server.yaml` to make it look like the following:
 
 ```yaml
 ---
@@ -72,7 +72,7 @@ Note that we have:
 * Added upstream definitions to the `inventory` and `recommendations` services.
 * Added more specific paths so that calls to `/api/inventory` and `/api/recommendations` are being routed directly to the authoritative services, and ultimately the pods that contain them.
 
-Save and commit the `virtual-server.yml` file to the local repository, and push the changes to your remote GitHub repository. 
+Save and commit the `virtual-server.yaml` file to the local repository, and push the changes to your remote GitHub repository. 
 
 Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
@@ -82,7 +82,7 @@ Additionally, use the **Brewz** UDF access method to explore the deployed app in
 
 Now that the services have been decoupled, we will independently scale the `inventory` service without being concerned with the need to scale the `api` service as well.
 
-In VSCode, edit your forked repo's copy of the `app.yml` and change the number of replicas of the inventory service to `3` (at line 157). When complete, the inventory Deployment should look like the following:
+In VSCode, edit your forked repo's copy of the `app.yaml` and change the number of replicas of the inventory service to `3` (at line 157). When complete, the inventory Deployment should look like the following:
 
 ```yaml
 ...
@@ -110,7 +110,7 @@ spec:
 ...
 ```
 
-Save and commit the `app.yml` file to the local repository, and push the changes to your remote GitHub repository.
+Save and commit the `app.yaml` file to the local repository, and push the changes to your remote GitHub repository.
 
 Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully. Note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
 

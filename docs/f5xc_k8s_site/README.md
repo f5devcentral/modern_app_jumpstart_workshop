@@ -27,7 +27,7 @@ This lab assumes that you have already completed the [NGINX Ingress lab](../ingr
 Now that you have created your custom manifest file, we will deploy the manifest:
 
 ```bash
-kubectl apply -f f5xc_k8s_site.yml
+kubectl apply -f f5xc_k8s_site.yaml
 ```
 
 Verify the deployment by running the following command:

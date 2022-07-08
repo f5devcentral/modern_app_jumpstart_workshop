@@ -43,9 +43,9 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
 
 We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the Brewz developers provided us. This should stop unexpected and invalid requests from making it through NGINX Ingress Controller, performing as an API Gateway.
 
-1. Copy `waf-ap-logconf.yml`, `waf-ap-policy.yml` and `waf-policy.yml` from your `docs/ingress/source-manifests` folder into your `manifests/brewz` folder.
+1. Copy `waf-ap-logconf.yaml`, `waf-ap-policy.yaml` and `waf-policy.yaml` from your `docs/ingress/source-manifests` folder into your `manifests/brewz` folder.
 
-1. Update your `manifests/brewz/virtual-server.yml` file to add the `waf-policy` policy reference to the `VirtualServer` spec as in this snippet:
+1. Update your `manifests/brewz/virtual-server.yaml` file to add the `waf-policy` policy reference to the `VirtualServer` spec as in this snippet:
 
     ```yaml
     apiVersion: k8s.nginx.org/v1
@@ -66,14 +66,14 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
 
 1. While it is deploying, review the files you copied:
 
-    - `waf-ap-policy.yml` is the NAP policy itself, packaged into an `APPolicy` custom resource type. It is set to global blocking, and enables blocking for specific violations that we would like to have enforced for the Brewz APIs. Note that the OpenAPI file itself is referenced at the bottom of the policy file. Once the policy is loaded into the ingress controller and presented to NAP, it will be downloaded from the referenced [public GitHub URL](https://raw.githubusercontent.com/f5devcentral/modern_app_jumpstart_workshop/main/docs/ingress/source-manifests/oas.yml). You are free to examine this file now, or later in the exercise. 
-    - `waf-ap-logconf.yml` is the logging configuration that NAP WAF will use, packaged as an `APLogConf` custom resource. Note that it is set to log `blocked` requests only.
-    - `waf-policy.yml` is a `Policy` custom resource that stitches together the `APPolicy` and `APLogConf` resources. This is the resource that we referenced and attached to the `VirtualServer` resource above.
+    - `waf-ap-policy.yaml` is the NAP policy itself, packaged into an `APPolicy` custom resource type. It is set to global blocking, and enables blocking for specific violations that we would like to have enforced for the Brewz APIs. Note that the OpenAPI file itself is referenced at the bottom of the policy file. Once the policy is loaded into the ingress controller and presented to NAP, it will be downloaded from the referenced [public GitHub URL](https://raw.githubusercontent.com/f5devcentral/modern_app_jumpstart_workshop/main/docs/ingress/source-manifests/oas.yaml). You are free to examine this file now, or later in the exercise. 
+    - `waf-ap-logconf.yaml` is the logging configuration that NAP WAF will use, packaged as an `APLogConf` custom resource. Note that it is set to log `blocked` requests only.
+    - `waf-policy.yaml` is a `Policy` custom resource that stitches together the `APPolicy` and `APLogConf` resources. This is the resource that we referenced and attached to the `VirtualServer` resource above.
 
 
 ## Monitor NAP WAF Security Events
 
-If you examine the contents of the `APLogConf` resource contained in `manifests/brewz/waf-ap-logconf.yml` file, you will notice that we have configured NAP WAF to log to `stderr` rather than to a file destination. NGINX Ingress Controller is already logging both access log entries and configuration events to the `stdout` and `stderr` log stream and are viewable with `kubectl logs` executed on its pod. NAP WAF violation logs will now appear in this log stream as well.
+If you examine the contents of the `APLogConf` resource contained in `manifests/brewz/waf-ap-logconf.yaml` file, you will notice that we have configured NAP WAF to log to `stderr` rather than to a file destination. NGINX Ingress Controller is already logging both access log entries and configuration events to the `stdout` and `stderr` log stream and are viewable with `kubectl logs` executed on its pod. NAP WAF violation logs will now appear in this log stream as well.
 
 Open a new terminal and tail ("follow" with the `-f` option) the NIC pod logs and stream them to your terminal. You will likely need to set the `KUBECONFIG` variable in this new terminal, so we include this command here:
 
@@ -113,7 +113,7 @@ We will use this log stream in the next section.
     curl -X POST "$BREWZ_URL/api/users/12345/cart"
     ```
 
-    In the log stream, notice a violation of `VIOL_URL_CONTENT_TYPE` appears. This is due to the fact that line 117 in the `oas.yml` spec file stipulates that requests to this http URI and verb must be of content type `application/json`.
+    In the log stream, notice a violation of `VIOL_URL_CONTENT_TYPE` appears. This is due to the fact that line 117 in the `oas.yaml` spec file stipulates that requests to this http URI and verb must be of content type `application/json`.
 
 1. Attempt a new request that includes the expected content type, yet violates the request payload expectations:
 
@@ -121,7 +121,7 @@ We will use this log stream in the next section.
     curl -d '{"productId":"1234r"}' -H "Content-Type: application/json" -X POST $BREWZ_URL/api/users/12345/cart
     ```
 
-    In the log stream, notice a violation of `VIOL_JSON_SCHEMA` appears. This is due to the fact that line 120 in the `oas.yml` spec file stipulates that requests must include a `productId` property, that is a string that is coercable into a number with a minimum of 3 digits.
+    In the log stream, notice a violation of `VIOL_JSON_SCHEMA` appears. This is due to the fact that line 120 in the `oas.yaml` spec file stipulates that requests must include a `productId` property, that is a string that is coercable into a number with a minimum of 3 digits.
 
 1. Finally, send a valid request and note that it is successful and returns all the products in the user cart:
 

@@ -16,7 +16,7 @@ The action resource defines an action to perform for a request and is the basis 
 
 The *pass* action passes the request to an upstream that is defined in the resource.  
 
-In the Brewz `virtual-server.yml` manifest, the *spa* and *api* services leverage this method.
+In the Brewz `virtual-server.yaml` manifest, the *spa* and *api* services leverage this method.
 
 ```yaml
 ...
@@ -50,7 +50,7 @@ The *return* action returns a preconfigured response.
 
 The *proxy* action passes a request to an upstream with the ability to modify the request/response.  
 
-In the Brewz `virtual-server.yml` manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
+In the Brewz `virtual-server.yaml` manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
 
 ```yaml
 ...
@@ -66,7 +66,7 @@ In the Brewz `virtual-server.yml` manifest, the */images* path uses this method 
 
 The upstream defines a destination for the routing configuration. The upstream's name must be a valid DNS label as defined in RFC 1035.
 
-In the Brewz `virtual-server.yml` manifest, we define a very simple upstream configuration for the *spa* and *api* services:
+In the Brewz `virtual-server.yaml` manifest, we define a very simple upstream configuration for the *spa* and *api* services:
 
 ```yaml
 ...
@@ -101,7 +101,7 @@ For a full list of Upstream attributes, please refer to the [docs](https://docs.
 
 One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add a `healthCheck` resource to the `api` upstream; example below.
+In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add a `healthCheck` resource to the `api` upstream; example below.
 
 ```yaml
 ---
@@ -138,7 +138,7 @@ spec:
           rewritePath: /images
 ```
 
-Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
 
@@ -162,7 +162,7 @@ curl -k https://$HOST/api/products/1234
 
 Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
+In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
 
 ```yaml
 apiVersion: k8s.nginx.org/v1
@@ -208,7 +208,7 @@ spec:
           rewritePath: /images
 ```
 
-Commit the manifests/brewz/virtual-server.yml file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
 
@@ -285,7 +285,7 @@ tls.key:  1704 bytes
 
 The final step is to update our Brewz VirtualServer resource to leverage the new TLS certificate.
 
-In VSCode, open the `/manifests/brewz/virtual-server.yml` file and add the following fields to the virtual server:
+In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add the following fields to the virtual server:
 
 ```yaml
 tls:
@@ -340,7 +340,7 @@ spec:
           rewritePath: /images
 ```
 
-Commit the `manifests/brewz/virtual-server.yml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 Now, let's check the status of our virtual server.
 

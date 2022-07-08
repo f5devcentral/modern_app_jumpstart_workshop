@@ -10,7 +10,7 @@ The development team has already been hard at work updating the Brewz spa app wi
 
 We need to deploy the new variant of the spa application, so we can conditionally route traffic to it. 
 
-1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yml` file and save it:
+1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yaml` file and save it:
 
     ```yaml
     ---
@@ -51,7 +51,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
     Note: The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
 
-1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yml` file:
+1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
 
     ```yaml
         - name: spa-dark
@@ -73,7 +73,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
     Note: The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
 
-1. Commit the `manifests/brewz/virtual-server.yml` and `manifests/brewz/app.yml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
 1. Open the `Brewz` UDF access method on the `k3s` component. Note that the application looks the same as it has been in previous labs.
 
