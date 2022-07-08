@@ -32,7 +32,12 @@ kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr
 helm repo add nginx-stable https://helm.nginx.com/stable
 
 # Find your nginx tag version
+```bash
+#{% raw %}
 TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
+echo $TAG
+#{% endraw %}
+```
 
 # install NGINX Plus Ingress Controller
 helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \

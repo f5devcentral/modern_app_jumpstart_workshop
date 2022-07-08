@@ -66,6 +66,7 @@ To publish the NGINX Ingress Controller container to your private registry follo
     # Publish the container
     docker push ghcr.io/$GITHUB_USER/nginx-plus-ingress:$TAG
     #{% endraw %}
+    ```
 
 ## Next Steps
 
