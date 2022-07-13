@@ -164,7 +164,7 @@ Now that we know our NGINX Ingress Controller Pod is up and running, let's dig i
 
 ```bash
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
-kubectl describe pod $NIC_POC -n nginx-ingress
+kubectl describe pod $NIC_POD -n nginx-ingress
 ```
 
 The output should look similar to:
