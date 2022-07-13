@@ -108,6 +108,9 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
         namespace: nginx-ingress
         server: https://kubernetes.default.svc
       syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
         syncOptions:
           - CreateNamespace=true
           - ApplyOutOfSyncOnly=true

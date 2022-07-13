@@ -33,6 +33,9 @@ You will need to update the Grafana Argo CD manifest to match your environment.
         namespace: monitoring
         server: https://kubernetes.default.svc
       syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
         syncOptions:
           - CreateNamespace=true
           - ApplyOutOfSyncOnly=true

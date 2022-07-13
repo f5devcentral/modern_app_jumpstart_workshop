@@ -1,4 +1,12 @@
 grafana:
+  persistence:
+    enabled: true
+    type: pvc
+    accessModes:
+      - ReadWriteOnce
+    size: 4Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
   datasources:
     datasources.yaml:
       apiVersion: 1
