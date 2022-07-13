@@ -27,7 +27,6 @@ In order to pull the NGINX Plus Ingress container from your private registry, th
 kubectl create namespace nginx-ingress
 
 export GITHUB_USER=your_github_username
-export GITHUB_TOKEN=your_github_ro_pat
 
 # create container registry secret
 kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
