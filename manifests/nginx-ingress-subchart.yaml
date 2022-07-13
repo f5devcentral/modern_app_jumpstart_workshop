@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     path: charts/nginx-plus-ingress
-    repoURL: https://github.com/<GITHUB_USER>/modern_app_jumpstart_workshop.git
+    repoURL: https://github.com/aknot242/modern_app_jumpstart_workshop.git
     targetRevision: HEAD
   destination:
     namespace: nginx-ingress

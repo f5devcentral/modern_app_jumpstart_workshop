@@ -5,9 +5,14 @@ metadata:
   name: brewz
 spec:
   host: brewz.f5demo.com
+  policies:
+      - name: waf-policy
   upstreams:
     - name: spa
       service: spa
+      port: 80
+    - name: spa-dark
+      service: spa-dark
       port: 80
     - name: api
       service: api
@@ -18,11 +23,22 @@ spec:
     - name: recommendations
       service: recommendations
       port: 8001
+    - name: recommendations-v2
+      service: recommendations-v2
+      port: 8001
   routes:
     - path: /
+      matches:
+        - conditions:
+            - cookie: app_version
+              value: darkest
+          action:
+            pass: spa-dark
       action:
         pass: spa
     - path: /api
+      policies:
+        - name: rate-limit-policy
       action:
         pass: api
     - path: /api/inventory
