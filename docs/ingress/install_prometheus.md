@@ -33,11 +33,9 @@ You will need to update the Prometheus Argo CD manifest to match your environmen
         namespace: monitoring
         server: https://kubernetes.default.svc
       syncPolicy:
-        automated:
-          selfHeal: true
-          prune: true
         syncOptions:
           - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
     ```
 1. Save the file. Stage the changes, and commit to your local repository. Push the changes to your remote repository.
 
