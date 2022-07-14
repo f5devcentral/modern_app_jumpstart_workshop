@@ -16,7 +16,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ## Expose the Argo CD Server API/UI
 
-Save the following manifest locally to `argocd-nodeport.yaml`
+In your **infra** repository, save the following manifest locally to `argocd-nodeport.yaml`
 
 ```yml
 apiVersion: v1

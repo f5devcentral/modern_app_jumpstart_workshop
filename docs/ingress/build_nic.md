@@ -13,7 +13,7 @@ In your terminal, clone the Official [NGINX Ingress Controller repository](https
 **Note:** You may need to update the branch version to match the latest release of NGINX Ingress Controller
 
 ```bash
-git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.2.2
+git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
 cd kubernetes-ingress
 ```
 
@@ -55,18 +55,22 @@ To publish the NGINX Ingress Controller container to your private registry follo
     export GITHUB_TOKEN=your_access_token
     ```
 
-1. run the *docker login* command to log into the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
+1. Run the *docker login* command to log into the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
 
     ```bash
     #{% raw %}
     # Login to GitHub Packages
-    echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin 
+    echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin
+
     # Find your container tag
     TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
+
     # Publish the container
     docker push ghcr.io/$GITHUB_USER/nginx-plus-ingress:$TAG
     #{% endraw %}
     ```
+
+    **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
 
 ## Next Steps
 

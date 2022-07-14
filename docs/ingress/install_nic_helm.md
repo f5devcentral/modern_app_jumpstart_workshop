@@ -25,11 +25,14 @@ Run the following commands to deploy the NGINX Plus Ingress Controller:
 # Create nginx-ingress namespace
 kubectl create namespace nginx-ingress
 
-# create container registry secret
+# Create container registry secret
 kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
 
-# add nginx helm repo
+# Add nginx helm repo
 helm repo add nginx-stable https://helm.nginx.com/stable
+
+# Update helm
+helm repo update
 
 # Find your nginx tag version
 TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
@@ -49,3 +52,4 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set prometheus.create=true
 #{% endraw %}
 ```
+**Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command to set the `TAG` variable in the block above will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.

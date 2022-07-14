@@ -12,6 +12,7 @@ While you could leverage the PAT created in the build steps, the best practice i
 
 1. Create a [GitHub PAT (Personal Access Token)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following scopes:
     - *read:packages*
+
 1. Export the value to the *GITHUB_TOKEN* environment variable.
 
     ```bash
@@ -27,7 +28,6 @@ In order to pull the NGINX Plus Ingress container from your private registry, th
 kubectl create namespace nginx-ingress
 
 export GITHUB_USER=your_github_username
-export GITHUB_TOKEN=your_github_ro_pat
 
 # create container registry secret
 kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
@@ -46,7 +46,10 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
     #{% endraw %}
     ```
 
-1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the repository.
+    **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
+
+1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the **infra** repository.
+
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -65,7 +68,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
       enableSnippets: true
       image:
         repository: ghcr.io/codygreen/nginx-plus-ingress
-        tag: 2.2.2-SNAPSHOT-a88b7fe
+        tag: 2.3.0-SNAPSHOT-a88b7fe
       nginxPlus: true
       nginxStatus:
         allowCidrs: 9000
@@ -80,7 +83,8 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
-1. Open the `manifests/nginx-ingress-subchart.yaml` file in your forked version of the repository.
+1. Open the `manifests/nginx-ingress-subchart.yaml` file in your forked version of the **infra** repository.
+
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -112,9 +116,10 @@ Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match y
           prune: true
         syncOptions:
           - CreateNamespace=true
+          - ApplyOutOfSyncOnly=true
     ```
 
-1. Save the file. Stage both changed files, and commit them to your local repository. Push the changes to your remote repository.
+1. Save the file. Stage both changed files, and commit them to your local **infra** repository. Push the changes to your remote **infra** repository.
 
 ## Install NGINX Plus Ingress Argo CD Application
 
@@ -162,7 +167,7 @@ Now that we know our NGINX Ingress Controller Pod is up and running, let's dig i
 
 ```bash
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
-kubectl describe pod $NIC_POC -n nginx-ingress
+kubectl describe pod $NIC_POD -n nginx-ingress
 ```
 
 The output should look similar to:
@@ -186,7 +191,7 @@ Controlled By:  ReplicaSet/nginx-plus-ingress-nginx-ingress-785b67bf4
 Containers:
   nginx-plus-ingress-nginx-ingress:
     Container ID:  containerd://69e9e416438c2cc2330df627cc7605640f6c196092a4ea3f7ff421c3bcfbbcd7
-    Image:         ghcr.io/codygreen/nginx-plus-ingress:2.2.2-SNAPSHOT-a88b7fe
+    Image:         ghcr.io/codygreen/nginx-plus-ingress:2.3.0-SNAPSHOT-a88b7fe
     Image ID:      ghcr.io/codygreen/nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
     Ports:         80/TCP, 443/TCP, 9113/TCP, 8081/TCP
     Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
@@ -271,6 +276,7 @@ To access the dashboard, SSH into the K3s server via the *SSH* or *Web Shell* ac
 ```bash
 # get the ingress pod name
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
+
 # start a kubectl port-forward
 kubectl port-forward $NIC_POD 9000:9000 --address='0.0.0.0' --namespace=nginx-ingress
 ```
