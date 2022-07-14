@@ -6,7 +6,7 @@ In this section, you will deploy the Brewz microservices using Argo CD.
 
 You will need to update the Brewz Argo CD manifest to match your environment.  
 
-1. Open the `manifests/brewz-subchart.yaml` file in your forked version of the repository.
+1. Open the `manifests/brewz-subchart.yaml` file in your forked version of the **primary** repository.
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -38,7 +38,7 @@ You will need to update the Brewz Argo CD manifest to match your environment.
           prune: true
     ```
 
-1. Save the file. Stage the changes, and commit to your local repository. Push the changes to your remote repository.
+1. Save the file. Stage the changes, and commit to your local **primary** repository. Push the changes to your remote **primary** repository.
 
 ## Deploy the manifest
 
@@ -54,7 +54,7 @@ kubectl apply -f manifests/brewz-subchart.yaml
   ![Argo CD Sync](../assets/argo_sync.jpg)
 1. Click on the argo-cd-demo application in the Argo CD UI and inspect the deployed services and policies
 
-    - You should see the individual services as well as the rate-limit-policy from day 1 of the workshop
+    - You should see the individual services as well as the `rate-limit-policy` resource from day 1 of the workshop
 
 ## Inspect the NGINX Ingress Controller Configuration
 
