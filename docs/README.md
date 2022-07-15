@@ -14,7 +14,7 @@ The following resources need to be installed on your laptop:
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Hey](https://github.com/rakyll/hey) - HTTP Load testing utility. A drop-in replacement for ApacheBench.
 - [GitHub CLI - optional](https://cli.github.com/)
-- [NGINX Plus trial license](https://my.f5.com/)
+- NGINX Plus trial license - You will also need to request via SalesForce to obtain an NGINX Plus certificate and private key.
 
 You will also need to [setup local authentication](https://docs.github.com/en/authentication) to GitHub.
 
