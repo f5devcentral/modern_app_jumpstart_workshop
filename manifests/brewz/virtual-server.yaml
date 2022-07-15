@@ -12,12 +12,6 @@ spec:
     - name: api
       service: api
       port: 8000
-    - name: inventory
-      service: inventory
-      port: 8002
-    - name: recommendations
-      service: recommendations
-      port: 8001
   routes:
     - path: /
       action:
@@ -25,16 +19,6 @@ spec:
     - path: /api
       action:
         pass: api
-    - path: /api/inventory
-      action:
-        proxy:
-          upstream: inventory
-          rewritePath: /api/inventory
-    - path: /api/recommendations
-      action:
-        proxy:
-          upstream: recommendations
-          rewritePath: /api/recommendations
     - path: /images
       action:
         proxy:
