@@ -6,6 +6,9 @@ To start the monolith to microservices scenario you will first need to ensure th
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [GitHub CLI - optional](https://cli.github.com/)
 
+## Deploy the Microservices Workshop UDF Blueprint
+Open the [Microservices Workshop UDF Blueprint](https://udf.f5.com/b/792c428c-89f6-440e-b068-3d99a471fd9c#documentation) and deploy it in the region geographically closest to you. Start the deployment with the default suggested resource settings.
+
 ## Fork the workshop repository
 To proceed with this scenario, you will need to fork the workshop repository to your GitHub account.  If this is your first time, then take a few minutes to review the [GitHub Docs on how to Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
