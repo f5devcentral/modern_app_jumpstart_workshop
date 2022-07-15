@@ -12,6 +12,12 @@ sudo su -
 /usr/local/bin/k3s-uninstall.sh
 ```
 
+The blueprint used in this workshop has automation that will redeploy base manifests on startup. Since the base manifests were for earlier labs, we need to prevent this from occurring. You need to disable the `udf-setup` service:
+
+```bash
+systemctl disable udf-setup
+```
+
 ## Install K3s in UDF
 
 For this lab we will leverage the Rancher K3s Kubernetes distribution.  Since we plan to use NGINX Plus as our ingress controller we will also tell K3s not to install Traefik as the default ingress.
