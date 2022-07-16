@@ -41,3 +41,6 @@ Grafana has been pre-installed using Helm based on [this guidance](https://githu
     ```
 
     <img src="../assets/grafana-dashboard-traffic.png" alt="NIC Grafana Dashboard with traffic" width="600"/>
+
+## Next Steps
+Monolith to Microservices Scenario complete. Return to [workshop index](../README.md).
