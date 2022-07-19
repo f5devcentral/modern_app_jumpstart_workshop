@@ -43,12 +43,30 @@ In your UDF deployment, click the Components tab then for the k3s system click t
 
 This will present a webpage with a link to download the `config-udf.yaml` file.
 
-Once the file is downloaded, set your KUBECONFIG environment variable to point to this location. For more information, reference the [K8s docs](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#the-kubeconfig-environment-variable). 
+Once the file is downloaded, set your KUBECONFIG environment variable to point to this location. For more information, reference the [K8s docs](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/#the-kubeconfig-environment-variable).
+
+```bash
+## Replace with your download location
+# Bash
+export KUBECONFIG=~/user/Downloads/config-udf.yaml
+
+# PowerShell
+$env:KUBECONFIG = 'C:\temp/config-udf.yaml'
+```
 
 Now, test that your settings are correct:
 ```bash
 kubectl get nodes
 ```
+
+**Note:** If you run into an issue, run the following command to determine if the issue is your environment variable or your kubeconfig file
+
+```bash
+## Replace with your download location
+kubectl --kubeconfig ~/user/Downloads/config-udf.yaml get nodes
+```
+
+If the command succeeds, then check your environment variable.
 
 ## Manually deploy the Brewz application using manifests
 
