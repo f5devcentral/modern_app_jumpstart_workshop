@@ -18,7 +18,7 @@ You can complete this task through the GitHub UI:
 or via the GitHub CLI:
 
 ```bash
-gh repo clone f5devcentral/modern_app_jumpstart_workshop
+gh repo fork --clone f5devcentral/modern_app_jumpstart_workshop
 ```
 
 ## Clone your workshop repository to your laptop
