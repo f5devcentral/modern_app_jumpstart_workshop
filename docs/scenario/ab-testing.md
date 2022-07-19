@@ -55,8 +55,8 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
     ```yaml
         - name: spa-dark
-        service: spa-dark
-        port: 80
+          service: spa-dark
+          port: 80
     ```
 
 1. Modify the existing `/` path in the `routes` section of the file so it looks like this and save it:
