@@ -85,3 +85,5 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
 1. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
 
+## Next Steps
+Acquire application performance visibility with [Grafana](grafana-dashboard.md).
