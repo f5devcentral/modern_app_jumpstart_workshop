@@ -124,4 +124,4 @@ How many pods for the `inventory` service do you see?
 While out of scope for this lab, it would behoove the developers of the Brewz site to remove the now-unnecessary lines of code in the `api` service that previously performed these simple passthrough service calls. Once the code has been removed, only the `api` service's underlying pods need to be updated as opposed to the entire deployment, reducing the potential "blast radius" of changes. We'll touch on some common, non-disruptive deployment techniques later in this lab.
 
 ## Next Steps
-Acquire application performance visibility with [Grafana](grafana-dashboard.md).
+Introduce Deployment Patterns: [Example deployment pattern: A/B Testing](ab-testing.md)

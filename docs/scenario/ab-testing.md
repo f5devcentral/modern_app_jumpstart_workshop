@@ -17,34 +17,34 @@ We need to deploy the new variant of the spa application, so we can conditionall
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-    name: spa-dark
+      name: spa-dark
     spec:
-    replicas: 1
-    selector:
+      replicas: 1
+      selector:
         matchLabels:
-        app: spa-dark
-    template:
+          app: spa-dark
+      template:
         metadata:
-        labels:
+          labels:
             app: spa-dark
         spec:
-        containers:
+          containers:
             - name: spa-dark
-            image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
-            ports:
+              image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
+              ports:
                 - containerPort: 80
     ---
     apiVersion: v1
     kind: Service
     metadata:
-    name: spa-dark
+      name: spa-dark
     spec:
-    ports:
+      ports:
         - port: 80
-        targetPort: 80
-        protocol: TCP
-        name: http
-    selector:
+          targetPort: 80
+          protocol: TCP
+          name: http
+      selector:
         app: spa-dark
 
     ```
@@ -55,20 +55,20 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
     ```yaml
         - name: spa-dark
-        service: spa-dark
-        port: 80
+          service: spa-dark
+          port: 80
     ```
 
 1. Modify the existing `/` path in the `routes` section of the file so it looks like this and save it:
 
     ```yaml
         - path: /
-        matches:
-          - conditions:
+          matches:
+            - conditions:
               - cookie: "app_version"
                 value: "dark"
-            action:
-              pass: spa-dark
+              action:
+                pass: spa-dark
     ```
 
     Note: The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
