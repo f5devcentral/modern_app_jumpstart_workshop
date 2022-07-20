@@ -8,7 +8,7 @@ The development team has already been hard at work updating the Brewz spa app wi
 
 ## Update the Brewz Deployment and Virtual Server
 
-We need to deploy the new variant of the spa application, so we can conditionally route traffic to it. 
+We need to deploy the new variant of the spa application, so we can conditionally route traffic to it.
 
 1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yaml` file and save it:
 
@@ -46,10 +46,9 @@ We need to deploy the new variant of the spa application, so we can conditionall
           name: http
       selector:
         app: spa-dark
-
     ```
 
-    Note: The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
+    > **Note:** The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
 
 1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
 
@@ -69,9 +68,13 @@ We need to deploy the new variant of the spa application, so we can conditionall
                 value: "dark"
               action:
                 pass: spa-dark
+          action:
+            pass: spa
     ```
 
-    Note: The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
+    > **Note:** We are only updating a specific portion of the `routes` section.
+
+    > **Note:** The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
 
 1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
@@ -86,4 +89,5 @@ We need to deploy the new variant of the spa application, so we can conditionall
 1. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
 
 ## Next Steps
+
 Acquire application performance visibility with [Grafana](grafana-dashboard.md).

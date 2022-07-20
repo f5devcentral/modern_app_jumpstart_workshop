@@ -101,124 +101,124 @@ For a full list of Upstream attributes, please refer to the [docs](https://docs.
 
 One of the advantages the NGINX Plus Ingress Controller provides is the ability to perform health checks on your upstreams. This can be very useful in situations like the Brewz API which is dependent on a MongoDB database to function correctly.  By checking the APIs' custom /stats API, we can determine if the API server is functioning correctly.
 
-In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add a `healthCheck` resource to the `api` upstream; example below.
+1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add a `healthCheck` resource to the `api` upstream; example below.
 
-```yaml
----
-apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: brewz
-spec:
-  host: brewz.f5demo.com
-  upstreams:
-    - name: spa
-      service: spa
-      port: 80
-    - name: api
-      service: api
-      port: 8000
-      healthCheck:
-        enable: true
-        path: /api/stats
-        interval: 20s
-        jitter: 3s
-        port: 8000
-  routes:
-    - path: /
-      action:
-        pass: spa
-    - path: /api
-      action:
-        pass: api
-    - path: /images
-      action:
-        proxy:
-          upstream: api
-          rewritePath: /images
-```
+    ```yaml
+    ---
+    apiVersion: k8s.nginx.org/v1
+    kind: VirtualServer
+    metadata:
+      name: brewz
+    spec:
+      host: brewz.f5demo.com
+      upstreams:
+        - name: spa
+          service: spa
+          port: 80
+        - name: api
+          service: api
+          port: 8000
+          healthCheck:
+            enable: true
+            path: /api/stats
+            interval: 20s
+            jitter: 3s
+            port: 8000
+      routes:
+        - path: /
+          action:
+            pass: spa
+        - path: /api
+          action:
+            pass: api
+        - path: /images
+          action:
+            proxy:
+              upstream: api
+              rewritePath: /images
+    ```
 
-Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
+1. Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
 
-```bash
-# Find the Brewz Access Method's Host
-HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
-curl -k https://$HOST/api/products/123
-```
+    ```bash
+    # Find the Brewz Access Method's Host
+    HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
+    curl -k https://$HOST/api/products/123
+    ```
 
 ## ErrorPage
 
 While the Brews developers were able to break their monolith application into microservices, their APIs are not always returning a JSON response.  A good example is when you lookup a product that does not exist.  The API returns a 400 HTTP response code but the body payload is *"Could not find the product!"*.
 
-Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test this output:
+1. Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test this output:
 
-```bash
-# Find the Brewz Access Method's Host
-HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
-curl -k https://$HOST/api/products/1234
-```
+    ```bash
+    # Find the Brewz Access Method's Host
+    HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
+    curl -k https://$HOST/api/products/1234
+    ```
 
-Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
+    > Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
+1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
 
-```yaml
-apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: brewz
-spec:
-  host: brewz.f5demo.com
-  upstreams:
-    - name: spa
-      service: spa
-      port: 80
-    - name: api
-      service: api
-      port: 8000
-      healthCheck:
-        enable: true
-        path: /api/stats
-        interval: 20s
-        jitter: 3s
-        port: 8000
-  routes:
-    - path: /
-      action:
-        pass: spa
-    - path: /api
-      action:
-        pass: api
-      errorPages:
-        - codes: [404]
-          return:
-            code: 404
-            type: application/json
-            body: |
-              {\"msg\": \"Could not find the product!\"}
-            headers:
-            - name: x-debug-original-status
-              value: ${upstream_status}
-    - path: /images
-      action:
-        proxy:
-          upstream: api
-          rewritePath: /images
-```
+    ```yaml
+    apiVersion: k8s.nginx.org/v1
+    kind: VirtualServer
+    metadata:
+      name: brewz
+    spec:
+      host: brewz.f5demo.com
+      upstreams:
+        - name: spa
+          service: spa
+          port: 80
+        - name: api
+          service: api
+          port: 8000
+          healthCheck:
+            enable: true
+            path: /api/stats
+            interval: 20s
+            jitter: 3s
+            port: 8000
+      routes:
+        - path: /
+          action:
+            pass: spa
+        - path: /api
+          action:
+            pass: api
+          errorPages:
+            - codes: [404]
+              return:
+                code: 404
+                type: application/json
+                body: |
+                  {\"msg\": \"Could not find the product!\"}
+                headers:
+                - name: x-debug-original-status
+                  value: ${upstream_status}
+        - path: /images
+          action:
+            proxy:
+              upstream: api
+              rewritePath: /images
+    ```
 
-Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
+1. Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
 
-```bash
-# Find the Brewz Access Method's Host
-HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
-curl -k https://$HOST/api/products/1234
-```
+    ```bash
+    # Find the Brewz Access Method's Host
+    HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
+    curl -k https://$HOST/api/products/1234
+    ```
 
-Your output should look like: `{"msg": "Could not find the product!"}`
+    > Your output should look like: `{"msg": "Could not find the product!"}`
 
 ## TLS
 
@@ -230,119 +230,117 @@ In this step, we will add TLS encryption to the Brewz VirtualServer resource.
 
 Since you are running this lab in a closed ecosystem (UDF), you do not have the ability to easily create external DNS records and obtain a public TLS certificate; we will look at this ability in another lab leveraging F5 Distributed Cloud.  Due to this limitation, we will create a self-signed certificate.
 
-Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
+1. Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
 
-```bash
-# Create the key and cert
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/brewz-selfsigned.key -out /etc/ssl/certs/brewz-selfsigned.crt
-```
+    ```bash
+    # Create the key and cert
+    sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/brewz-selfsigned.key -out /etc/ssl/certs/brewz-selfsigned.crt
+    ```
 
-OpenSSL will prompt you with questions about your cert request:
+    OpenSSL will prompt you with questions about your cert request:
 
-- Country Name: US
-- State or Province Name: WA
-- Locality Name: Seattle
-- Organization Name: F5
-- Organizational Unit Name: Brewz
-- Common Name: brewz.f5demo.com
-- Email Address: brewsz@f5demo.com
+    - Country Name: US
+    - State or Province Name: WA
+    - Locality Name: Seattle
+    - Organization Name: F5
+    - Organizational Unit Name: Brewz
+    - Common Name: brewz.f5demo.com
+    - Email Address: brewsz@f5demo.com
 
 ### Create K8s Secret for the Cert and Key
 
 Now that we have a self-signed certificate, we need to add it to our K8s cluster as a secret.
 
-Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
+1. Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
 
-```bash
-sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned.key --cert=/etc/ssl/certs/brewz-selfsigned.crt
-```
+    ```bash
+    sudo kubectl create secret tls brewz-tls --key=/etc/ssl/private/brewz-selfsigned.key --cert=/etc/ssl/certs/brewz-selfsigned.crt
+    ```
 
-Now that your secret is created, let's take a look at it.
+1. Now that your secret is created, let's take a look at it. Run the following command from your laptop:
 
-Run the following command from your laptop:
+    ```bash
+    kubectl describe secret brewz-tls
+    ```
 
-```bash
-kubectl describe secret brewz-tls
-```
+    Your output should look similar to:
 
-Your output should look similar to:
+    ```shell
+    Name:         brewz-tls
+    Namespace:    nginx-ingress
+    Labels:       <none>
+    Annotations:  <none>
 
-```shell
-Name:         brewz-tls
-Namespace:    nginx-ingress
-Labels:       <none>
-Annotations:  <none>
+    Type:  kubernetes.io/tls
 
-Type:  kubernetes.io/tls
-
-Data
-====
-tls.crt:  1164 bytes
-tls.key:  1704 bytes
-```
+    Data
+    ====
+    tls.crt:  1164 bytes
+    tls.key:  1704 bytes
+    ```
 
 ### Modify VirtualServer Resource
 
 The final step is to update our Brewz VirtualServer resource to leverage the new TLS certificate.
 
-In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add the following fields to the virtual server:
+1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add the following fields to the virtual server:
 
-```yaml
-tls:
-  secret: brewz-tls
-```
+    ```yaml
+    tls:
+      secret: brewz-tls
+    ```
 
-The final file should look like the example below:
+    The final file should look like the example below:
 
-```yaml
-apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: brewz
-spec:
-  host: brewz.f5demo.com
-  tls:
-    secret: brewz-tls
-  upstreams:
-    - name: spa
-      service: spa
-      port: 80
-    - name: api
-      service: api
-      port: 8000
-      healthCheck:
-        enable: true
-        path: /api/stats
-        interval: 20s
-        jitter: 3s
-        port: 8000
-  routes:
-    - path: /
-      action:
-        pass: spa
-    - path: /api
-      action:
-        pass: api
-      errorPages:
-        - codes: [404]
-          return:
-            code: 404
-            type: application/json
-            body: |
-              {\"msg\": \"Could not find the product!\"}
-            headers:
-            - name: x-debug-original-status
-              value: ${upstream_status}
-    - path: /images
-      action:
-        proxy:
-          upstream: api
-          rewritePath: /images
-```
+    ```yaml
+    apiVersion: k8s.nginx.org/v1
+    kind: VirtualServer
+    metadata:
+      name: brewz
+    spec:
+      host: brewz.f5demo.com
+      tls:
+        secret: brewz-tls
+      upstreams:
+        - name: spa
+          service: spa
+          port: 80
+        - name: api
+          service: api
+          port: 8000
+          healthCheck:
+            enable: true
+            path: /api/stats
+            interval: 20s
+            jitter: 3s
+            port: 8000
+      routes:
+        - path: /
+          action:
+            pass: spa
+        - path: /api
+          action:
+            pass: api
+          errorPages:
+            - codes: [404]
+              return:
+                code: 404
+                type: application/json
+                body: |
+                  {\"msg\": \"Could not find the product!\"}
+                headers:
+                - name: x-debug-original-status
+                  value: ${upstream_status}
+        - path: /images
+          action:
+            proxy:
+              upstream: api
+              rewritePath: /images
+    ```
 
-Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-Now, let's check the status of our virtual server.
+### Check the status of our virtual server
 
 1. Check the state of the Virtual Server, it should be *Valid*:
 
@@ -351,6 +349,7 @@ Now, let's check the status of our virtual server.
     ```
 
 1. Open a **WebShell** for the K3s server in the UDF deployment
+
 1. Check the SSL certificate on the NGINX Ingress, notice the CN is NGINXIngressController
 
     ```bash
