@@ -67,7 +67,7 @@ Now we also need a route to direct /images requests to the API service.
 
 Follow the same steps as above, but change the *HTTP Method* to *GET* and the *Origin Pools* to your API origin pool.
 
-Once you create the */images* path, drag it above the */api* path to change its order; we want */api* to be the last path processed. 
+Once you create the */images* path, drag it above the */api* path to change its order; we want */api* to be the last path processed.
 
 ## Testing
 
