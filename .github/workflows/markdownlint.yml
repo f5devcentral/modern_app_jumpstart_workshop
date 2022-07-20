@@ -18,7 +18,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   lint-changelog:
-    name: Lint changelog file
+    name: Lint docs
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
