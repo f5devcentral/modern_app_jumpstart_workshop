@@ -8,45 +8,45 @@ The development team has already been hard at work updating the Brewz spa app wi
 
 ## Update the Brewz Deployment and Virtual Server
 
-We need to deploy the new variant of the spa application, so we can conditionally route traffic to it. 
+We need to deploy the new variant of the spa application, so we can conditionally route traffic to it.
 
 1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yaml` file and save it:
 
-```yaml
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: spa-dark
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: spa-dark
-  template:
-    metadata:
-      labels:
+  ```yaml
+  ---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: spa-dark
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
         app: spa-dark
-    spec:
-      containers:
-        - name: spa-dark
-          image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
-          ports:
-            - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: spa-dark
-spec:
-  ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-      name: http
-  selector:
-    app: spa-dark
-```
+    template:
+      metadata:
+        labels:
+          app: spa-dark
+      spec:
+        containers:
+          - name: spa-dark
+            image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
+            ports:
+              - containerPort: 80
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: spa-dark
+  spec:
+    ports:
+      - port: 80
+        targetPort: 80
+        protocol: TCP
+        name: http
+    selector:
+      app: spa-dark
+  ```
 
 > Note: The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
 
@@ -87,4 +87,5 @@ spec:
 8. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
 
 ## Next Steps
+
 Acquire application performance visibility with [Grafana](grafana-dashboard.md).
