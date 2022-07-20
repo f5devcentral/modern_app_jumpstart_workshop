@@ -12,7 +12,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
 1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yaml` file and save it:
 
-  ```yaml
+```yaml
   ---
   apiVersion: apps/v1
   kind: Deployment
@@ -46,11 +46,11 @@ We need to deploy the new variant of the spa application, so we can conditionall
         name: http
     selector:
       app: spa-dark
-  ```
+```
 
 > **Note:** The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
 
-2. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
+1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
 
 ```yaml
     - name: spa-dark
