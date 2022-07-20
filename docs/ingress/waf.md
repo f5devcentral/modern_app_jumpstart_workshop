@@ -36,6 +36,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
     API_POD=`kubectl get pods -o json | jq '.items[] | select(.metadata.name | startswith("api-")) | .metadata.name' -r`
     kubectl logs $API_POD -f
     ```
+
     > You may notice that there is an unhandled exception being logged, causing the request to timeout. This is obviously something that should be addressed in code, but we may be able to do something about it in the mean time.
 
 

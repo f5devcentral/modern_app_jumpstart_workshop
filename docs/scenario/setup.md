@@ -27,6 +27,7 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
 1. Perform this via the git or GitHub CLI commands.
 
     > **Note:** Make sure to replace your_username with your GitHub username.
+
     > **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
     Git:

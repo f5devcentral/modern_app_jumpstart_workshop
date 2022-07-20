@@ -116,6 +116,7 @@ When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.rea
 Now that you have forked the workshop infrastructure repository, you'll want to clone the repo to your local laptop. You can do this via the git or GitHub CLI commands.
 
 > **Note:** Make sure to replace your_username with your GitHub username.
+
 > **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
 1. Clone the repo:
