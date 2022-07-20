@@ -282,9 +282,13 @@ The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key 
     kubectl port-forward $NIC_POD 9000:9000 --address='0.0.0.0' --namespace=nginx-ingress
     ```
 
-1. Now, open the **Dashboard** UDF Access Method on the K3 server.
+1. Now, open the **NGINX Dashboard** UDF Access Method on the k3s component. You should see the NGINX default welcome page.
+
+1. Append `dashboard.html` to the URL in your browser to see the NIGNX Plus dashboard.
 
     > **Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
+
+1. Explore the features of the dashboard.
 
 ## Next Steps
 
