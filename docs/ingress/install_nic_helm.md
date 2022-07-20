@@ -51,4 +51,5 @@ While you could leverage the PAT created in the build steps, the best practice i
       --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
       --set prometheus.create=true
     ```
+
     > **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command to set the `TAG` variable in the block above will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
