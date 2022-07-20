@@ -8,14 +8,14 @@ You can also reference the official [NGINX Ingress Controller documentation](htt
 
 ## Clone the NGINX Ingress Controller Repository
 
-In your terminal, clone the Official [NGINX Ingress Controller repository](https://github.com/nginxinc/kubernetes-ingress.git)
+1. In your terminal, clone the Official [NGINX Ingress Controller repository](https://github.com/nginxinc/kubernetes-ingress.git)
 
-**Note:** You may need to update the branch version to match the latest release of NGINX Ingress Controller
+    **Note:** You may need to update the branch version to match the latest release of NGINX Ingress Controller
 
-```bash
-git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
-cd kubernetes-ingress
-```
+    ```bash
+    git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
+    cd kubernetes-ingress
+    ```
 
 ## Build the Container
 
@@ -25,21 +25,21 @@ The repository's Makefile supports several [target types](https://docs.nginx.com
 
 > **Note:** For additional details you can also reference the [Build the Ingress Controller Image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) portion of the [NGINX Ingress Controller documentation](https://docs.nginx.com/nginx-ingress-controller/).
 
-Make sure that the certificate (nginx-repo.crt) and the key (nginx-repo.key) of your license are located in the root of the project:
+1. Make sure that the certificate (nginx-repo.crt) and the key (nginx-repo.key) of your license are located in the root of the project:
 
-```bash
-ls nginx-repo.*
-nginx-repo.crt  nginx-repo.key
-```
+    ```bash
+    ls nginx-repo.*
+    nginx-repo.crt  nginx-repo.key
+    ```
 
-To build the NGINX Ingress Controller container, follow these steps:
+1. To build the NGINX Ingress Controller container, follow these steps:
 
-```bash
-# Replace OWNER with your Github username
-export GITHUB_USER=OWNER
-make debian-image-nap-dos-plus PREFIX=ghcr.io/$GITHUB_USER/nginx-plus-ingress TARGET=container
+    ```bash
+    # Replace OWNER with your Github username
+    export GITHUB_USER=OWNER
+    make debian-image-nap-dos-plus PREFIX=ghcr.io/$GITHUB_USER/nginx-plus-ingress TARGET=container
 
-```
+    ```
 
 ## Publish the Container
 
@@ -49,6 +49,7 @@ To publish the NGINX Ingress Controller container to your private registry follo
     - *read:packages*
     - *write:packages*
     - *delete:packages*
+
 1. Export the value to the *GITHUB_TOKEN* environment variable.
 
     ```bash
@@ -58,7 +59,6 @@ To publish the NGINX Ingress Controller container to your private registry follo
 1. Run the *docker login* command to log into the [GitHub Package](https://github.com/features/packages) container registry with your PAT:
 
     ```bash
-    #{% raw %}
     # Login to GitHub Packages
     echo $GITHUB_TOKEN | docker login ghcr.io -u $GITHUB_USER --password-stdin
 
@@ -67,10 +67,9 @@ To publish the NGINX Ingress Controller container to your private registry follo
 
     # Publish the container
     docker push ghcr.io/$GITHUB_USER/nginx-plus-ingress:$TAG
-    #{% endraw %}
     ```
 
-> **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
+    > **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
 
 ## Next Steps
 

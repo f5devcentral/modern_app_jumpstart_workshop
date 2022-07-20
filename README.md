@@ -1,6 +1,8 @@
 # Modern Applications Jumpstart Workshop
 This repository contains the content for the F5 Modern Applications Jumpstart Workshop.
 
+[Lab Documentation](docs/README.md)
+
 ## Support
 For support, please open a GitHub issue.  Note, the code in this repository is community supported and is not supported by F5 Networks.  For a complete list of supported projects please reference [SUPPORT.md](SUPPORT.md).
 

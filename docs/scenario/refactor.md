@@ -18,107 +18,106 @@ Let's make it happen...
 
 The goal of this refactoring is to make changes to the deployment architecture without necessitating changes to the services' code. While this may not always be the case, we are in luck: the changes we need to make are simply to make HTTP path-based routing decisions to override where the existing api calls are being serviced. This can be accomplish by simply updating the `virtual-server.yaml` manifest's **Virtual Server Route** configuration. 
 
-In VSCode, edit your forked repo's copy of the `virtual-server.yaml` to make it look like the following:
+1. In VSCode, edit your forked repo's copy of the `virtual-server.yaml` to make it look like the following:
 
-```yaml
----
-apiVersion: k8s.nginx.org/v1
-kind: VirtualServer
-metadata:
-  name: brewz
-spec:
-  host: brewz.f5demo.com
-  upstreams:
-    - name: spa
-      service: spa
-      port: 80
-    - name: api
-      service: api
-      port: 8000
-    - name: inventory
-      service: inventory
-      port: 8002
-    - name: recommendations
-      service: recommendations
-      port: 8001
-  routes:
-    - path: /
-      action:
-        pass: spa
-    - path: /api
-      policies:
-        - name: rate-limit-policy
-      action:
-        pass: api
-    - path: /api/inventory
-      action:
-        proxy:
-          upstream: inventory
-          rewritePath: /api/inventory
-    - path: /api/recommendations
-      action:
-        proxy:
-          upstream: recommendations
-          rewritePath: /api/recommendations
-    - path: /images
-      action:
-        proxy:
-          upstream: api
-          rewritePath: /images
+    ```yaml
+    ---
+    apiVersion: k8s.nginx.org/v1
+    kind: VirtualServer
+    metadata:
+      name: brewz
+    spec:
+      host: brewz.f5demo.com
+      upstreams:
+        - name: spa
+          service: spa
+          port: 80
+        - name: api
+          service: api
+          port: 8000
+        - name: inventory
+          service: inventory
+          port: 8002
+        - name: recommendations
+          service: recommendations
+          port: 8001
+      routes:
+        - path: /
+          action:
+            pass: spa
+        - path: /api
+          policies:
+            - name: rate-limit-policy
+          action:
+            pass: api
+        - path: /api/inventory
+          action:
+            proxy:
+              upstream: inventory
+              rewritePath: /api/inventory
+        - path: /api/recommendations
+          action:
+            proxy:
+              upstream: recommendations
+              rewritePath: /api/recommendations
+        - path: /images
+          action:
+            proxy:
+              upstream: api
+              rewritePath: /images
+    ```
 
-```
+    Note that we have:
+      * Added upstream definitions to the `inventory` and `recommendations` services.
+      * Added more specific paths so that calls to `/api/inventory` and `/api/recommendations` are being routed directly to the authoritative services, and ultimately the pods that contain them.
 
-Note that we have:
-* Added upstream definitions to the `inventory` and `recommendations` services.
-* Added more specific paths so that calls to `/api/inventory` and `/api/recommendations` are being routed directly to the authoritative services, and ultimately the pods that contain them.
+1. Save and commit the `virtual-server.yaml` file to the local repository, and push the changes to your remote GitHub repository. 
 
-Save and commit the `virtual-server.yaml` file to the local repository, and push the changes to your remote GitHub repository. 
+1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
-Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
-
-Additionally, use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
+1. Additionally, use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
 
 ## Scale the services independently
 
 Now that the services have been decoupled, we will independently scale the `inventory` service without being concerned with the need to scale the `api` service as well.
 
-In VSCode, edit your forked repo's copy of the `app.yaml` and change the number of replicas of the inventory service to `3` (at line 157). When complete, the inventory Deployment should look like the following:
+1. In VSCode, edit your forked repo's copy of the `app.yaml` and change the number of replicas of the inventory service to `3` (at line 157). When complete, the inventory Deployment should look like the following:
 
-```yaml
-...
+    ```yaml
+    ...
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: inventory
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: inventory
-  template:
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
-      labels:
-        app: inventory
+      name: inventory
     spec:
-      containers:
-        - name: inventory
-          image: ghcr.io/f5devcentral/spa-demo-app-inventory:sha-19fd503
-          ports:
-            - containerPort: 8002
+      replicas: 3
+      selector:
+        matchLabels:
+          app: inventory
+      template:
+        metadata:
+          labels:
+            app: inventory
+        spec:
+          containers:
+            - name: inventory
+              image: ghcr.io/f5devcentral/spa-demo-app-inventory:sha-19fd503
+              ports:
+                - containerPort: 8002
 
-...
-```
+    ...
+    ```
 
-Save and commit the `app.yaml` file to the local repository, and push the changes to your remote GitHub repository.
+1. Save and commit the `app.yaml` file to the local repository, and push the changes to your remote GitHub repository.
 
-Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully. Note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
+1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully. Note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
 
-```bash
-kubectl get pods
-```
+    ```bash
+    kubectl get pods
+    ```
 
-How many pods for the `inventory` service do you see?
+    > How many pods for the `inventory` service do you see?
 
 ## Remove unused code
 While out of scope for this lab, it would behoove the developers of the Brewz site to remove the now-unnecessary lines of code in the `api` service that previously performed these simple passthrough service calls. Once the code has been removed, only the `api` service's underlying pods need to be updated as opposed to the entire deployment, reducing the potential "blast radius" of changes. We'll touch on some common, non-disruptive deployment techniques later in this lab.

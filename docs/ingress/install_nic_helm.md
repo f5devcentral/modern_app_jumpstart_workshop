@@ -10,6 +10,7 @@ While you could leverage the PAT created in the build steps, the best practice i
 
 1. Create a [GitHub PAT (Personal Access Token)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following scopes:
     - *read:packages*
+
 1. Export the value to the *GITHUB_TOKEN* environment variable.
 
     ```bash
@@ -18,38 +19,36 @@ While you could leverage the PAT created in the build steps, the best practice i
 
 ## Deploy NGINX Ingress Controller Container
 
-Run the following commands to deploy the NGINX Plus Ingress Controller:
+1. Run the following commands to deploy the NGINX Plus Ingress Controller:
 
-```bash
-#{% raw %}
-# Create nginx-ingress namespace
-kubectl create namespace nginx-ingress
+    ```bash
+    # Create nginx-ingress namespace
+    kubectl create namespace nginx-ingress
 
-# Create container registry secret
-kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
+    # Create container registry secret
+    kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
 
-# Add nginx helm repo
-helm repo add nginx-stable https://helm.nginx.com/stable
+    # Add nginx helm repo
+    helm repo add nginx-stable https://helm.nginx.com/stable
 
-# Update helm
-helm repo update
+    # Update helm
+    helm repo update
 
-# Find your nginx tag version
-TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
-echo $TAG
+    # Find your nginx tag version
+    TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
+    echo $TAG
 
-# Install NGINX Plus Ingress Controller
-helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
-  --set controller.image.repository=ghcr.io/$GITHUB_USER/nginx-plus-ingress \
-  --set controller.image.tag=$TAG \
-  --set controller.serviceAccount.imagePullSecretName=ghcr \
-  --set controller.nginxplus=true \
-  --set controller.enableSnippets=true \
-  --set controller.appprotect.enable=true \
-  --set controller.appprotectdos.enable=true \
-  --set controller.nginxStatus.port=9000 \
-  --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
-  --set prometheus.create=true
-#{% endraw %}
-```
-> **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command to set the `TAG` variable in the block above will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
+    # Install NGINX Plus Ingress Controller
+    helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
+      --set controller.image.repository=ghcr.io/$GITHUB_USER/nginx-plus-ingress \
+      --set controller.image.tag=$TAG \
+      --set controller.serviceAccount.imagePullSecretName=ghcr \
+      --set controller.nginxplus=true \
+      --set controller.enableSnippets=true \
+      --set controller.appprotect.enable=true \
+      --set controller.appprotectdos.enable=true \
+      --set controller.nginxStatus.port=9000 \
+      --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
+      --set prometheus.create=true
+    ```
+    > **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command to set the `TAG` variable in the block above will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.

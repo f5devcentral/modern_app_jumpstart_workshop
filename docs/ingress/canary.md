@@ -20,7 +20,7 @@
 
     <img src="../assets/grafana-refresh.png" alt="Grafana dashboard refresh" width="160"/>
 
-    Note that there are various filters you can use to examine a subset of the data. By default, the dashboard will consume NGINX Plus Prometheus metrics from all namespaces, so you may wish to filter on the `default` namespace. Additionally, you may also filter data that appears in the **Upstream Metrics** portion of the dashboard to specific upstreams by use of the **Upstream Server** menu.
+    > Note that there are various filters you can use to examine a subset of the data. By default, the dashboard will consume NGINX Plus Prometheus metrics from all namespaces, so you may wish to filter on the `default` namespace. Additionally, you may also filter data that appears in the **Upstream Metrics** portion of the dashboard to specific upstreams by use of the **Upstream Server** menu.
 
 1. Open the **Brewz** UDF access method of the **k3s** component, and exercise various functions of the application.
 
@@ -95,11 +95,11 @@ The development team has developed and created a container image of the recommen
                   rewritePath: /api/recommendations
     ```
 
-> **Note:** The result of these changes to the file will configure NGINX Ingress Controller to route roughly 90% of requests to the `/api/recommendations` path to the `recommendations` upstream, and the remaining 10% to the `recommendations-v2` upstream.
+    > **Note:** The result of these changes to the file will configure NGINX Ingress Controller to route roughly 90% of requests to the `/api/recommendations` path to the `recommendations` upstream, and the remaining 10% to the `recommendations-v2` upstream.
 
 1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-> **Note:** Once the configuration is deployed, NGINX Ingress Controller will reload NGINX, and the **Reloads** metric on the Grafana dashboard should increment.
+    > **Note:** Once the configuration is deployed, NGINX Ingress Controller will reload NGINX, and the **Reloads** metric on the Grafana dashboard should increment.
 
 1. Once deployed, use the **Hey** utility on your laptop to request the **recommendations** service directly as if the Brews SPA application was doing so:
 
@@ -129,7 +129,7 @@ The DevOps and the application owners aren't willing to allow this error conditi
     git push origin
     ```
 
-1. Argo CD will pick up the most recent changes, and deploy them for you.  Check the brewz virtualserver resource under the brewz application to check that the revert was successful.
+1. Argo CD will pick up the most recent changes, and deploy them for you. Check the brewz `VirtualServer` resource under the `brewz` application to check that the revert was successful.
 
 1. Once the revert is successful, use the **Hey** utility on your laptop to request the **recommendations** service directly as if the Brews SPA application was doing so:
 

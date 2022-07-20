@@ -7,6 +7,7 @@ In this section, you will deploy the Brewz microservices using Argo CD.
 You will need to update the Brewz Argo CD manifest to match your environment.  
 
 1. Open the `manifests/brewz-subchart.yaml` file in your forked version of the **primary** repository.
+
 1. Find the following variables and replace them with your information:
 
     | Variable        | Value           |
@@ -42,19 +43,20 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
 ## Deploy the manifest
 
-To deploy the Brewz Argo CD application, run the following command:
+1. To deploy the Brewz Argo CD application, run the following command:
 
-```bash
-kubectl apply -f manifests/brewz-subchart.yaml
-```
+    ```bash
+    kubectl apply -f manifests/brewz-subchart.yaml
+    ```
 
 ## View the Argo CD Application
 
 1. Open the Argo CD UDF Access Method under the K3s server
   ![Argo CD Sync](../assets/argo_sync.jpg)
-1. Click on the argo-cd-demo application in the Argo CD UI and inspect the deployed services and policies
 
-    - You should see the individual services as well as the `rate-limit-policy` resource from day 1 of the workshop
+1. Click on the argo-cd-demo application in the Argo CD UI and inspect the deployed services and policies.
+
+    > **Note:** You should see the individual services as well as the `rate-limit-policy` resource from day 1 of the workshop
 
 ## Inspect the NGINX Ingress Controller Configuration
 
@@ -62,140 +64,140 @@ Now that Argo CD has deployed out application let's take a look at the NGINX Ing
 
 **Note:** Refer to the [VirtualServer docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) for more information.
 
-```bash
-kubectl get virtualserver
-```
+1. Run the following on your local machine:
+    ```bash
+    kubectl get virtualserver
+    ```
 
-Your output should look similar to:
+    Your output should look similar to:
 
-```bash
-NAME    STATE   HOST               IP         PORTS      AGE
-brewz   Valid   brewz.f5demo.com   10.1.1.5   [80,443]   29m
-```
+    ```bash
+    NAME    STATE   HOST               IP         PORTS      AGE
+    brewz   Valid   brewz.f5demo.com   10.1.1.5   [80,443]   29m
+    ```
 
-Let's take a deeper look at the configuration:
+1. Let's take a deeper look at the configuration:
 
-```shell
-kubectl describe virtualserver brewz
-```
+    ```shell
+    kubectl describe virtualserver brewz
+    ```
 
-Your output should look similar to:
+    Your output should look similar to:
 
-```shell
-Name:         brewz
-Namespace:    default
-Labels:       app.kubernetes.io/instance=brewz
-Annotations:  <none>
-API Version:  k8s.nginx.org/v1
-Kind:         VirtualServer
-Metadata:
-  Creation Timestamp:  2022-07-06T16:51:10Z
-  Generation:          1
-  Managed Fields:
+    ```shell
+    Name:         brewz
+    Namespace:    default
+    Labels:       app.kubernetes.io/instance=brewz
+    Annotations:  <none>
     API Version:  k8s.nginx.org/v1
-    Fields Type:  FieldsV1
-    fieldsV1:
-      f:metadata:
-        f:annotations:
-          .:
-          f:kubectl.kubernetes.io/last-applied-configuration:
-        f:labels:
-          .:
-          f:app.kubernetes.io/instance:
-      f:spec:
-        .:
-        f:host:
-        f:http-snippets:
-        f:routes:
-        f:server-snippets:
-        f:upstreams:
-    Manager:      argocd-application-controller
-    Operation:    Update
-    Time:         2022-07-06T16:51:10Z
-    API Version:  k8s.nginx.org/v1
-    Fields Type:  FieldsV1
-    fieldsV1:
-      f:status:
-        .:
-        f:externalEndpoints:
-        f:message:
-        f:reason:
-        f:state:
-    Manager:         Go-http-client
-    Operation:       Update
-    Subresource:     status
-    Time:            2022-07-06T16:51:11Z
-  Resource Version:  6304
-  UID:               c137a6c1-7072-4afb-a12d-16b727936b13
-Spec:
-  Host:             brewz.f5demo.com
-  Routes:
-    Action:
-      Pass:  spa
-    Matches:
-      Action:
-        Pass:  spa-dark
-      Conditions:
-        Cookie:  app_version
-        Value:   dark
-    Path:        /
-    Action:
-      Pass:  api
-    Path:    /api
-    Policies:
-      Name:  rate-limit-policy
-    Action:
-      Proxy:
-        Rewrite Path:  /api/inventory
-        Upstream:      inventory
-    Path:              /api/inventory
-    Action:
-      Proxy:
-        Rewrite Path:  /api/recommendations
-        Upstream:      recommendations
-    Path:              /api/recommendations
-    Action:
-      Proxy:
-        Rewrite Path:  /images
-        Upstream:      api
-    Path:              /images
-    Upstreams:
-    Name:     spa
-    Port:     80
-    Service:  spa
-    Name:     spa-dark
-    Port:     80
-    Service:  spa-dark
-    Name:     api
-    Port:     8000
-    Service:  api
-    Name:     inventory
-    Port:     8002
-    Service:  inventory
-    Name:     recommendations
-    Port:     8001
-    Service:  recommendations
-Status:
-  External Endpoints:
-    Ip:     10.1.1.5
-    Ports:  [80,443]
-  Message:  Configuration for default/brewz was added or updated
-  Reason:   AddedOrUpdated
-  State:    Valid
-Events:     <none>
-```
+    Kind:         VirtualServer
+    Metadata:
+      Creation Timestamp:  2022-07-06T16:51:10Z
+      Generation:          1
+      Managed Fields:
+        API Version:  k8s.nginx.org/v1
+        Fields Type:  FieldsV1
+        fieldsV1:
+          f:metadata:
+            f:annotations:
+              .:
+              f:kubectl.kubernetes.io/last-applied-configuration:
+            f:labels:
+              .:
+              f:app.kubernetes.io/instance:
+          f:spec:
+            .:
+            f:host:
+            f:http-snippets:
+            f:routes:
+            f:server-snippets:
+            f:upstreams:
+        Manager:      argocd-application-controller
+        Operation:    Update
+        Time:         2022-07-06T16:51:10Z
+        API Version:  k8s.nginx.org/v1
+        Fields Type:  FieldsV1
+        fieldsV1:
+          f:status:
+            .:
+            f:externalEndpoints:
+            f:message:
+            f:reason:
+            f:state:
+        Manager:         Go-http-client
+        Operation:       Update
+        Subresource:     status
+        Time:            2022-07-06T16:51:11Z
+      Resource Version:  6304
+      UID:               c137a6c1-7072-4afb-a12d-16b727936b13
+    Spec:
+      Host:             brewz.f5demo.com
+      Routes:
+        Action:
+          Pass:  spa
+        Matches:
+          Action:
+            Pass:  spa-dark
+          Conditions:
+            Cookie:  app_version
+            Value:   dark
+        Path:        /
+        Action:
+          Pass:  api
+        Path:    /api
+        Policies:
+          Name:  rate-limit-policy
+        Action:
+          Proxy:
+            Rewrite Path:  /api/inventory
+            Upstream:      inventory
+        Path:              /api/inventory
+        Action:
+          Proxy:
+            Rewrite Path:  /api/recommendations
+            Upstream:      recommendations
+        Path:              /api/recommendations
+        Action:
+          Proxy:
+            Rewrite Path:  /images
+            Upstream:      api
+        Path:              /images
+        Upstreams:
+        Name:     spa
+        Port:     80
+        Service:  spa
+        Name:     spa-dark
+        Port:     80
+        Service:  spa-dark
+        Name:     api
+        Port:     8000
+        Service:  api
+        Name:     inventory
+        Port:     8002
+        Service:  inventory
+        Name:     recommendations
+        Port:     8001
+        Service:  recommendations
+    Status:
+      External Endpoints:
+        Ip:     10.1.1.5
+        Ports:  [80,443]
+      Message:  Configuration for default/brewz was added or updated
+      Reason:   AddedOrUpdated
+      State:    Valid
+    Events:     <none>
+    ```
 
-A few items of interest in the output:
+    A few items of interest in the output:
 
-- Spec.Routes.Action:
-  - "/" -> spa
-  - "/" with cookie `app_version=dark` -> spa-dark
-  - "/api" -> api
-    - with a policy named rate-limit-policy
-  - "/images" -> rewrite policy to the api upstream
-  - "/api/inventory" -> /api/inventory of inventory service
-  - "/api/recommendations" -> /api/recommendations of recommendations service
-
+    - Spec.Routes.Action:
+      - "/" -> spa
+      - "/" with cookie `app_version=dark` -> spa-dark
+      - "/api" -> api
+        - with a policy named rate-limit-policy
+      - "/images" -> rewrite policy to the api upstream
+      - "/api/inventory" -> /api/inventory of inventory service
+      - "/api/recommendations" -> /api/recommendations of recommendations service
 
 
 ## Next Steps

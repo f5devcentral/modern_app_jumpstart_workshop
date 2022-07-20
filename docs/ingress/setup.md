@@ -5,43 +5,43 @@ For this lab, you will start with a clean environment and build out your K3s env
 
 ## Uninstall K3s in UDF
 
-SSH into the K3s server using the UDF *SSH* or *Web Shell* Access Methods and run the following commands:
+1. SSH into the K3s server using the UDF *SSH* or *Web Shell* Access Methods and run the following commands:
 
-```bash
-sudo su -
-/usr/local/bin/k3s-uninstall.sh
-```
+    ```bash
+    sudo su -
+    /usr/local/bin/k3s-uninstall.sh
+    ```
 
-The blueprint used in this workshop has automation that will redeploy base manifests on startup. Since the base manifests were for earlier labs, we need to prevent this from occurring. You need to disable the `udf-setup` service:
+1. The blueprint used in this workshop has automation that will redeploy base manifests on startup. Since the base manifests were for earlier labs, we need to prevent this from occurring. You need to disable the `udf-setup` service:
 
-```bash
-systemctl disable udf-setup
-```
+    ```bash
+    systemctl disable udf-setup
+    ```
 
 ## Install K3s in UDF
 
 For this lab we will leverage the Rancher K3s Kubernetes distribution.  Since we plan to use NGINX Plus as our ingress controller we will also tell K3s not to install Traefik as the default ingress.
 
-Run the following command on the K3s server:
+1. Run the following command on the K3s server:
 
-```bash
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik --egress-selector-mode=disabled --bind-address 10.1.1.5" sh -s -
-```
+    ```bash
+    curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--no-deploy traefik --egress-selector-mode=disabled --bind-address 10.1.1.5" sh -s -
+    ```
 
 ## Generate Service Account
 
 To provide remote Access to the K8s API, the best practice would be to generate a dedicated K8s Service Account.
 
-Run the following commands on the K3s server:
+1. Run the following commands on the K3s server:
 
-```bash
-kubectl -n kube-system create serviceaccount udf-sa
-kubectl create clusterrolebinding udf-sa-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:udf-sa
-TOKENNAME=`kubectl -n kube-system get serviceaccount/udf-sa -o jsonpath='{.secrets[0].name}'`
-echo $TOKENNAME
-TOKEN=`kubectl -n kube-system get secret $TOKENNAME -o jsonpath='{.data.token}' | base64 --decode`
-echo $TOKEN
-```
+    ```bash
+    kubectl -n kube-system create serviceaccount udf-sa
+    kubectl create clusterrolebinding udf-sa-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:udf-sa
+    TOKENNAME=`kubectl -n kube-system get serviceaccount/udf-sa -o jsonpath='{.secrets[0].name}'`
+    echo $TOKENNAME
+    TOKEN=`kubectl -n kube-system get secret $TOKENNAME -o jsonpath='{.data.token}' | base64 --decode`
+    echo $TOKEN
+    ```
 
 ## Generate Local Kubeconfig
 
@@ -99,16 +99,18 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     ```
 
 # Fork Infrastructure Repository
-When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/) to separate your application code from your infrastructure configuration into separate repositories. This will ensure that changes to either may occur in isolation without triggering a large-scale deployment. You will fork a secondary repository to your own GitHub account as you did earlier.
+When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/) to separate your application code from your infrastructure configuration into separate repositories. This will ensure that changes to either may occur in isolation without triggering a large-scale deployment.
 
-You can complete this task through the GitHub UI: 
-![GitHub Fork](../assets/gh_fork_infra.png)
+1. Fork this secondary repository to your own GitHub account as you did earlier.
 
-or via the GitHub CLI:
+    You can complete this task through the GitHub UI: 
+    ![GitHub Fork](../assets/gh_fork_infra.png)
 
-```bash
-gh repo clone f5devcentral/modern_app_jumpstart_workshop_infra
-```
+    or via the GitHub CLI:
+
+    ```bash
+    gh repo clone f5devcentral/modern_app_jumpstart_workshop_infra
+    ```
 
 ## Clone your workshop infrastructure repository to your laptop
 Now that you have forked the workshop infrastructure repository, you'll want to clone the repo to your local laptop. You can do this via the git or GitHub CLI commands.
@@ -116,16 +118,16 @@ Now that you have forked the workshop infrastructure repository, you'll want to 
 > **Note:** Make sure to replace your_username with your GitHub username.
 > **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
-Git:
-```bash
-# via HTTPS
-git clone https://github.com/your_username/modern_app_jumpstart_workshop_infra.git modern_app_jumpstart_workshop_infra
+1. Clone the repo:
+    ```bash
+    # via HTTPS
+    git clone https://github.com/your_username/modern_app_jumpstart_workshop_infra.git modern_app_jumpstart_workshop_infra
 
-# via SSH
-git clone git@github.com:your_username/modern_app_jumpstart_workshop_infra.git modern_app_jumpstart_workshop_infra
-```
+    # via SSH
+    git clone git@github.com:your_username/modern_app_jumpstart_workshop_infra.git modern_app_jumpstart_workshop_infra
+    ```
 
-> **Note:** For the remainder of this lab, we will refer to this repository as **"infra"**.
+    > **Note:** For the remainder of this lab, we will refer to this repository as **"infra"**.
 
 # Next Steps
 

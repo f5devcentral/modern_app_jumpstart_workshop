@@ -27,7 +27,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
     curl -X POST "$BREWZ_URL/api/users/12345b/cart"
     ```
 
-    The request should not return anything and just time out. Why?
+    > The request should not return anything and just time out. Why?
 
 1. Open a new terminal. Tail the logs in the API pod to see what is going on. You will likely need to set the `KUBECONFIG` variable in this new terminal, so we include this command here:
 
@@ -36,7 +36,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
     API_POD=`kubectl get pods -o json | jq '.items[] | select(.metadata.name | startswith("api-")) | .metadata.name' -r`
     kubectl logs $API_POD -f
     ```
-    You may notice that there is an unhandled exception being logged, causing the request to timeout. This is obviously something that should be addressed in code, but we may be able to do something about it in the mean time.
+    > You may notice that there is an unhandled exception being logged, causing the request to timeout. This is obviously something that should be addressed in code, but we may be able to do something about it in the mean time.
 
 
 ## Create and Deploy Security Policy
@@ -75,17 +75,17 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
 
 If you examine the contents of the `APLogConf` resource contained in `manifests/brewz/waf-ap-logconf.yaml` file, you will notice that we have configured NAP WAF to log to `stderr` rather than to a file destination. NGINX Ingress Controller is already logging both access log entries and configuration events to the `stdout` and `stderr` log stream and are viewable with `kubectl logs` executed on its pod. NAP WAF violation logs will now appear in this log stream as well.
 
-Open a new terminal and tail ("follow" with the `-f` option) the NIC pod logs and stream them to your terminal. You will likely need to set the `KUBECONFIG` variable in this new terminal, so we include this command here:
+1. Open a new terminal and tail ("follow" with the `-f` option) the NIC pod logs and stream them to your terminal. You will likely need to set the `KUBECONFIG` variable in this new terminal, so we include this command here:
 
-```bash
-export KUBECONFIG=~/Downloads/config-udf.yaml
-NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
-kubectl logs $NIC_POD -n nginx-ingress -f
-```
+    ```bash
+    export KUBECONFIG=~/Downloads/config-udf.yaml
+    NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
+    kubectl logs $NIC_POD -n nginx-ingress -f
+    ```
 
-We will use this log stream in the next section.
+    We will use this log stream in the next section.
 
-> **Note:** At times, the log stream may stop. If you are not seeing events appear after some time, type `ctrl+c` and attempt to stream logs again.
+    > **Note:** At times, the log stream may stop. If you are not seeing events appear after some time, type `ctrl+c` and attempt to stream logs again.
 
 
 ## Test for Efficacy

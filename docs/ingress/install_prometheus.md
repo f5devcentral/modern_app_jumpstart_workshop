@@ -46,11 +46,11 @@ You will need to update the Prometheus Argo CD manifest to match your environmen
 
 ## Deploy the manifest
 
-To deploy the Prometheus Argo CD application, run the following command:
+1. To deploy the Prometheus Argo CD application, run the following command:
 
-```bash
-kubectl apply -f manifests/prometheus-subchart.yaml
-```
+    ```bash
+    kubectl apply -f manifests/prometheus-subchart.yaml
+    ```
 
 ## Verify Install
 
