@@ -42,7 +42,11 @@ You will need to update the Prometheus Argo CD manifest to match your environmen
           - ApplyOutOfSyncOnly=true
     ```
 
-1. Save the file. Stage the changes, and commit to your local **infra** repository. Push the changes to your remote **infra** repository.
+1. Save the file.
+
+1. Stage the changes, and commit to your local **infra** repository.
+
+1. Push the changes to your remote **infra** repository.
 
 ## Deploy the manifest
 

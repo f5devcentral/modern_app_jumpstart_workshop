@@ -115,7 +115,11 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
           - ApplyOutOfSyncOnly=true
     ```
 
-1. Save the file. Stage both changed files, and commit them to your local **infra** repository. Push the changes to your remote **infra** repository.
+1. Save the file.
+
+1. Stage both changed files, and commit them to your local **infra** repository.
+
+1. Push the changes to your remote **infra** repository.
 
 ## Install NGINX Plus Ingress Argo CD Application
 

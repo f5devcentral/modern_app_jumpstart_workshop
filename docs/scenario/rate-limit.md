@@ -63,9 +63,13 @@ Currently, there is no limitation on the rate that clients may query the product
               rewritePath: /images
     ```
 
-1. Save this file. Stage the changes, and commit them to your local repository. Push the changes to your remote repository.
+1. Save this file.
 
-1. Commit it directly to your main branch. Return to the Argo CD UI, and click refresh after 30 seconds or so has elapsed. Note that an automatic synchronization has occurred, and you will now see that the `rate-limit-policy` object has been added to the object graph. You may optionally click on it to view the configuration details associated with it (including its deployment status).
+1. Stage the changes, and commit them to your local repository.
+
+1. Push the changes to your remote repository.
+
+1. Return to the Argo CD UI, and click refresh after 30 seconds or so has elapsed. Note that an automatic synchronization has occurred, and you will now see that the `rate-limit-policy` object has been added to the object graph. You may optionally click on it to view the configuration details associated with it (including its deployment status).
 
 1. Test the new rate limiting settings with **Hey**:
 

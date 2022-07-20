@@ -39,7 +39,11 @@ You will need to update the Brewz Argo CD manifest to match your environment.
           prune: true
     ```
 
-1. Save the file. Stage the changes, and commit to your local **primary** repository. Push the changes to your remote **primary** repository.
+1. Save the file.
+
+1. Stage the changes, and commit to your local **primary** repository.
+
+1. Push the changes to your remote **primary** repository.
 
 ## Deploy the manifest
 
