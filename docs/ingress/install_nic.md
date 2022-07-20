@@ -274,6 +274,7 @@ The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key 
 To access the dashboard, SSH into the K3s server via the *SSH* or *Web Shell* access methods.
 
 ```bash
+sudo su -
 # get the ingress pod name
 NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
 
