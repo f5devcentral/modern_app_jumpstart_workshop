@@ -4,7 +4,7 @@ For this step, we will pull the NGINX Plus Ingress Controller image from your pr
 
 We will use Argo CD to deploy NGINX Ingress Controller for us. However, if you wanted to do this using the Helm CLI, you may use [this procedure](install_nic_helm.md) as a reference.
 
-**Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
+> **Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
 
 ## Create a Read-Only GitHub PAT (Personal Access Token)
 
@@ -46,7 +46,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
     #{% endraw %}
     ```
 
-    **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
+> **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
 
 1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the **infra** repository.
 
@@ -283,7 +283,7 @@ kubectl port-forward $NIC_POD 9000:9000 --address='0.0.0.0' --namespace=nginx-in
 
 Now, open the *Dashboard* UDF Access Method on the K3 server.
 
-**Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
+> **Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
 
 ## Next Steps
 

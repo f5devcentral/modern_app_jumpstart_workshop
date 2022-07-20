@@ -24,8 +24,8 @@ gh repo fork --clone f5devcentral/modern_app_jumpstart_workshop
 ## Clone your workshop repository to your laptop
 Now that you have forked the workshop repository, you'll want to clone the repo to your local laptop.  You can do this via the git or GitHub CLI commands.
 
-**Note:** Make sure to replace your_username with your GitHub username.
-**Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
+> **Note:** Make sure to replace your_username with your GitHub username.
+> **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
 Git:
 ```bash
@@ -59,7 +59,7 @@ Now, test that your settings are correct:
 kubectl get nodes
 ```
 
-**Note:** If you run into an issue, run the following command to determine if the issue is your environment variable or your kubeconfig file
+> **Note:** If you run into an issue, run the following command to determine if the issue is your environment variable or your kubeconfig file
 
 ```bash
 ## Replace with your download location

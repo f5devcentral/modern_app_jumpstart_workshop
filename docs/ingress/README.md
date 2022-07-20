@@ -15,7 +15,7 @@ For this lab, you will need:
 - [Hey](https://github.com/rakyll/hey)
 - [GitHub CLI - optional](https://cli.github.com/)
 
-**Note:** You will also need to request an NGINX Plus trial via SalesForce to obtain an NGINX Plus certificate and private key.
+> **Note:** You will also need to request an NGINX Plus trial via SalesForce to obtain an NGINX Plus certificate and private key.
 
 ## Resources
 

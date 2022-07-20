@@ -12,79 +12,79 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
 1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yaml` file and save it:
 
-  ```yaml
-  ---
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: spa-dark
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
-        app: spa-dark
-    template:
-      metadata:
-        labels:
+    ```yaml
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: spa-dark
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
           app: spa-dark
-      spec:
-        containers:
-          - name: spa-dark
-            image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
-            ports:
-              - containerPort: 80
-  ---
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: spa-dark
-  spec:
-    ports:
-      - port: 80
-        targetPort: 80
-        protocol: TCP
-        name: http
-    selector:
-      app: spa-dark
-  ```
+      template:
+        metadata:
+          labels:
+            app: spa-dark
+        spec:
+          containers:
+            - name: spa-dark
+              image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
+              ports:
+                - containerPort: 80
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: spa-dark
+    spec:
+      ports:
+        - port: 80
+          targetPort: 80
+          protocol: TCP
+          name: http
+      selector:
+        app: spa-dark
+    ```
 
-> **Note:** The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
+    > **Note:** The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
 
-2. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
+1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
 
-```yaml
-    - name: spa-dark
-      service: spa-dark
-      port: 80
-```
+    ```yaml
+        - name: spa-dark
+          service: spa-dark
+          port: 80
+    ```
 
-3. Modify the existing `/` path in the `routes` section of the file so it looks like this and save it:
+1. Modify the existing `/` path in the `routes` section of the file so it looks like this and save it:
 
-```yaml
-    - path: /
-      matches:
-        - conditions:
-          - cookie: "app_version"
-            value: "dark"
+    ```yaml
+        - path: /
+          matches:
+            - conditions:
+              - cookie: "app_version"
+                value: "dark"
+              action:
+                pass: spa-dark
           action:
-            pass: spa-dark
-      action:
-        pass: spa
-```
+            pass: spa
+    ```
 
-> **Note:** The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
+    > **Note:** The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
 
-4. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-5. Open the `Brewz` UDF access method on the `k3s` component. Note that the application looks the same as it has been in previous labs.
+1. Open the `Brewz` UDF access method on the `k3s` component. Note that the application looks the same as it has been in previous labs.
 
-6. Open the `Brewz` UDF access method in a new tab, and open the developer tools.
+1. Open the `Brewz` UDF access method in a new tab, and open the developer tools.
 
-7. Manually add the `app_version` cookie with a value of `dark` to the developer tools window. Methods vary depending on which browser you are using, but if using Chrome click on the Application tab, and expand the cookies section for the UDF url you are accessing. Add a new cookie by double clicking the table after the existing cookie entries. Enter `app_version` in the first column, hit tab and enter `dark` in the next column. The rest of the defaults will suffice. When complete, it should look similar to this screenshot:
+1. Manually add the `app_version` cookie with a value of `dark` to the developer tools window. Methods vary depending on which browser you are using, but if using Chrome click on the Application tab, and expand the cookies section for the UDF url you are accessing. Add a new cookie by double clicking the table after the existing cookie entries. Enter `app_version` in the first column, hit tab and enter `dark` in the next column. The rest of the defaults will suffice. When complete, it should look similar to this screenshot:
 
     <img src="../assets/chrome-cookie.png" alt="Cookie view in Chrome Developer Tools panel" width="600"/>
 
-8. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
+1. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
 
 ## Next Steps
 

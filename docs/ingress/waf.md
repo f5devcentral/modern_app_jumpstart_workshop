@@ -85,7 +85,7 @@ kubectl logs $NIC_POD -n nginx-ingress -f
 
 We will use this log stream in the next section.
 
-**Note:** At times, the log stream may stop. If you are not seeing events appear after some time, type `ctrl+c` and attempt to stream logs again.
+> **Note:** At times, the log stream may stop. If you are not seeing events appear after some time, type `ctrl+c` and attempt to stream logs again.
 
 
 ## Test for Efficacy

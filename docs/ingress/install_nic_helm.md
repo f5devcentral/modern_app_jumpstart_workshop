@@ -2,7 +2,7 @@
 
 For this step, we will pull the NGINX Plus Ingress Controller image from your private registry and deploy it into your K3s deployment.
 
-**Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
+> **Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
 
 ## Create a Read-Only GitHub PAT (Personal Access Token)
 
@@ -52,4 +52,4 @@ helm install nginx-plus-ingress -n nginx-ingress nginx-stable/nginx-ingress \
   --set prometheus.create=true
 #{% endraw %}
 ```
-**Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command to set the `TAG` variable in the block above will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
+> **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command to set the `TAG` variable in the block above will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.

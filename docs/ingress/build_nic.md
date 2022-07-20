@@ -23,7 +23,7 @@ For this step, we will leverage the [Docker CLI](https://docs.docker.com/engine/
 
 The repository's Makefile supports several [target types](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/#makefile-targets), but for this lab we will leverage the *debian-image-nap-dos-plus* target so we can use NGINX App Protect WAF.
 
-**Note:** For additional details you can also reference the [Build the Ingress Controller Image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) portion of the [NGINX Ingress Controller documentation](https://docs.nginx.com/nginx-ingress-controller/).
+> **Note:** For additional details you can also reference the [Build the Ingress Controller Image](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/) portion of the [NGINX Ingress Controller documentation](https://docs.nginx.com/nginx-ingress-controller/).
 
 Make sure that the certificate (nginx-repo.crt) and the key (nginx-repo.key) of your license are located in the root of the project:
 
@@ -70,7 +70,7 @@ To publish the NGINX Ingress Controller container to your private registry follo
     #{% endraw %}
     ```
 
-    **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
+> **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
 
 ## Next Steps
 

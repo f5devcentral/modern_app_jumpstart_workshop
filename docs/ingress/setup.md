@@ -47,7 +47,7 @@ echo $TOKEN
 
 Now that we have K3s up and running and a dedicated service account for UDF we need to build a kubeconfig file so *kubectl* on your laptop knows how to access our cluster.
 
-*Note:* the `kubectl config` command will produce warnings about invalid configuration - this can be ignored since you are building the configuration.
+> **Note:** The `kubectl config` command will produce warnings about invalid configuration - this can be ignored since you are building the configuration.
 
 1. Run the following commands on the K3s server:
 
@@ -113,8 +113,8 @@ gh repo clone f5devcentral/modern_app_jumpstart_workshop_infra
 ## Clone your workshop infrastructure repository to your laptop
 Now that you have forked the workshop infrastructure repository, you'll want to clone the repo to your local laptop. You can do this via the git or GitHub CLI commands.
 
-**Note:** Make sure to replace your_username with your GitHub username.
-**Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
+> **Note:** Make sure to replace your_username with your GitHub username.
+> **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
 Git:
 ```bash
@@ -125,7 +125,7 @@ git clone https://github.com/your_username/modern_app_jumpstart_workshop_infra.g
 git clone git@github.com:your_username/modern_app_jumpstart_workshop_infra.git modern_app_jumpstart_workshop_infra
 ```
 
-**Note:** For the remainder of this lab, we will refer to this repository as **"infra"**.
+> **Note:** For the remainder of this lab, we will refer to this repository as **"infra"**.
 
 # Next Steps
 
