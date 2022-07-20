@@ -69,6 +69,7 @@ Now that Argo CD has deployed out application let's take a look at the NGINX Ing
 **Note:** Refer to the [VirtualServer docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) for more information.
 
 1. Run the following on your local machine:
+
     ```bash
     kubectl get virtualserver
     ```
@@ -202,7 +203,6 @@ Now that Argo CD has deployed out application let's take a look at the NGINX Ing
       - "/images" -> rewrite policy to the api upstream
       - "/api/inventory" -> /api/inventory of inventory service
       - "/api/recommendations" -> /api/recommendations of recommendations service
-
 
 ## Next Steps
 

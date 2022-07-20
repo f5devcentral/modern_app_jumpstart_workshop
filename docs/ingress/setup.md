@@ -99,11 +99,12 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     ```
 
 # Fork Infrastructure Repository
+
 When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/) to separate your application code from your infrastructure configuration into separate repositories. This will ensure that changes to either may occur in isolation without triggering a large-scale deployment.
 
 1. Fork this secondary repository to your own GitHub account as you did earlier.
 
-    You can complete this task through the GitHub UI: 
+    You can complete this task through the GitHub UI:
     ![GitHub Fork](../assets/gh_fork_infra.png)
 
     or via the GitHub CLI:
@@ -113,6 +114,7 @@ When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.rea
     ```
 
 ## Clone your workshop infrastructure repository to your laptop
+
 Now that you have forked the workshop infrastructure repository, you'll want to clone the repo to your local laptop. You can do this via the git or GitHub CLI commands.
 
 > **Note:** Make sure to replace your_username with your GitHub username.
@@ -120,6 +122,7 @@ Now that you have forked the workshop infrastructure repository, you'll want to 
 > **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
 1. Clone the repo:
+
     ```bash
     # via HTTPS
     git clone https://github.com/your_username/modern_app_jumpstart_workshop_infra.git modern_app_jumpstart_workshop_infra

@@ -1,4 +1,5 @@
 # Setup
+
 To start the monolith to microservices scenario you will first need to ensure the following items are installed on your laptop:
 
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -7,9 +8,11 @@ To start the monolith to microservices scenario you will first need to ensure th
 - [GitHub CLI - optional](https://cli.github.com/)
 
 ## Deploy the Microservices Workshop UDF Blueprint
+
 1. Open the [Microservices Workshop UDF Blueprint](https://udf.f5.com/b/792c428c-89f6-440e-b068-3d99a471fd9c#documentation) and deploy it in the region geographically closest to you. Start the deployment with the default suggested resource settings.
 
 ## Fork the workshop repository
+
 1. To proceed with this scenario, you will need to fork the workshop repository to your GitHub account.  If this is your first time, then take a few minutes to review the [GitHub Docs on how to Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
     You can complete this task through the [repository GitHub UI](https://github.com/f5devcentral/modern_app_jumpstart_workshop):
@@ -22,6 +25,7 @@ To start the monolith to microservices scenario you will first need to ensure th
     ```
 
 ## Clone your workshop repository to your laptop
+
 Now that you have forked the workshop repository, you'll want to clone the repo to your local laptop.  
 
 1. Perform this via the git or GitHub CLI commands.
@@ -30,7 +34,6 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
 
     > **Note:** If you have not [configured GitHub authentication](https://docs.github.com/en/authentication) with your local laptop, please stop and do that now.
 
-    Git:
     ```bash
     # via HTTPS
     git clone https://github.com/your_username/modern_app_jumpstart_workshop.git modern_app_jumpstart_workshop
@@ -59,6 +62,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
     ```
 
 1. Now, test that your settings are correct:
+
     ```bash
     kubectl get nodes
     ```
@@ -74,7 +78,8 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 ## Manually deploy the Brewz application using manifests
 
-1. Run the following on your local machine: 
+1. Run the following on your local machine:
+
     ```bash
     cd manifests/brewz
     kubectl apply -f mongo-init.yaml
@@ -86,7 +91,8 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 ## GitOps with Argo CD
 
-### Obtain the Argo CD password 
+### Obtain the Argo CD password
+
 1. To leverage the Argo CD UI, you will need to obtain the password created at install - save this for later use.
 
     ```bash
@@ -97,16 +103,16 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 1. Once logged in, click the **CREATE APPLICATION** button. Enter the following values:
 
-    | **Name**               | **Value**                                       |
-    |------------------------|-------------------------------------------------|
-    | Application Name       | brewz                                           |
-    | Project Name           | click and select "default"                      |
-    | Sync Policy            | click and select "Automatic"                    |
-    | SELF-HEAL checkbox     | checked                                         |
-    | Repository URL         | *your forked repo url*                          |
-    | Path                   | manifests/brewz                                 |
-    | Cluster URL            | click and select https://kubernetes.default.svc |
-    | Namespace              | default                                         |
+    | **Name**               | **Value**                                         |
+    |------------------------|---------------------------------------------------|
+    | Application Name       | `brewz`                                             |
+    | Project Name           | click and select `default`                        |
+    | Sync Policy            | click and select `Automatic`                      |
+    | SELF-HEAL checkbox     | checked                                           |
+    | Repository URL         | *your forked repo url*                            |
+    | Path                   | `manifests/brewz`                                 |
+    | Cluster URL            | click and select `https://kubernetes.default.svc` |
+    | Namespace              | `default`                                           |
 
 1. Click the **CREATE** button.
 
@@ -119,4 +125,5 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
     ![Argo sync summary](../assets/argo_sync_details_1.png)
 
 ## Next Steps
+
 Now you will apply [rate limiting to the Brewz application](rate-limit.md).
