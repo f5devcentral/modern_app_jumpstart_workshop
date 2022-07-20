@@ -12,7 +12,7 @@ Open the [Microservices Workshop UDF Blueprint](https://udf.f5.com/b/792c428c-89
 ## Fork the workshop repository
 To proceed with this scenario, you will need to fork the workshop repository to your GitHub account.  If this is your first time, then take a few minutes to review the [GitHub Docs on how to Fork a repo](https://docs.github.com/en/get-started/quickstart/fork-a-repo).
 
-You can complete this task through the GitHub UI: 
+You can complete this task through the [repository GitHub UI](https://github.com/f5devcentral/modern_app_jumpstart_workshop):
 ![GitHub Fork](../assets/gh_fork.jpg)
 
 or via the GitHub CLI:
