@@ -3,7 +3,7 @@
 This folder contains the resources needed to build and maintain the base UDF blueprint for this lab.
 
 After initial setup, the script will pull the latest version of the repo and copy the necessary files
-for each service.  This helps avoid the need to nominate new UDF blueprint versions. 
+for each service.  This helps avoid the need to nominate new UDF blueprint versions.
 
 ## Initial Setup
 
