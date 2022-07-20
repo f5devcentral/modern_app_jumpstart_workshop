@@ -51,7 +51,7 @@ Once the file is downloaded, set your KUBECONFIG environment variable to point t
 export KUBECONFIG=~/user/Downloads/config-udf.yaml
 
 # PowerShell
-$env:KUBECONFIG = 'C:\temp/config-udf.yaml'
+$env:KUBECONFIG = 'C:\temp\config-udf.yaml'
 ```
 
 Now, test that your settings are correct:
