@@ -31,11 +31,10 @@ Use the following settings:
     - Port: 80
 - Site: the site you created in the previous step
 - Select Network on the site: Outside Interface
-- port number: 8000
 
 ## Configure the Virtual Server
 
-Follow the [F5 Distributed Cloud HTTP Load Balancer docs](https://docs.cloud.f5.com/docs/how-to/app-networking/http-load-balancer) to create an HTTP Load Balancer for the Brewz API service.
+Follow the [F5 Distributed Cloud HTTP Load Balancer docs](https://docs.cloud.f5.com/docs/how-to/app-networking/http-load-balancer) to create an **HTTP Load Balancer** for the Brewz API service.
 
 Use the following settings:
 
