@@ -110,7 +110,7 @@ When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.rea
     or via the GitHub CLI:
 
     ```bash
-    gh repo clone f5devcentral/modern_app_jumpstart_workshop_infra
+    gh repo fork --clone f5devcentral/modern_app_jumpstart_workshop_infra
     ```
 
 ## Clone your workshop infrastructure repository to your laptop
