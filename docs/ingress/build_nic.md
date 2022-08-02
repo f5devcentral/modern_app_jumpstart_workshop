@@ -37,8 +37,7 @@ The repository's Makefile supports several [target types](https://docs.nginx.com
     ```bash
     # Replace OWNER with your Github username
     export GITHUB_USER=OWNER
-    make debian-image-nap-dos-plus PREFIX=ghcr.io/$GITHUB_USER/nginx-plus-ingress TARGET=container
-
+    make debian-image-nap-dos-plus PREFIX=ghcr.io/$GITHUB_USER/nginx-plus-ingress TARGET=container DOCKER_BUILD_OPTIONS="--platform linux/amd64"
     ```
 
 ## Publish the Container
