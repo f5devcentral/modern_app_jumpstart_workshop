@@ -284,7 +284,7 @@ The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key 
 
 1. Now, open the **NGINX Dashboard** UDF Access Method on the k3s component. You should see the NGINX default welcome page.
 
-1. Append `dashboard.html` to the URL in your browser to see the NIGNX Plus dashboard.
+1. Append `/dashboard.html` to the URL in your browser to see the NIGNX Plus dashboard.
 
     > **Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
 

@@ -12,11 +12,11 @@ After a few months of developing this, the Brewz company exposed this to their c
 
 ## The Monolithic Brewz Application
 
-The UDF deployment contains a "Monolith" component. The existing Brewz application runs on a single virtual machine, and is depoyed as a unit. The application is a VueJS Single Page App (SPA) written in Javascript. The SPA application makes calls to a REST API. There is no application proxy (such as NGINX) used in the current deployment. The following diagram represents the current state of the Brewz application:
+The UDF deployment contains a "Monolith" component. The existing Brewz application runs on a single virtual machine, and is deployed as a unit. The application is a VueJS Single Page App (SPA) written in Javascript. The SPA application makes calls to a REST API. There is no application proxy (such as NGINX) used in the current deployment. The following diagram represents the current state of the Brewz application:
 
 <img src="../assets/brews-k8s-monolith.svg" alt="Brewz monolith arch" width="400"/>
 
-Access the application by clicking the **Brewz** UDF access method on the **Monolith-VM** component. We will be spending much time with the application in the labs ahead, so browse through it to get a feel for how it works. Optionally, open your browser's web development toolbar and monitor the REST API calls this application makes on initial load as well as while interacting with the web application. It should become clear that this application is highly rependent on its REST API, so speed and reliability of this API are very important.
+Access the application by clicking the **Brewz** UDF access method on the **Monolith-VM** component. We will be spending much time with the application in the labs ahead, so browse through it to get a feel for how it works. Optionally, open your browser's web development toolbar and monitor the REST API calls this application makes on initial load as well as while interacting with the web application. It should become clear that this application is highly dependent on its REST API, so speed and reliability of this API are very important.
 
 ## Lab Missions
 
