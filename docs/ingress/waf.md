@@ -42,23 +42,30 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
 
 We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the Brewz developers provided us. This should stop unexpected and invalid requests from making it through NGINX Ingress Controller, performing as an API Gateway.
 
+> **Note:** You will use your forked version of the **primary** repository for this portion of the lab.
+
 1. Copy `waf-ap-logconf.yaml`, `waf-ap-policy.yaml` and `waf-policy.yaml` from your `docs/ingress/source-manifests` folder into your `manifests/brewz` folder.
 
 1. Update your `manifests/brewz/virtual-server.yaml` file to add the `waf-policy` policy reference to the `VirtualServer` spec as in this snippet:
 
     ```yaml
+    ---
     apiVersion: k8s.nginx.org/v1
     kind: VirtualServer
     metadata:
       name: brewz
     spec:
       host: brewz.f5demo.com
+      tls:
+        secret: brewz-tls
       policies:
         - name: waf-policy
       upstreams:
         - name: spa
           service: spa
           port: 80
+
+    ...
     ```
 
 1. Commit the copied and modified files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.

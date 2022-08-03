@@ -8,6 +8,8 @@ More detailed information can be found in the [VirtualServer and VirtualServerRo
 
 Let's take a look at common resources for a modern application.
 
+> **Note:** You will use your forked version of the **primary** repository for this portion of the lab.
+
 ## Action
 
 The action resource defines an action to perform for a request and is the basis for our Brewz demo application.
@@ -124,13 +126,40 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
             interval: 20s
             jitter: 3s
             port: 8000
+        - name: inventory
+          service: inventory
+          port: 8002
+        - name: recommendations
+          service: recommendations
+          port: 8001
+        - name: spa-dark
+          service: spa-dark
+          port: 80
       routes:
         - path: /
+          matches:
+            - conditions:
+              - cookie: "app_version"
+                value: "dark"
+              action:
+                pass: spa-dark
           action:
             pass: spa
         - path: /api
+          policies:
+            - name: rate-limit-policy
           action:
             pass: api
+        - path: /api/inventory
+          action:
+            proxy:
+              upstream: inventory
+              rewritePath: /api/inventory
+        - path: /api/recommendations
+          action:
+            proxy:
+              upstream: recommendations
+              rewritePath: /api/recommendations
         - path: /images
           action:
             proxy:
@@ -165,6 +194,7 @@ While the Brews developers were able to break their monolith application into mi
 1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
 
     ```yaml
+    ---
     apiVersion: k8s.nginx.org/v1
     kind: VirtualServer
     metadata:
@@ -189,6 +219,8 @@ While the Brews developers were able to break their monolith application into mi
           action:
             pass: spa
         - path: /api
+          policies:
+            - name: rate-limit-policy
           action:
             pass: api
           errorPages:
@@ -199,8 +231,8 @@ While the Brews developers were able to break their monolith application into mi
                 body: |
                   {\"msg\": \"Could not find the product!\"}
                 headers:
-                - name: x-debug-original-status
-                  value: ${upstream_status}
+                  - name: x-debug-original-status
+                    value: ${upstream_status}
         - path: /images
           action:
             proxy:
@@ -267,7 +299,7 @@ Now that we have a self-signed certificate, we need to add it to our K8s cluster
 
     ```shell
     Name:         brewz-tls
-    Namespace:    nginx-ingress
+    Namespace:    default
     Labels:       <none>
     Annotations:  <none>
 
@@ -293,6 +325,7 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
     The final file should look like the example below:
 
     ```yaml
+    ---
     apiVersion: k8s.nginx.org/v1
     kind: VirtualServer
     metadata:
@@ -314,11 +347,28 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
             interval: 20s
             jitter: 3s
             port: 8000
+        - name: inventory
+          service: inventory
+          port: 8002
+        - name: recommendations
+          service: recommendations
+          port: 8001
+        - name: spa-dark
+          service: spa-dark
+          port: 80
       routes:
         - path: /
+          matches:
+            - conditions:
+              - cookie: "app_version"
+                value: "dark"
+              action:
+                pass: spa-dark
           action:
             pass: spa
         - path: /api
+          policies:
+            - name: rate-limit-policy
           action:
             pass: api
           errorPages:
@@ -329,13 +379,24 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
                 body: |
                   {\"msg\": \"Could not find the product!\"}
                 headers:
-                - name: x-debug-original-status
-                  value: ${upstream_status}
+                  - name: x-debug-original-status
+                    value: ${upstream_status}
+        - path: /api/inventory
+          action:
+            proxy:
+              upstream: inventory
+              rewritePath: /api/inventory
+        - path: /api/recommendations
+          action:
+            proxy:
+              upstream: recommendations
+              rewritePath: /api/recommendations
         - path: /images
           action:
             proxy:
               upstream: api
               rewritePath: /images
+
     ```
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.

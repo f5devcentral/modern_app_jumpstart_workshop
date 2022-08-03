@@ -65,6 +65,7 @@ The goal of this refactoring is to make changes to the deployment architecture w
             proxy:
               upstream: api
               rewritePath: /images
+
     ```
 
     Note that we have:
