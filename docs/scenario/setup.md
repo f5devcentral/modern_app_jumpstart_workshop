@@ -105,14 +105,14 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
     | **Name**               | **Value**                                         |
     |------------------------|---------------------------------------------------|
-    | Application Name       | `brewz`                                             |
+    | Application Name       | `brewz`                                           |
     | Project Name           | click and select `default`                        |
     | Sync Policy            | click and select `Automatic`                      |
     | SELF-HEAL checkbox     | checked                                           |
     | Repository URL         | *your forked repo url*                            |
     | Path                   | `manifests/brewz`                                 |
     | Cluster URL            | click and select `https://kubernetes.default.svc` |
-    | Namespace              | `default`                                           |
+    | Namespace              | `default`                                         |
 
 1. Click the **CREATE** button.
 

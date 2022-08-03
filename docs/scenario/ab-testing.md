@@ -46,6 +46,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
           name: http
       selector:
         app: spa-dark
+
     ```
 
     > **Note:** The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
