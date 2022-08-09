@@ -1,83 +1,59 @@
-# Install NGINX Plus Ingress
+# Install NGINX Plus Ingress Controller from the NGINX Private Container Registry
 
-For this step, we will pull the NGINX Plus Ingress Controller image from your private registry and deploy it into your K3s deployment.
+For this step, we will pull the NGINX Plus Ingress Controller image from the official NGINX private registry and deploy it into your K3s deployment.
 
-We will use Argo CD to deploy NGINX Ingress Controller for us. However, if you wanted to do this using the Helm CLI, you may use [this procedure](install_nic_helm.md) as a reference.
-
-Alternatively, if you wish to install the NGINX Ingress Controller from the NGINX private container registry, you can follow [this procedure](install_nic_nginx_registry.md) and skip the remainder of this document.
-
-> **Note:** For more details, you can access the NGINX Ingress Controller documentation [here](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/)
-
-## Create a Read-Only GitHub PAT (Personal Access Token)
-
-While you could leverage the PAT created in the build steps, the best practice is to leverage a least privilege model and create a read-only PAT for your Kubernetes cluster.
-
-1. Create a [GitHub PAT (Personal Access Token)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) with the following scopes:
-    - *read:packages*
-
-1. Export the value to the *GITHUB_TOKEN* environment variable.
-
-    ```bash
-    export GITHUB_TOKEN=your_access_token
-    ```
+> **Note:** When you acquired the NGINX trial certificate and key files to satisfy the prerequisites of this lab, you were also presented with an option to download a JWT key associated with the trial. You will use this JWT key to create image pull credentials for this portion of the lab.
 
 ## Create Kubernetes Secret
 
-1. In order to pull the NGINX Plus Ingress container from your private registry, the K8s cluster will need to have access to the GitHub PAT you created previously. To accomplish this, you will create a docker-registry secret with the commands below:
+1. In order to pull the NGINX Plus Ingress container from the NGINX private registry, the K8s cluster will need to have access to the token contained in the JWT you downloaded previously. To accomplish this, you will create a docker-registry secret from your laptop with the commands below:
 
     ```bash
     # Create nginx-ingress namespace
     kubectl create namespace nginx-ingress
 
-    export GITHUB_USER=your_github_username
-
     # create container registry secret
-    kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
+    kubectl create secret docker-registry regcred --docker-server=private-registry.nginx.com --docker-username=`cat <full path to JWT file>` --docker-password=none -n nginx-ingress
+
+    ```
+
+1. Confirm the details of the created secret by running:
+
+    ```bash
+    kubectl get secret regcred -n nginx-ingress --output=yaml
     ```
 
 ## Update Helm Values and Argo CD Application Manifest
 
 Before you can deploy the NGINX Ingress Controller, you will need to modify the Helm chart values to match your environment.
 
-1. Find your NGINX Plus Ingress Controller container tag with the following command:
-
-    ```bash
-    TAG=`docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"`
-    echo $TAG
-    ```
-
-    > **Note:** If you had previously created and tagged an `nginx-plus-ingress` container image on your system, the command above used to set the `TAG` variable will not work. Instead, run `docker images ghcr.io/$GITHUB_USER/nginx-plus-ingress --format "{{.Tag}}"` and select your most recent tag from the output, then set the variable manually: `TAG=<your tag from the previous command>`.
-
-1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the **infra** repository.
-
-1. Find the following variables and replace them with your information:
-
-    | Variable        | Value           |
-    |-----------------|-----------------|
-    | \<GITHUB_USER\>   | github username |
-    | &lt;TAG>        | tag value from previous command|
-
-    Your file should look similar to the example below:
+1. Open the `charts/nginx-plus-ingress/values.yaml` file in your forked version of the **infra** repository, and replace it with the following contents:
 
     ```yaml
-    controller:
-      appprotect: 
-        enable: true
-      appprotectdos:
-        enable: true
-      enableSnippets: true
-      image:
-        repository: ghcr.io/codygreen/nginx-plus-ingress
-        tag: 2.3.0-SNAPSHOT-a88b7fe
-      nginxPlus: true
-      nginxStatus:
-        allowCidrs: 9000
-        port: 9000
-      serviceAccount:
-        imagePullSecretName: ghcr
-    prometheus:
-      create: true
+
+    ---
+    nginx-ingress:
+      controller:
+        appprotect:
+          enable: true
+        appprotectdos:
+          enable: false
+        enableSnippets: true
+        image:
+          repository: private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress
+          tag: 2.3.0
+        nginxplus: true
+        nginxStatus:
+          allowCidrs: 0.0.0.0/0
+          port: 9000
+        serviceAccount:
+          imagePullSecretName: regcred
+      prometheus:
+        create: true
+
     ```
+
+    > **Note:** At the time of this writing, there is not an image in the NGINX private registry that contains both NGINX App Protect WAF & DoS products. In light of this, note the `appprotectdos` variable has been set to `false` in the file above.
 
 1. Save the file. Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
@@ -192,20 +168,16 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
     Controlled By:  ReplicaSet/nginx-plus-ingress-nginx-ingress-785b67bf4
     Containers:
       nginx-plus-ingress-nginx-ingress:
-        Container ID:  containerd://69e9e416438c2cc2330df627cc7605640f6c196092a4ea3f7ff421c3bcfbbcd7
-        Image:         ghcr.io/codygreen/nginx-plus-ingress:2.3.0-SNAPSHOT-a88b7fe
-        Image ID:      ghcr.io/codygreen/nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
+        Container ID:  containerd://cb295cefd0f8dad5297585f2e4cc2a8ecafc4f92fdab4cb23dd0b965149ab9d1
+        Image:         private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:2.3.0
+        Image ID:      private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress@sha256:92fa43b20f04de58c843c6493ab51619115e7eff5f00b36a40a047e940c8c84nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
         Ports:         80/TCP, 443/TCP, 9113/TCP, 8081/TCP
         Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
         Args:
           -nginx-plus=true
           -nginx-reload-timeout=60000
           -enable-app-protect=true
-          -enable-app-protect-dos=true
-          -app-protect-dos-debug=false
-          -app-protect-dos-max-daemons=0
-          -app-protect-dos-max-workers=0
-          -app-protect-dos-memory=0
+          -enable-app-protect-dos=false
           -nginx-configmaps=$(POD_NAMESPACE)/nginx-plus-ingress-nginx-ingress
           -default-server-tls-secret=$(POD_NAMESPACE)/nginx-plus-ingress-nginx-ingress-default-server-tls
           -ingress-class=nginx

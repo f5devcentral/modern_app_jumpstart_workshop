@@ -16,7 +16,7 @@ The action resource defines an action to perform for a request and is the basis 
 
 ### Pass
 
-The *pass* action passes the request to an upstream that is defined in the resource.  
+The *pass* action passes the request to an upstream that is defined in the resource.
 
 In the Brewz `virtual-server.yaml` manifest, the *spa* and *api* services leverage this method.
 
@@ -46,11 +46,11 @@ The *redirect* action redirects a request to a provided URL.
 
 ### Return
 
-The *return* action returns a preconfigured response.  
+The *return* action returns a preconfigured response.
 
 ### Proxy
 
-The *proxy* action passes a request to an upstream with the ability to modify the request/response.  
+The *proxy* action passes a request to an upstream with the ability to modify the request/response.
 
 In the Brewz `virtual-server.yaml` manifest, the */images* path uses this method to proxy requests to the api service's */images* path.
 
@@ -254,13 +254,13 @@ While the Brews developers were able to break their monolith application into mi
 
 ## TLS
 
-A common requirement for most websites today is to leverage encryption to secure the communication between the client and the server.  While this would be a critical requirement for an e-commerce site like our Brewz demo app, many enterprise customers also require encryption due to search engines, such as Google, demoting their rank in search results if the website does not offer encryption.
+A common requirement for most websites today is to leverage encryption to secure the communication between the client and the server. While this would be a critical requirement for an e-commerce site like our Brewz demo app, many enterprise customers also require encryption due to search engines, such as Google, demoting their rank in search results if the website does not offer encryption.
 
 In this step, we will add TLS encryption to the Brewz VirtualServer resource.
 
 ### Create a certificate
 
-Since you are running this lab in a closed ecosystem (UDF), you do not have the ability to easily create external DNS records and obtain a public TLS certificate; we will look at this ability in another lab leveraging F5 Distributed Cloud.  Due to this limitation, we will create a self-signed certificate.
+Since you are running this lab in a closed ecosystem (UDF), you do not have the ability to easily create external DNS records and obtain a public TLS certificate; we will look at this ability in another lab leveraging F5 Distributed Cloud. Due to this limitation, we will create a self-signed certificate.
 
 1. Run the following commands via SSH on the K3s server using the *SSH* or *Web Shell* UDF Access Methods:
 
