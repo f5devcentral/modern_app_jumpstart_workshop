@@ -65,6 +65,20 @@ Currently, there is no limitation on the rate that clients may query the product
 
 1. Save this file.
 
+    > **Note:** You can manually test that changes to your YAML manifests are both well-formed and syntactically correct by performing a *dry-run* test with `kubectl apply` without actually applying them. Example:
+
+    ```bash
+    kubectl apply -f manifests/brewz/virtual-server.yaml --dry-run=client
+    ```
+
+    If successful, the command will return a result similar to:
+
+    ```shell
+    virtualserver.k8s.nginx.org/brewz configured (dry run)
+    ```
+
+    Keep this technique in mind for the remainder of this workshop if you are uncertain that your YAML manifests have been formatted correctly.
+
 1. Stage the changes, and commit them to your local repository.
 
 1. Push the changes to your remote repository.
