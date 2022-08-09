@@ -15,7 +15,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
 1. Use cURL to make requests against the API. This first request violates the implicitly expected type of `userId` in the user API by injecting alphanumeric characters into it:
 
     ```bash
-    curl -X GET "$BREWZ_URL/api/users/12345b/cart"
+    curl -k -X GET "$BREWZ_URL/api/users/12345b/cart"
     ```
 
     You should receive a response of `"Could not find user!"`, as `12345b` in not a valid user id format.
@@ -23,7 +23,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
 1. The next request will attempt a `POST` without the expected payload, and with an invalid and unexpected format of the `userId` parameter:
 
     ```bash
-    curl -X POST "$BREWZ_URL/api/users/12345b/cart"
+    curl -k -X POST "$BREWZ_URL/api/users/12345b/cart"
     ```
 
     > The request should not return anything and just time out. Why?
@@ -97,9 +97,9 @@ If you examine the contents of the `APLogConf` resource contained in `manifests/
 1. We are going to attempt the requests we attempted before:
 
     ```bash
-    curl -X GET "$BREWZ_URL/api/users/12345b/cart"
+    curl -k -X GET "$BREWZ_URL/api/users/12345b/cart"
 
-    curl -X POST "$BREWZ_URL/api/users/12345b/cart"
+    curl -k -X POST "$BREWZ_URL/api/users/12345b/cart"
 
     ```
 
@@ -114,7 +114,7 @@ If you examine the contents of the `APLogConf` resource contained in `manifests/
 1. Attempt a new request that uses a properly formatted `userId`, but does not include the correct content type:
 
     ```bash
-    curl -X POST "$BREWZ_URL/api/users/12345/cart"
+    curl -k -X POST "$BREWZ_URL/api/users/12345/cart"
     ```
 
     In the log stream, notice a violation of `VIOL_URL_CONTENT_TYPE` appears. This is due to the fact that line 117 in the `oas.yaml` spec file stipulates that requests to this http URI and verb must be of content type `application/json`.
@@ -122,7 +122,7 @@ If you examine the contents of the `APLogConf` resource contained in `manifests/
 1. Attempt a new request that includes the expected content type, yet violates the request payload expectations:
 
     ```bash
-    curl -d '{"productId":"1234r"}' -H "Content-Type: application/json" -X POST $BREWZ_URL/api/users/12345/cart
+    curl -k -d '{"productId":"1234r"}' -H "Content-Type: application/json" -X POST $BREWZ_URL/api/users/12345/cart
     ```
 
     In the log stream, notice a violation of `VIOL_JSON_SCHEMA` appears. This is due to the fact that line 120 in the `oas.yaml` spec file stipulates that requests must include a `productId` property, that is a string that is coercable into a number with a minimum of 3 digits.
@@ -130,7 +130,7 @@ If you examine the contents of the `APLogConf` resource contained in `manifests/
 1. Finally, send a valid request and note that it is successful and returns all the products in the user cart:
 
     ```bash
-    curl -d '{"productId":"123"}' -H "Content-Type: application/json" -X POST $BREWZ_URL/api/users/12345/cart
+    curl -k -d '{"productId":"123"}' -H "Content-Type: application/json" -X POST $BREWZ_URL/api/users/12345/cart
     ```
 
 ## End of Lab
