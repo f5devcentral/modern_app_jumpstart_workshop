@@ -10,6 +10,8 @@ In this lab, you will evaluate alternative options for publishing services from 
 
 This lab assumes that you have already completed the [NGINX Ingress lab](../ingress/README.md) and have running instances of the Brewz microservices in your K8s cluster. If not, please complete those steps first.
 
+You must also have access to an F5 Distributed Cloud tenant.  If not, F5 employees can request access through the Cloud Account ServiceNow form and non-employees can [sign-up](https://www.f5.com/cloud/pricing#container1989174610).
+
 ## K8s Site Deployment  
 
 1. [Create a site token](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site)
