@@ -13,6 +13,8 @@ In this step, you need to create 4 origin pools:
 
 Follow the [F5 Distributed Cloud Origin Pool docs](https://docs.cloud.f5.com/docs/how-to/app-networking/origin-pools) instructions.
 
+> Note: you must select your namespace versus using the default namespace
+
 Use the following settings:
 
 - Select Type of Origin Server: k8s Service Name of Origin Server on given Sites
