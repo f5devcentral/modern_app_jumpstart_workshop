@@ -24,7 +24,7 @@ This lab assumes that you have already completed the [NGINX Ingress lab](../ingr
 
 ## Deploy
 
-Now that you have created your custom manifest file, we will deploy the manifest:
+Now that you have created your custom manifest file, we will deploy the manifest on the K3s server in your UDF deployment:
 
 ```bash
 kubectl apply -f f5xc_k8s_site.yaml
