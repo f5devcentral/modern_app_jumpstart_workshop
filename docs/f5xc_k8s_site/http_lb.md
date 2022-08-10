@@ -75,3 +75,11 @@ Once you create the */images* path, drag it above the */api* path to change its 
 At this point, you should have an HTTP LB that you can access the Brewz app at:
 
 `<http://brewz-username.lab-app.f5demos.com/>`
+
+## Cleanup
+
+Now that you have completed the lab, please delete the resources you created:
+
+- HTTP Load Balancer
+- Origin Pools
+- [K8s site](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site#decommission-a-site)
