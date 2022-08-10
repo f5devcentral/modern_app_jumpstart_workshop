@@ -26,7 +26,7 @@ You must also have access to an F5 Distributed Cloud tenant.  If not, F5 employe
 
 ## Deploy
 
-Now that you have created your custom manifest file, we will deploy the manifest:
+Now that you have created your custom manifest file, we will deploy the manifest on the K3s server in your UDF deployment:
 
 ```bash
 kubectl apply -f f5xc_k8s_site.yaml
