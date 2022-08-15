@@ -101,7 +101,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 1. Now open the **Argo CD** UDF access method of the **k3s** component, and login with `admin` and the password obtained from the previous step.
 
-1. Once logged in, click the **CREATE APPLICATION** button. Enter the following values:
+1. Once logged in, click the **+ NEW APP** button. Enter the following values:
 
     | **Name**               | **Value**                                         |
     |------------------------|---------------------------------------------------|
