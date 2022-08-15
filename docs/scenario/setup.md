@@ -71,7 +71,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
     ```bash
     ## Replace with your download location
-    kubectl --kubeconfig ~/user/Downloads/config-udf.yaml get nodes
+    kubectl --kubeconfig ~/Downloads/config-udf.yaml get nodes
     ```
 
     If the command succeeds, then check your environment variable.
