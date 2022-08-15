@@ -87,7 +87,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
     kubectl apply -f virtual-server.yaml
     ```
 
-1. Use the **Brewz** UDF access method to explore the deployed app in your browser. Click the "BREWZ" title link to navigate to the main product catalog.
+1. Use the **Brewz** UDF access method of the **k3s** component to explore the deployed app in your browser. Click the "BREWZ" title link to navigate to the main product catalog.
 
 ## GitOps with Argo CD
 
