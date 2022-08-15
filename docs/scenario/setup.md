@@ -55,7 +55,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
     ```bash
     ## Replace with your download location
     # Bash
-    export KUBECONFIG=~/user/Downloads/config-udf.yaml
+    export KUBECONFIG=~/Downloads/config-udf.yaml
 
     # PowerShell
     $env:KUBECONFIG = 'C:\temp\config-udf.yaml'
