@@ -82,7 +82,7 @@ The goal of this refactoring is to make changes to the deployment architecture w
 
 Now that the services have been decoupled, we will independently scale the `inventory` service without being concerned with the need to scale the `api` service as well.
 
-1. In VSCode, edit your forked repo's copy of the `app.yaml` and change the number of replicas of the inventory service to `3` (at line 157). When complete, the inventory Deployment should look like the following:
+1. In VSCode, edit your forked repo's copy of the `app.yaml` and change the number of replicas of the inventory service to `3` (at line 157). When complete, the inventory Deployment should look similar to the following:
 
     ```yaml
     ...
@@ -103,7 +103,7 @@ Now that the services have been decoupled, we will independently scale the `inve
         spec:
           containers:
             - name: inventory
-              image: ghcr.io/f5devcentral/spa-demo-app-inventory:sha-19fd503
+              image: ghcr.io/f5devcentral/spa-demo-app-inventory:<tag name varies>
               ports:
                 - containerPort: 8002
 
