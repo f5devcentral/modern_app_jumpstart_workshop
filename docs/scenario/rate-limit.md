@@ -5,7 +5,7 @@ Currently, there is no limitation on the rate that clients may query the product
 1. Test the initial state of the API with the [Hey](https://github.com/rakyll/hey) utility:
 
     ```bash
-    BREWZ_URL=<Your Brewz UDF access method url>
+    BREWZ_URL=<Your Brewz UDF access method url without the path>
     hey -n 20 -c 10 $BREWZ_URL/api/products
     ```
 
