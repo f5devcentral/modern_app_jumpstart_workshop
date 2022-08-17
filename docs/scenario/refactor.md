@@ -2,7 +2,7 @@
 
 While we are now successfully running the Brewz application in Kubernetes, there are some architectural improvements that can be made in order to promote efficiency, scalability, and enable the reduction risk through smaller units of deployment.
 
-Examine the current version of the Brews deployment architecture:
+Re-examine the current state of the Brews deployment architecture:
 
 <img src="../assets/brews-k8s-initial.svg" alt="Initial k8s arch" width="400"/>
 
