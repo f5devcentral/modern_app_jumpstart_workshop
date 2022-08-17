@@ -19,7 +19,7 @@ You can also reference the official [NGINX Ingress Controller documentation](htt
 
 ## Build the Container
 
-For this step, we will leverage the [Docker CLI](https://docs.docker.com/engine/install/) to build the NGINX Ingress Controller image. Alternatively, you can use [Podman](https://podman.io/) if you do not have a Docker license.
+For this step, we will leverage the [Docker CLI](https://docs.docker.com/engine/install/) to build the NGINX Ingress Controller image.
 
 The repository's Makefile supports several [target types](https://docs.nginx.com/nginx-ingress-controller/installation/building-ingress-controller-image/#makefile-targets), but for this lab we will leverage the *debian-image-nap-dos-plus* target so we can use NGINX App Protect WAF.
 

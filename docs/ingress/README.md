@@ -7,7 +7,7 @@ In this lab you will build and deploy the NGINX Plus container
 For this lab, you will need:
 
 - [GitHub account](https://github.com)
-- [Docker CLI](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/)
+- [Docker CLI](https://docs.docker.com/engine/install/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [git](https://git-scm.com/downloads)
 - [GNU Make](https://www.gnu.org/software/make/)

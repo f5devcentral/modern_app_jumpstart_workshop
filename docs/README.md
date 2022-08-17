@@ -7,7 +7,7 @@ This workshop will walk you through common scenarios that an application develop
 The following resources need to be installed on your laptop:
 
 - [GitHub account](https://github.com)
-- [Docker CLI](https://docs.docker.com/engine/install/) or [Podman](https://podman.io/)
+- [Docker CLI](https://docs.docker.com/engine/install/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [git](https://git-scm.com/downloads)
 - [GNU Make](https://www.gnu.org/software/make/)
