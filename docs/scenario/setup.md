@@ -78,7 +78,7 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 ## Manually deploy the Brewz application using manifests
 
-1. Run the following on your local machine:
+1. On your local machine, open a terminal to the directory that you cloned your repository into and run the following commands:
 
     ```bash
     cd manifests/brewz
