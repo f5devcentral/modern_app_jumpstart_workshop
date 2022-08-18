@@ -88,16 +88,25 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     cat $NEWCFG
     ```
 
-1. Copy the output from the kubeconfig file and save it to your laptop.
+1. Copy the output from the kubeconfig file and save it to a file on your laptop, for example in `<your downloads folder>/config-udf.yaml`.
 
-1. Set the `KUBECONFIG` environment variable to your new kubeconfig file:
+1. Set the `KUBECONFIG` environment variable to reference this new kubeconfig file such as in the example commands below:
 
     ```bash
-    # Export kubeconfig location
     export KUBECONFIG=~/Downloads/config-udf.yaml
+    ```
 
-    # Test kubeconfig, you should see the k3s node
+1. Use kubeconfig to test your new configuration:
+
+    ```bash
     kubectl get nodes
+    ```
+
+    You should see the k3s node:
+
+    ```shell
+    NAME   STATUS   ROLES                  AGE   VERSION
+    k3s    Ready    control-plane,master   6m   v1.24.3+k3s1
     ```
 
 # Fork Infrastructure Repository
