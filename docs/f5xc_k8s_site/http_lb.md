@@ -40,7 +40,7 @@ Follow the [F5 Distributed Cloud HTTP Load Balancer docs](https://docs.cloud.f5.
 
 Use the following settings:
 
-- List of Domains: brewz-<username>.<lab-app>.f5demos.com
+- List of Domains: brewz-*username*.*lab-app*.f5demos.com
     - Note: replace lab-app with a domain delegated to your F5XC organization, such as amer-ent.f5demos.com
 - Origin Pool: the SPA origin pool
 
