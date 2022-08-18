@@ -106,7 +106,7 @@ When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.rea
 
 1. Fork this secondary repository to your own GitHub account as you did earlier.
 
-    You can complete this task through the GitHub UI:
+    You can complete this task through the [repository GitHub UI](https://github.com/f5devcentral/modern_app_jumpstart_workshop_infra):
     ![GitHub Fork](../assets/gh_fork_infra.png)
 
     or via the GitHub CLI:
