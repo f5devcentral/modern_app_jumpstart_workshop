@@ -85,6 +85,9 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     # Set current context
     kubectl --kubeconfig=$NEWCFG config set current-context udf
 
+    # make kubeconfig readable for rsync
+    chmod 0644 $NEWCFG
+
     # Display kubeconfig file and rsync command
     echo -e "rsync download command:\nrsync -e 'ssh -p $PORT' $HOST:$NEWCFG config-udf.yaml"
     cat $NEWCFG
