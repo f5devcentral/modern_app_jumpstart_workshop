@@ -58,6 +58,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
 
     # Get the UDF Access Method
     HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "K3s API") | .host' -r`
+    PORT=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.ssh[] | select(.label == "SSH") | .port' -r`
 
     # Get the UDF Access Method's CA
     CA=`openssl s_client -connect $HOST:443 2>&1 </dev/null | sed -ne '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p'|base64 -w 0`
@@ -84,11 +85,15 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     # Set current context
     kubectl --kubeconfig=$NEWCFG config set current-context udf
 
-    # Display kubeconfig file
+    # make kubeconfig readable for rsync
+    chmod 0644 $NEWCFG
+
+    # Display kubeconfig file and rsync command
+    echo -e "rsync download command:\nrsync -e 'ssh -p $PORT' $HOST:$NEWCFG config-udf.yaml"
     cat $NEWCFG
     ```
 
-1. Copy the output from the kubeconfig file and save it to your laptop.
+1. Save the kubeconfig file to your laptop by copying the output or using the `rsync` command printed above it.
 
 1. Set the `KUBECONFIG` environment variable to your new kubeconfig file:
 
