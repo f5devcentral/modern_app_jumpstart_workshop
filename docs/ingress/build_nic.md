@@ -32,6 +32,8 @@ The repository's Makefile supports several [target types](https://docs.nginx.com
     nginx-repo.crt  nginx-repo.key
     ```
 
+    >Note: The certificate's file extension *must* be `.crt`. If the file extension is downloaded as anything else (such as `.cer`), you must rename the file yourself before proceeding.
+
 1. To build the NGINX Ingress Controller container, follow these steps:
 
     ```bash
