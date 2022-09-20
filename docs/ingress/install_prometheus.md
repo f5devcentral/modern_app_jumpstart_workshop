@@ -10,9 +10,9 @@ You will need to update the Prometheus Argo CD manifest to match your environmen
 
 1. Find the following variables and replace them with your information:
 
-    | Variable        | Value           |
-    |-----------------|-----------------|
-    | \<GITHUB_USER\>   | github username |
+    | Variable        | Value                |
+    |-----------------|----------------------|
+    | \<GITHUB_USER\> | your github username |
 
     Your file should look similar to the example below:
 

@@ -37,8 +37,9 @@ The repository's Makefile supports several [target types](https://docs.nginx.com
 1. To build the NGINX Ingress Controller container, follow these steps:
 
     ```bash
-    # Replace OWNER with your Github username
-    export GITHUB_USER=OWNER
+    # Replace your_github_username with your Github username
+    export GITHUB_USER=your_github_username
+
     make debian-image-nap-dos-plus PREFIX=ghcr.io/$GITHUB_USER/nginx-plus-ingress TARGET=container DOCKER_BUILD_OPTIONS="--platform linux/amd64"
     ```
 

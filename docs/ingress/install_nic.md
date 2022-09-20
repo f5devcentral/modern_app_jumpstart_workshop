@@ -29,6 +29,7 @@ While you could leverage the PAT created in the build steps, the best practice i
     # Create nginx-ingress namespace
     kubectl create namespace nginx-ingress
 
+    # Replace your_github_username with your Github username
     export GITHUB_USER=your_github_username
 
     # create container registry secret
@@ -52,10 +53,10 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 1. Find the following variables and replace them with your information:
 
-    | Variable        | Value           |
-    |-----------------|-----------------|
-    | \<GITHUB_USER\>   | github username |
-    | &lt;TAG>        | tag value from previous command|
+    | Variable        | Value                           |
+    |-----------------|---------------------------------|
+    | \<GITHUB_USER\> | your github username            |
+    | &lt;TAG>        | tag value from previous command |
 
     Your file should look similar to the example below:
 
@@ -85,9 +86,9 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 1. Find the following variables and replace them with your information:
 
-    | Variable        | Value           |
-    |-----------------|-----------------|
-    | \<GITHUB_USER\> | github username |
+    | Variable        | Value                |
+    |-----------------|----------------------|
+    | \<GITHUB_USER\> | your github username |
 
     Your file should look similar to the example below:
 
