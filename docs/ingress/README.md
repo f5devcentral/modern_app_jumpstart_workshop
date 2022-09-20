@@ -10,7 +10,9 @@ For this lab, you will need:
 - [Docker CLI](https://docs.docker.com/engine/install/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [git](https://git-scm.com/downloads)
-- [GNU Make](https://www.gnu.org/software/make/)
+- [GNU Make](https://www.gnu.org/software/make/) installation:
+  - OSX: [installation instructions using XCode or Brew](https://stackoverflow.com/questions/10265742/how-to-install-make-and-gcc-on-a-mac)
+  - Windows: [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install), then install make depending on your installed version of Linux. For example, [install Make on Ubuntu](https://linuxhint.com/install-make-ubuntu/).
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Hey](https://github.com/rakyll/hey)
 - [GitHub CLI - optional](https://cli.github.com/)
