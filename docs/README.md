@@ -12,6 +12,7 @@ The following resources need to be installed on your laptop:
 - [git](https://git-scm.com/downloads)
 - [GNU Make](https://www.gnu.org/software/make/)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
+- [jq](https://stedolan.github.io/jq/)
 - [Hey](https://github.com/rakyll/hey) - HTTP Load testing utility. A drop-in replacement for ApacheBench.
 - [GitHub CLI - optional](https://cli.github.com/)
 - NGINX Plus trial license - You will also need to request via SalesForce to obtain an NGINX Plus certificate and private key.
