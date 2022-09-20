@@ -14,9 +14,13 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: mongo
+          image: mongo:6
           ports:
             - containerPort: 27017
+          env:
+            - name: SEED_FILE
+              # value: coffeeProducts.json
+              value: beerProducts.json
           volumeMounts:
             - name: mongo-initdb
               mountPath: /docker-entrypoint-initdb.d
@@ -65,6 +69,9 @@ spec:
               value: http://inventory:8002
             - name: RECOMMENDATIONS_URL
               value: http://recommendations:8001
+            - name: IMAGE_DIRECTORY
+              # value: coffee
+              value: beer
 
 ---
 apiVersion: v1
@@ -134,6 +141,11 @@ spec:
           image: ghcr.io/f5devcentral/spa-demo-app-recommendations:sha-6931631
           ports:
             - containerPort: 8001
+          env:
+            - name: SEED_FILE
+              # value: coffeeProducts.json
+              value: beerProducts.json
+
 ---
 apiVersion: v1
 kind: Service
