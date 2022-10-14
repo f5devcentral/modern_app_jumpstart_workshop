@@ -13,7 +13,7 @@ You can also reference the official [NGINX Ingress Controller documentation](htt
     **Note:** You may need to update the branch version to match the latest release of NGINX Ingress Controller
 
     ```bash
-    git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.3.0
+    git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v2.4.0
     cd kubernetes-ingress
     ```
 
