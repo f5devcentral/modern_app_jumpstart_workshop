@@ -41,3 +41,9 @@ In this lab, you will build and install the NGINX Plus Ingress Controller into y
 In this lab, you will create an F5 Distributed Cloud Kubernetes Site using our existing K3s cluster.  You will then publish the Brewz API service on the Internet without the need for a K8s ingress service.
 
 [Start F5 XC Kubernetes Site Lab](f5xc_k8s_site/README.md)
+
+## Microservices API Security
+
+In this lab, you will gain a basic understanding of modern app security specs, and how to leverage them in order to secure the Brewz microservices-based application in a K8s context.
+
+[Start Microservices API Security Lab](api-security/README.md)

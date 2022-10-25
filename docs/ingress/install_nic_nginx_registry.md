@@ -1,6 +1,6 @@
 # Install NGINX Plus Ingress Controller from the NGINX Private Container Registry
 
-For this step, we will pull the NGINX Plus Ingress Controller image from the official NGINX private registry and deploy it into your K3s deployment.
+For this step, we will pull the NGINX Plus Ingress Controller image from the official NGINX private registry and deploy it into your K3s deployment. The image used here includes NGINX App Protect WAF and DoS products.
 
 > **Note:** When you acquired the NGINX trial certificate and key files to satisfy the prerequisites of this lab, you were also presented with an option to download a JWT key associated with the trial. You will use this JWT key to create image pull credentials for this portion of the lab.
 
@@ -37,23 +37,23 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
         appprotect:
           enable: true
         appprotectdos:
-          enable: false
+          enable: true
         enableSnippets: true
         image:
-          repository: private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress
+          repository: private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress
           tag: 2.4.0
         nginxplus: true
         nginxStatus:
           allowCidrs: 0.0.0.0/0
           port: 9000
+        readyStatus:
+          initialDelaySeconds: 30
         serviceAccount:
           imagePullSecretName: regcred
       prometheus:
         create: true
 
     ```
-
-    > **Note:** At the time of this writing, there is not an image in the NGINX private registry that contains both NGINX App Protect WAF & DoS products. In light of this, note the `appprotectdos` variable has been set to `false` in the file above.
 
 1. Save the file. Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
 
@@ -79,7 +79,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
       project: default
       source:
         path: charts/nginx-plus-ingress
-        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop_infra.git
         targetRevision: HEAD
       destination:
         namespace: nginx-ingress
@@ -169,15 +169,15 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
     Containers:
       nginx-plus-ingress-nginx-ingress:
         Container ID:  containerd://cb295cefd0f8dad5297585f2e4cc2a8ecafc4f92fdab4cb23dd0b965149ab9d1
-        Image:         private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress:2.4.0
-        Image ID:      private-registry.nginx.com/nginx-ic-nap/nginx-plus-ingress@sha256:92fa43b20f04de58c843c6493ab51619115e7eff5f00b36a40a047e940c8c84nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
+        Image:         private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress:2.4.0
+        Image ID:      private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress@sha256:92fa43b20f04de58c843c6493ab51619115e7eff5f00b36a40a047e940c8c84nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
         Ports:         80/TCP, 443/TCP, 9113/TCP, 8081/TCP
         Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
         Args:
           -nginx-plus=true
           -nginx-reload-timeout=60000
           -enable-app-protect=true
-          -enable-app-protect-dos=false
+          -enable-app-protect-dos=true
           -nginx-configmaps=$(POD_NAMESPACE)/nginx-plus-ingress-nginx-ingress
           -default-server-tls-secret=$(POD_NAMESPACE)/nginx-plus-ingress-nginx-ingress-default-server-tls
           -ingress-class=nginx

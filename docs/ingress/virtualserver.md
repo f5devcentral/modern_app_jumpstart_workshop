@@ -191,7 +191,7 @@ While the Brews developers were able to break their monolith application into mi
 
     > Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
 
-1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `api` path; example below.
+1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `/api` path; example below.
 
     ```yaml
     ---
@@ -277,7 +277,7 @@ Since you are running this lab in a closed ecosystem (UDF), you do not have the 
     - Organization Name: F5
     - Organizational Unit Name: Brewz
     - Common Name: brewz.f5demo.com
-    - Email Address: brewsz@f5demo.com
+    - Email Address: brewz@f5demo.com
 
 ### Create K8s Secret for the Cert and Key
 

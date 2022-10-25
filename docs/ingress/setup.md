@@ -144,6 +144,6 @@ Now that you have forked the workshop infrastructure repository, you'll want to 
 
     > **Note:** For the remainder of this lab, we will refer to this repository as **"infra"**.
 
-# Next Steps
+## Next Steps
 
 Next, we will [install Argo CD](argocd.md)

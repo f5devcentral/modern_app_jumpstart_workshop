@@ -28,7 +28,7 @@ You will need to update the Grafana Argo CD manifest to match your environment.
       project: default
       source:
         path: charts/grafana
-        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop_infra.git
         targetRevision: HEAD
       destination:
         namespace: monitoring

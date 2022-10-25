@@ -38,6 +38,8 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
 
     > You may notice that there is an unhandled exception being logged, causing the request to timeout. This is obviously something that should be addressed in code, but we may be able to do something about it in the mean time.
 
+    > **Note:** At times, the log stream may stop. If you are not seeing events appear after some time, type `ctrl+c` and attempt to stream logs again.
+
 ## Create and Deploy Security Policy
 
 We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the Brewz developers provided us. This should stop unexpected and invalid requests from making it through NGINX Ingress Controller, performing as an API Gateway.
