@@ -122,6 +122,10 @@ In this section, you will initially deploy the Brewz microservices app using Arg
 
   > **Note:** Use a file manager (such as OSX Finder or Windows Explorer) or a terminal to copy these files. If you use VS Code, it will not replace existing files; it will copy duplicate files appending a "copy" suffix to avoid name collisions.
 
+1. Stage the changes from adding all the copied files, and commit to your local repository.
+
+1. Push the changes to your remote repository.
+
 ### Update Argo CD Application Manifest
 
 You will need to update the Brewz Argo CD manifest to match your environment.
@@ -162,10 +166,6 @@ You will need to update the Brewz Argo CD manifest to match your environment.
     ```
 
 1. Save the file.
-
-1. Stage the changes, and commit to your local repository.
-
-1. Push the changes to your remote repository.
 
 ### Deploy the manifest
 
