@@ -35,6 +35,16 @@ The Brews company developed the Checkout service with some audit logging require
                   value: ${jwt_claim_name}
                 - name: Email
                   value: ${jwt_claim_email}
+          errorPages:
+            - codes: [401]
+              return:
+                code: 401
+                type: application/json
+                body: |
+                  {\"msg\": \"Authorization Required\"}
+                headers:
+                  - name: x-debug-original-status
+                    value: ${upstream_status}
     ```
 
 1. Save the file, and stage the changes.
@@ -57,9 +67,11 @@ The Brews company developed the Checkout service with some audit logging require
 
 1. Click the **Complete Purchase** button at the bottom of the view. The SPA will show a **Purchase Complete** dialog showing an Order ID.
 
-1. Re-examine the Checkout service logs. You should now see an entry such as the following:
+1. Re-examine the Checkout service logs. You should see an entry similar to the following:
 
     <img src="../assets/checkout_order_service_logs_2.png" alt="Checkout service logs" width="400"/>
+
+    > **Note:** You may need to submit a few orders, as NGINX Ingress Controller may not have updated the running configuration by the time you submitted your order.
 
     The logs are now populated with the additional values that NGINX Ingress Controller parsed out of the JWT payload and injected into the upstream headers.
 

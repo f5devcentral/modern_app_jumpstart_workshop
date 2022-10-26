@@ -49,7 +49,7 @@ Next, we will create a `Policy` resource in Kubernetes to inspect and enforce th
 
 1. Save the file, and stage the changes.
 
-1. Open the `manifests/brewz/virtual-server.yaml` file, and add the following `policies` field to the `/api/order` route so it looks like this:
+1. Open the `manifests/brewz/virtual-server.yaml` file, and add the following `policies` field to the `routes` -> `/api/order` path so it looks like this:
 
     ```yaml
         - path: /api/order
