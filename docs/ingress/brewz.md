@@ -60,7 +60,7 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
 1. Click on the **brewz** application in the Argo CD UI and inspect the deployed services and policies.
 
-    > **Note:** You should see the individual services as well as the `rate-limit-policy` resource from day 1 of the workshop.
+    > **Note:** You should see the individual services as well as the `rate-limit-policy` resource from an earlier lab in this workshop.
 
 ## Inspect the NGINX Ingress Controller Configuration
 

@@ -4,7 +4,7 @@ Unsurprisingly, marketing has been interested in how to improve the look and fee
 
 NGINX Ingress Controller's traffic splitting features are an ideal fit for this use case, as the conditional logic for this testing period becomes a matter of configuration rather than code. In addition to this particular scenario - called "A/B Testing", NGINX Ingress Controller also supports other deployment patters such as Canary, Blue-Green, and Debug routing.
 
-The development team has already been hard at work updating the Brewz spa app with the new user experience, and has published a version of it to the container registry. Fortunately due to the refactoring we performed earlier in the lab, the development team no longer has to deploy the entire application in order to make front-end changes, as when they had to when the app was monolithic in nature.
+The development team has already been hard at work updating the Brewz SPA app with the new user experience, and has published a version of it to the container registry. Fortunately due to the refactoring we performed earlier in the lab, the development team no longer has to deploy the entire application in order to make front-end changes, as when they had to when the app was monolithic in nature.
 
 ## Update the Brewz Deployment and Virtual Server
 
