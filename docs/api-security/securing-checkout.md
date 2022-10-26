@@ -18,11 +18,11 @@ Earlier in the lab, we observed that the Brewz SPA was calling the Checkout API'
 
     <img src="../assets/spa_checkout_confirmed_api.png" alt="Checkout complete with developer tools" width="650"/>
 
-1. In your developer toolbar, right-click on the `order` request, and 
+1. In your developer toolbar right-click on the `order` request, and click **Copy** -> **Copy as cURL**.
 
-    <img src="../assets/spa_order_copy_curl.png" alt="Copy order request as cUrl command" width="650"/>
+    <img src="../assets/spa_order_copy_curl.png" alt="Copy order request as cURL command" width="650"/>
 
-    > **Note:** If you browser's developer tools does not support exporting a request as cUrl, use the following command, but replace `<brewz host name>` with the host name of your Brewz application:
+    > **Note:** If you browser's developer tools does not support exporting a request as cURL, use the following command, but replace `<brewz host name>` with the host name of your Brewz application:
 
     ```bash
     curl 'https://<brewz host name>/api/order' \
@@ -40,13 +40,13 @@ Earlier in the lab, we observed that the Brewz SPA was calling the Checkout API'
 
 1. Paste the request into an editor, such as VS Code.
 
-1. Locate and delete the `Authorization` header line from the cUrl command:
+1. Locate and delete the `Authorization` header line from the cURL command:
 
-    <img src="../assets/vscode_order_service_curl_2.png" alt="cUrl command for order operation" width="650"/>
+    <img src="../assets/vscode_order_service_curl_2.png" alt="cURL command for order operation" width="650"/>
 
-1. Copy the modified cUrl command into your terminal, and execute it:
+1. Copy the modified cURL command into your terminal, and execute it:
 
-    <img src="../assets/term_order_service_curl.png" alt="Executing cUrl command for order operation" width="750"/>
+    <img src="../assets/term_order_service_curl.png" alt="Executing cURL command for order operation" width="750"/>
 
     Notice that an `orderId` is returned from the API call. This indicates that the presence of the authorization token is not being enforced! We need to fix this ASAP!!!
 

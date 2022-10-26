@@ -69,7 +69,7 @@ Next, we will create a `Policy` resource in Kubernetes to inspect and enforce th
 
 1. Argo CD will detect the changes to your repository, and will update the Brewz app deployment.
 
-1. Once the application updates have deployed, use the cUrl to test the `/api/order` operation as you did on the previous page of this lab. You will receive a `401 Authorization Required` error as now NGINX is expecting a JWT token to be present before forwarding the request to the Checkout service.
+1. Once the application updates have deployed, use the cURL to test the `/api/order` operation as you did on the previous page of this lab. You will receive a `401 Authorization Required` error as now NGINX is expecting a JWT token to be present before forwarding the request to the Checkout service.
 
     <img src="../assets/term_order_service_401_html.png" alt="401 response in html" width="650"/>
 
@@ -107,7 +107,7 @@ As in a previous lab in this workshop, we need to add additional fields to our `
 
 1. Push the changes to your remote repository.
 
-1. Once again, run the cUrl command to test the Checkout API. Add a `-v` option to the end of the command to see the actual response code:
+1. Once again, run the cURL command to test the Checkout API. Add a `-v` option to the end of the command to see the actual response code:
 
     <img src="../assets/term_order_service_401_json.png" alt="401 response in json"/>
 

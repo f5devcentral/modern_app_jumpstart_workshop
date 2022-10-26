@@ -142,7 +142,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
 
 1. Open the `Brewz` UDF access method on the `k3s` component. Note that the application looks the same as it has been in previous labs.
 
-1. Now, call the newly deployed Checkout service directly. Copy the host name from your browser in the above step, and test the service by running the following from your laptop using the `cUrl` utility replacing the `<brewz application host>`:
+1. Now, call the newly deployed Checkout service directly. Copy the host name from your browser in the above step, and test the service by running the following from your laptop using the `cURL` utility replacing the `<brewz application host>`:
 
     ```bash
     curl -X POST 'https://<brewz application host>/api/order' -H 'Content-Type: application/json' -d '{"products":[{"id":"234"},{"id":"456"}],"shippingAddress":{"street":"801 5th Ave","city":"Seattle","state":"WA","zip":"98104"},"userId":"12345"}'
