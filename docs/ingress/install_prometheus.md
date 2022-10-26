@@ -28,7 +28,7 @@ You will need to update the Prometheus Argo CD manifest to match your environmen
       project: default
       source:
         path: charts/prometheus
-        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop_infra.git
         targetRevision: HEAD
       destination:
         namespace: monitoring

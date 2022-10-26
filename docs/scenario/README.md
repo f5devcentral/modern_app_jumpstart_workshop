@@ -1,4 +1,4 @@
-# Monolith to Microservices Scenario
+# Lab 1: Monolith to Microservices Scenario
 
 In this portion of the workshop we will walk through a common scenario that a developer might take as they transition their application from a monolith to microservices.
 

@@ -17,27 +17,34 @@ The following resources need to be installed on your laptop:
 - [jq](https://stedolan.github.io/jq/)
 - [Hey](https://github.com/rakyll/hey) - HTTP Load testing utility. A drop-in replacement for ApacheBench.
 - [GitHub CLI - optional](https://cli.github.com/)
-- NGINX Plus trial license - You will also need to request via SalesForce to obtain an NGINX Plus certificate and private key.
+- [cURL](https://curl.se/) - Usually pre-installed in Unix-based Operating systems, available when using Windows with WSL installed.
+- NGINX Plus trial license - You will also need to request via SalesForce to obtain an NGINX Plus certificate, private key and JWT.
 - Access to F5 Distributed Cloud
 
 You will also need to [setup local authentication](https://docs.github.com/en/authentication) to GitHub.
 
 **Note:** If you are taking this lab on a Windows system, it is **highly** recommended that you [Install Linux on Windows with WSL](https://docs.microsoft.com/en-us/windows/wsl/install).
 
-## Monolith to Microservices Scenario
+## Lab 1: Monolith to Microservices Scenario
 
 At the beginning of the workshop we will walk through a common scenario that a developer might take as they transition their application from a monolith to microservices.
 
-[Start Scenario](scenario/README.md)
+[Start Monolith to Microservices Scenario Lab](scenario/README.md)
 
-## K8s Ingress
+## Lab 2: K8s Ingress
 
 In this lab, you will build and install the NGINX Plus Ingress Controller into your K3s cluster.  You will also take a deeper look at the VirtualServer Resource and some of the common configurations a modern application might need.
 
-[Start Ingress Lab](ingress/README.md)
+[Start K8s Ingress Lab](ingress/README.md)
 
-## F5 Distributed Cloud Kubernetes Site
+## Lab 3: F5 Distributed Cloud Kubernetes Site
 
 In this lab, you will create an F5 Distributed Cloud Kubernetes Site using our existing K3s cluster.  You will then publish the Brewz API service on the Internet without the need for a K8s ingress service.
 
-[Start F5 XC Kubernetes Site Lab](f5xc_k8s_site/README.md)
+[Start F5 Distributed Cloud Kubernetes Site Lab](f5xc_k8s_site/README.md)
+
+## Lab 4: Microservices API Security
+
+In this lab, you will gain a basic understanding of modern app security specs, and how to leverage them in order to secure the Brewz microservices-based application in a K8s context.
+
+[Start Microservices API Security Lab](api-security/README.md)

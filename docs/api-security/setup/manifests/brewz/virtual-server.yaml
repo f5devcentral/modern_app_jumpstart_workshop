@@ -1,0 +1,73 @@
+---
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: brewz
+spec:
+  host: brewz.f5demo.com
+  tls:
+    secret: brewz-tls
+  policies:
+    - name: waf-policy
+  upstreams:
+    - name: spa
+      service: spa
+      port: 80
+    - name: api
+      service: api
+      port: 8000
+      healthCheck:
+        enable: true
+        path: /api/stats
+        interval: 20s
+        jitter: 3s
+        port: 8000
+    - name: inventory
+      service: inventory
+      port: 8002
+    - name: recommendations
+      service: recommendations
+      port: 8001
+    - name: spa-dark
+      service: spa-dark
+      port: 80
+  routes:
+    - path: /
+      matches:
+        - conditions:
+          - cookie: "app_version"
+            value: "dark"
+          action:
+            pass: spa-dark
+      action:
+        pass: spa
+    - path: /api
+      policies:
+        - name: rate-limit-policy
+      action:
+        pass: api
+      errorPages:
+        - codes: [404]
+          return:
+            code: 404
+            type: application/json
+            body: |
+              {\"msg\": \"Could not find the product!\"}
+            headers:
+              - name: x-debug-original-status
+                value: ${upstream_status}
+    - path: /api/inventory
+      action:
+        proxy:
+          upstream: inventory
+          rewritePath: /api/inventory
+    - path: /api/recommendations
+      action:
+        proxy:
+          upstream: recommendations
+          rewritePath: /api/recommendations
+    - path: /images
+      action:
+        proxy:
+          upstream: api
+          rewritePath: /images

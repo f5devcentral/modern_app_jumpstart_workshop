@@ -1,6 +1,6 @@
 # Install Brewz with ArgoCD
 
-In this section, you will deploy the Brewz microservices using Argo CD.
+In this section, you will deploy the Brewz microservices application using Argo CD.
 
 ## Update Argo CD Application Manifest
 
@@ -58,9 +58,9 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 1. Open the Argo CD UDF Access Method under the K3s server
   ![Argo CD Sync](../assets/argo_sync.jpg)
 
-1. Click on the argo-cd-demo application in the Argo CD UI and inspect the deployed services and policies.
+1. Click on the **brewz** application in the Argo CD UI and inspect the deployed services and policies.
 
-    > **Note:** You should see the individual services as well as the `rate-limit-policy` resource from day 1 of the workshop.
+    > **Note:** You should see the individual services as well as the `rate-limit-policy` resource from an earlier lab in this workshop.
 
 ## Inspect the NGINX Ingress Controller Configuration
 

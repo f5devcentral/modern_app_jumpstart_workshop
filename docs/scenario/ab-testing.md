@@ -4,11 +4,11 @@ Unsurprisingly, marketing has been interested in how to improve the look and fee
 
 NGINX Ingress Controller's traffic splitting features are an ideal fit for this use case, as the conditional logic for this testing period becomes a matter of configuration rather than code. In addition to this particular scenario - called "A/B Testing", NGINX Ingress Controller also supports other deployment patters such as Canary, Blue-Green, and Debug routing.
 
-The development team has already been hard at work updating the Brewz spa app with the new user experience, and has published a version of it to the container registry. Fortunately due to the refactoring we performed earlier in the lab, the development team no longer has to deploy the entire application in order to make front-end changes, as when they had to when the app was monolithic in nature.
+The development team has already been hard at work updating the Brewz SPA app with the new user experience, and has published a version of it to the container registry. Fortunately due to the refactoring we performed earlier in the lab, the development team no longer has to deploy the entire application in order to make front-end changes, as when they had to when the app was monolithic in nature.
 
 ## Update the Brewz Deployment and Virtual Server
 
-We need to deploy the new variant of the spa application, so we can conditionally route traffic to it.
+We need to deploy the new variant of the SPA application, so we can conditionally route traffic to it.
 
 1. In your fork of the lab repository, append the following yaml snippet to the `manifests/brewz/app.yaml` file and save it:
 
@@ -30,7 +30,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
         spec:
           containers:
             - name: spa-dark
-              image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-c02c49a
+              image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-e2912a9
               ports:
                 - containerPort: 80
     ---
@@ -49,7 +49,7 @@ We need to deploy the new variant of the spa application, so we can conditionall
 
     ```
 
-    > **Note:** The new `spa-dark` deployment uses a different tag than the existing `spa` deployment. In addition to a new `Deployment` resource, we are introducing a new `Service` resource for it so we can route traffic to it.
+    > **Note:** In addition to a new `Deployment` resource, we are introducing a new `Service` resource so we can route traffic to the new SPA application variant.
 
 1. Append the following yaml snippet to the list of `upstreams` in the `manifests/brewz/virtual-server.yaml` file:
 

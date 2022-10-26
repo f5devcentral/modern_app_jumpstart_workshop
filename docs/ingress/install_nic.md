@@ -74,6 +74,8 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
       nginxStatus:
         allowCidrs: 9000
         port: 9000
+      readyStatus:
+        initialDelaySeconds: 30
       serviceAccount:
         imagePullSecretName: ghcr
     prometheus:
@@ -104,7 +106,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
       project: default
       source:
         path: charts/nginx-plus-ingress
-        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop.git
+        repoURL: https://github.com/codygreen/modern_app_jumpstart_workshop_infra.git
         targetRevision: HEAD
       destination:
         namespace: nginx-ingress
