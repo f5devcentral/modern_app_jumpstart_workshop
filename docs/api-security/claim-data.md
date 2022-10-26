@@ -47,7 +47,7 @@ The Brews company developed the Checkout service with some audit logging require
 
 ## Verify claim information in logs
 
-1. Open the `Brewz` UDF access method on the `k3s` component.
+1. Open the **Brewz** UDF access method on the **k3s** component.
 
 1. If not signed in, do so as you have earlier in the lab.
 

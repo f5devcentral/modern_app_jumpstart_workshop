@@ -2,7 +2,7 @@
 
 Earlier in the lab, we observed that the Brewz SPA was calling the Checkout API's order operation to finalize the order process. We also observed the `Authorization: bearer` header was present, containing the JWT token. Were either the presence or the content of this token being validated? Let's find out...
 
-1. Open the `Brewz` UDF access method on the `k3s` component and ensure you are signed in. If so, your name should appear in the greeting text in the header.
+1. Open the **Brewz** UDF access method on the **k3s** component and ensure you are signed in. If so, your name should appear in the greeting text in the header.
 
 1. Click the **Shopping Cart** button. Ensure that there is at least one item in your shopping cart before proceeding.
 

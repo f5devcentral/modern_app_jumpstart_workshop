@@ -14,7 +14,7 @@ For testing purposes, anyone that has an account within F5's Azure Active Direct
 
 The Brewz developers have made use of a feature flag in the SPA application to expose the areas of the application that require a login.
 
-1. Open the `Brewz` UDF access method on the `k3s` component.
+1. Open the **Brewz** UDF access method on the **k3s** component.
 
 1. Click **Shopping Cart**. By default, there should be a few items in your shopping cart. Note that there is no **Checkout** button.
 

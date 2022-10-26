@@ -79,9 +79,9 @@ We need to deploy the new variant of the SPA application, so we can conditionall
 
 1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-1. Open the `Brewz` UDF access method on the `k3s` component. Note that the application looks the same as it has been in previous labs.
+1. Open the **Brewz** UDF access method on the **k3s** component. Note that the application looks the same as it has been in previous labs.
 
-1. Open the `Brewz` UDF access method in a new tab, and open the developer tools.
+1. Open the **Brewz** UDF access method in a new tab, and open the developer tools.
 
 1. Manually add the `app_version` cookie with a value of `dark` to the developer tools window. Methods vary depending on which browser you are using, but if using Chrome click on the Application tab, and expand the cookies section for the UDF url you are accessing. Add a new cookie by double clicking the table after the existing cookie entries. Enter `app_version` in the first column, hit tab and enter `dark` in the next column. The rest of the defaults will suffice. When complete, it should look similar to this screenshot:
 
