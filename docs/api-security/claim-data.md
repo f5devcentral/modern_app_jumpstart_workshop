@@ -53,9 +53,9 @@ The Brews company developed the Checkout service with some audit logging require
 
 1. Click **Shopping Cart**. If there are no items in your shopping cart, click the **BREWZ** title link and add at least one items to your cart, then navigate back to the **Shopping Cart** view.
 
-1. Click the **Proceed to Checkout** button at the bottom of the page.
+1. Click the **Proceed to Checkout** button at the bottom of the view.
 
-1. Click the **Complete Purchase** button at the bottom of the page. The page will show a **Purchase Complete** dialog showing an Order ID.
+1. Click the **Complete Purchase** button at the bottom of the view. The SPA will show a **Purchase Complete** dialog showing an Order ID.
 
 1. Re-examine the Checkout service logs. You should now see an entry such as the following:
 

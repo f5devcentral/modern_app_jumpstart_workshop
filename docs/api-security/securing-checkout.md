@@ -6,13 +6,13 @@ Earlier in the lab, we observed that the Brewz SPA was calling the Checkout API'
 
 1. Click the **Shopping Cart** button. Ensure that there is at least one item in your shopping cart before proceeding.
 
-1. On the **Shopping Cart** page, click the **Proceed to Checkout** button at the bottom of the page. The **Checkout** page will appear:
+1. In the **Shopping Cart** view, click the **Proceed to Checkout** button at the bottom. The **Checkout** view will appear:
 
-    <img src="../assets/spa_checkout.png" alt="Checkout page" width="650"/>
+    <img src="../assets/spa_checkout.png" alt="Checkout view" width="650"/>
 
 1. In your browser, open the developer tools window. Open the **Network** pane so that you can see the API calls that are made for the next step. Specific steps will likely vary based upon your browser of choice.
 
-1. Click the **Complete Purchase** button at the bottom of the page. The page will show a **Purchase Complete** dialog showing an Order ID.
+1. Click the **Complete Purchase** button at the bottom of the view. The SPA will show a **Purchase Complete** dialog showing an Order ID.
 
 1. In your developer toolbar, see that the SPA app has invoked a `POST` method on the `/api/order` URI.
 

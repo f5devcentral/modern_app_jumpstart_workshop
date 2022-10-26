@@ -16,19 +16,21 @@ The Brewz developers have made use of a feature flag in the SPA application to e
 
 1. Open the **Brewz** UDF access method on the **k3s** component.
 
-1. Click **Shopping Cart**. By default, there should be a few items in your shopping cart. Note that there is no **Checkout** button.
+1. Add at least one item to your shopping cart.
 
-1. In the URL, replace `products` with `config` and hit enter. You will be presented with the config page:
+1. Click the **Shopping Cart** button. Note that there is no **Checkout** button in the Shopping Cart view.
+
+1. In the URL, replace `products` with `config` and hit enter. You will be presented with the config view:
 
     <img src="../assets/spa_enable_security.png" alt="SPA enable security" width="400"/>
 
 1. Check the checkbox by **Enable Security**, then refresh your browser.
 
-1. Click the **BREWZ** title to navigate to the product page. You should now see a **Sign In** button in the header:
+1. Click the **BREWZ** title to navigate to the product view. You should now see a **Sign In** button in the header:
 
     <img src="../assets/spa_sign_in_button.png" alt="Sign In button" width="600"/>
 
-1. Click the **Shopping Cart** button, then click the **Proceed to Checkout** button at the bottom of the page.
+1. Click the **Shopping Cart** button, then click the **Proceed to Checkout** button at the bottom of the view.
 
     <img src="../assets/spa_sign_in_required.png" alt="Sign in required" width="600"/>
 
@@ -56,13 +58,13 @@ Once sign in is complete, you should be redirected back to the Brewz application
 
 <img src="../assets/spa_signed_in_header.png" alt="Signed into the Brewz SPA app" width="650"/>
 
-1. Click the **Shopping Cart** button, then click the **Proceed to Checkout** button at the bottom of the page. The **Checkout** page will appear:
+1. Click the **Shopping Cart** button, then click the **Proceed to Checkout** button at the bottom of the view. The **Checkout** view will appear:
 
-    <img src="../assets/spa_checkout.png" alt="Checkout page" width="650"/>
+    <img src="../assets/spa_checkout.png" alt="Checkout view" width="650"/>
 
 1. In your browser, open the developer tools window. Open the **Network** pane so that you can see the API calls that are made for the next step. Specific steps will likely vary based upon your browser of choice.
 
-1. Click the **Complete Purchase** button at the bottom of the page. The page will show a **Purchase Complete** dialog showing an Order ID.
+1. Click the **Complete Purchase** button at the bottom of the view. The SPA will then show a **Purchase Complete** dialog showing an Order ID.
 
 1. In your developer toolbar, see that the SPA app has invoked a `POST` method on the `/api/order` URI. `Order` is an operation on the **Checkout** service we deployed earlier:
 
@@ -72,7 +74,7 @@ Once sign in is complete, you should be redirected back to the Brewz application
 
     <img src="../assets/spa_checkout_confirmed_payload.png" alt="Inspecting the order payload" width="650"/>
 
-1. Click the **Response** tab in your developer toolbar. The value of the `orderId` JSON property should match what is displayed on the page.
+1. Click the **Response** tab in your developer toolbar. The value of the `orderId` JSON property should match what is displayed on the SPA.
 
     <img src="../assets/spa_checkout_confirmed_response.png" alt="Inspecting the order response" width="650"/>
 
