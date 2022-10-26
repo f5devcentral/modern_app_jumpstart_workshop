@@ -185,4 +185,4 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
 ## Next Steps
 
-Next, we will introduce the Brewz [checkout process](checkout-process.md) process.
+Next, we will introduce the Brewz [checkout process](checkout-process.md).
