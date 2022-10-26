@@ -14,7 +14,7 @@ For this lab, you will need:
 - [git](https://git-scm.com/downloads)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [GitHub CLI - optional](https://cli.github.com/)
-- [cURL](https://curl.se/) - Usually already installed in Unix-based Operating systems, available when using Windows with WSL installed.
+- [cURL](https://curl.se/) - Usually pre-installed in Unix-based Operating systems, available when using Windows with WSL installed.
 
 > **Note:** You will also need to request an NGINX Plus trial via SalesForce to obtain an NGINX Plus JWT file in order to deploy NGINX Ingress Controller from the NGINX official private registry.
 

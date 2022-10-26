@@ -17,7 +17,8 @@ The following resources need to be installed on your laptop:
 - [jq](https://stedolan.github.io/jq/)
 - [Hey](https://github.com/rakyll/hey) - HTTP Load testing utility. A drop-in replacement for ApacheBench.
 - [GitHub CLI - optional](https://cli.github.com/)
-- NGINX Plus trial license - You will also need to request via SalesForce to obtain an NGINX Plus certificate and private key.
+- [cURL](https://curl.se/) - Usually pre-installed in Unix-based Operating systems, available when using Windows with WSL installed.
+- NGINX Plus trial license - You will also need to request via SalesForce to obtain an NGINX Plus certificate, private key and JWT.
 - Access to F5 Distributed Cloud
 
 You will also need to [setup local authentication](https://docs.github.com/en/authentication) to GitHub.
