@@ -20,11 +20,11 @@ On the checkout page of the Brewz SPA, the developers have written code to reque
 
 1. When you paste in the content, the page will automatically decode your JWT. Note the 3 decoded portions of the JWT: the **header**, **payload** and the **signature**.
 
-1. Look at the **payload** part of the decoded JWT token. Notice a `name` and `email` JSON property are present. These (and others) come from the F5's Azure Active Directory, as our application has requested permissions to these basic user attributes at both app registration and login time.
+1. Look at the **payload** part of the decoded JWT token. Notice a `name` and `email` JSON property are present. These (and others) come from F5's Azure Active Directory, as our application has requested permissions to these basic user attributes at both app registration and login time.
 
     <img src="../assets/jwt_io_payload.png" alt="JWT debugger" width="650"/>
 
-    Also, note there is a JSON property named `scp`. This contains one or more scopes, which could be considered custom permission set names. These are defined and consumed by the Brewz API for which the client application (in our case, the Brewz SPA) has requested and received consent. In the Brewz API, all users hav been granted to a scope named `brewz.api.full`, which we will reference later in this lab.
+    Also, note there is a JSON property named `scp`. This contains one or more scopes, which could be considered custom permission set names. These are defined and consumed by the Brewz API for which the client application (in our case, the Brewz SPA) has requested and received consent. In the Brewz API, all users have been granted to a scope named `brewz.api.full`, which we will reference later in this lab.
 
 1. Still on the JWT debugger page, hover your pointer over the `"iat"` property. It will show a description depicting that this is the token issuance time. Next, hover over the numeric value to the right of it, and the Unix epoch time will be translated into your local time representing when the token was issued.
 

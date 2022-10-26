@@ -71,7 +71,7 @@ Next, we will create a `Policy` resource in Kubernetes to inspect and enforce th
 
 1. Once the application updates have deployed, use the cURL to test the `/api/order` operation as you did on the previous page of this lab. You will receive a `401 Authorization Required` error as now NGINX is expecting a JWT token to be present before forwarding the request to the Checkout service.
 
-    <img src="../assets/term_order_service_401_html.png" alt="401 response in html" width="650"/>
+    <img src="../assets/term_order_service_401_html.png" alt="401 response in html" width="750"/>
 
     > **Note:** Notice that this error reponse is HTML, although the `Accept` and `Content-Type` headers are set to `application/json`. Since the Brewz SPA is always expecting JSON responses from its APIs, we need to return JSON payloads even in an error condition, so the SPA will understand how to parse it.
 
