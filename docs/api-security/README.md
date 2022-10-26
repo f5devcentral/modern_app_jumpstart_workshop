@@ -1,4 +1,4 @@
-# Overview
+# Lab 4: Microservices API Security
 
 In this lab you will integrate security features into the Brewz application, and use NGINX Ingress Controller to authorize access to specific APIs.
 
