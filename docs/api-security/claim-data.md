@@ -76,3 +76,5 @@ The Brews company developed the Checkout service with some audit logging require
     The logs are now populated with the additional values that NGINX Ingress Controller parsed out of the JWT payload and injected into the upstream headers.
 
 ## End of Lab
+
+Microservices API Security lab complete. Return to [workshop index](../README.md).

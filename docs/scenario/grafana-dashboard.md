@@ -43,4 +43,4 @@ Grafana has been pre-installed using Helm based on [this guidance](https://githu
 
 ## Next Steps
 
-Monolith to Microservices Scenario complete. Return to [workshop index](../README.md).
+Monolith to Microservices Scenario lab complete. Return to [workshop index](../README.md).

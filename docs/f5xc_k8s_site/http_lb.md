@@ -83,3 +83,7 @@ Now that you have completed the lab, please delete the resources you created:
 - HTTP Load Balancer
 - Origin Pools
 - [K8s site](https://docs.cloud.f5.com/docs/how-to/site-management/create-k8s-site#decommission-a-site)
+
+## End of Lab
+
+F5 Distributed Cloud Kubernetes Site lab complete. Return to [workshop index](../README.md).

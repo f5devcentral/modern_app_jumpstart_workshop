@@ -1,6 +1,6 @@
 # Modern Applications Jumpstart Workshop
 
-This workshop will walk you through common scenarios that an application developer may face as they transition their application from a monolith to microservices.
+This workshop will walk you through common scenarios that an application developer may face as they transition an application from a monolith to microservices.
 
 ## Prerequisites
 
