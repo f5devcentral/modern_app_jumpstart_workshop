@@ -136,3 +136,5 @@ If you examine the contents of the `APLogConf` resource contained in `manifests/
     ```
 
 ## End of Lab
+
+K8s Ingress lab complete. Return to [workshop index](../README.md).
