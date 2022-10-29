@@ -30,7 +30,7 @@ We need to deploy the new variant of the SPA application, so we can conditionall
         spec:
           containers:
             - name: spa-dark
-              image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-e2912a9
+              image: ghcr.io/f5devcentral/spa-demo-app-spa-dark:sha-7dae528
               ports:
                 - containerPort: 80
     ---
