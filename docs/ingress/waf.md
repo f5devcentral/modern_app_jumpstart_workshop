@@ -18,7 +18,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
     curl -k -X GET "$BREWZ_URL/api/users/12345b/cart"
     ```
 
-    You should receive a response of `"Could not find user!"`, as `12345b` in not a valid user id format.
+    You should receive a response of `{"msg": "Could not find the product!"}`, because the `errorPages` section in the `/api` route created earlier in the lab catches the 404 and rewrites the response. If the `errorPages` section is removed from `virtual-server.yaml` you will see `"Could not find user!"` because `12345b` in not a valid user id format.
 
 1. The next request will attempt a `POST` without the expected payload, and with an invalid and unexpected format of the `userId` parameter:
 
