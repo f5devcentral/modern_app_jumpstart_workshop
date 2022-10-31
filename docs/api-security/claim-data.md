@@ -1,6 +1,6 @@
 # Pass claim data to the upstream Checkout API
 
-The Brews company developed the Checkout service with some audit logging requirements when an order is created. They have already added the code to log  the customer name and email address when an order is placed. The good news is, NGINX Ingress Controller can extract claim information, and send it to the upstream.
+The Brewz company developed the Checkout service with some audit logging requirements when an order is created. They have already added the code to log  the customer name and email address when an order is placed. The good news is, NGINX Ingress Controller can extract claim information, and send it to the upstream.
 
 ## Follow the existing Checkout logs
 

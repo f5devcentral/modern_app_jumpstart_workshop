@@ -1,6 +1,6 @@
 # The Brewz API JWT token
 
-When authenticating with Azure in the Brewz SPA, application developers can request tokens that can be used for custom scopes that have been created for an application. For example, once Azure authenticates a user in the Brews SPA, we have configured Azure to grant the user authorization to the Brewz APIs as well.
+When authenticating with Azure in the Brewz SPA, application developers can request tokens that can be used for custom scopes that have been created for an application. For example, once Azure authenticates a user in the Brewz SPA, we have configured Azure to grant the user authorization to the Brewz APIs as well.
 
 In the checkout view of the Brewz SPA, the developers have written code to request a JWT token from Azure to enable them to access the Brewz Checkout API.
 

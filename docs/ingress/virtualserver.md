@@ -179,7 +179,7 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
 
 ## ErrorPage
 
-While the Brews developers were able to break their monolith application into microservices, their APIs are not always returning a JSON response.  A good example is when you lookup a product that does not exist.  The API returns a 400 HTTP response code but the body payload is *"Could not find the product!"*.
+While the Brewz developers were able to break their monolith application into microservices, their APIs are not always returning a JSON response. A good example is when you lookup a product that does not exist. The API returns a 400 HTTP response code but the body payload is *"Could not find the product!"*.
 
 1. Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test this output:
 
@@ -318,8 +318,8 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
 1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add the following fields to the virtual server:
 
     ```yaml
-    tls:
-      secret: brewz-tls
+      tls:
+        secret: brewz-tls
     ```
 
     The final file should look like the example below:
