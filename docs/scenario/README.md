@@ -14,7 +14,7 @@ After a few months of developing this, the Brewz company exposed this to their c
 
 The existing Brewz application runs on a single virtual machine, and is deployed as a unit. The application is a VueJS Single Page App (SPA) written in Javascript. The SPA application makes calls to a REST API. There is no application proxy (such as NGINX) used in the current deployment. The following diagram represents the current state of the Brewz application:
 
-<img src="../assets/brews-k8s-monolith.svg" alt="Brewz monolith arch" width="400"/>
+<img src="../assets/brewz-k8s-monolith.svg" alt="Brewz monolith arch" width="400"/>
 
 It should be clear that this application is highly dependent on its REST API, so speed and reliability of this API are very important.
 

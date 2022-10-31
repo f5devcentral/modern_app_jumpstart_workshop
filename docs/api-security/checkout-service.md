@@ -2,7 +2,7 @@
 
 The Checkout service is another microservice developed in Node JS using the Express framework, similar to the other microservices in the Brewz application deployment.
 
-<img src="../assets/brews-k8s-checkout.svg" alt="the Checkout service" width="600"/>
+<img src="../assets/brewz-k8s-checkout.svg" alt="the Checkout service" width="600"/>
 
 It has been packaged into a container that will respond to requests on port 8003. The SPA application will interact with it through NGINX acting as an API Gateway.
 

@@ -87,7 +87,7 @@ We need to deploy the new variant of the SPA application, so we can conditionall
 
     <img src="../assets/chrome-cookie.png" alt="Cookie view in Chrome Developer Tools panel" width="600"/>
 
-1. Refresh the tab in Chrome. You should see a different design for the Brews application, notably that the background and font colors are different.
+1. Refresh the tab in Chrome. You should see a different design for the Brewz application, notably that the background and font colors are different.
 
 ## Next Steps
 

@@ -2,15 +2,15 @@
 
 While we are now successfully running the Brewz application in Kubernetes, there are some architectural improvements that can be made in order to promote efficiency, scalability, and enable the reduction risk through smaller units of deployment.
 
-Re-examine the current state of the Brews deployment architecture:
+Re-examine the current state of the Brewz deployment architecture:
 
-<img src="../assets/brews-k8s-initial.svg" alt="Initial k8s arch" width="400"/>
+<img src="../assets/brewz-k8s-initial.svg" alt="Initial k8s arch" width="400"/>
 
 Problem statement: It has been noted that at times the `inventory` and `recommendations` services have been an extremely popular feature of the Brewz site. So much that heavy usage of these services have cascaded into a poor experience for users of the entire site.
 
 The way the site is currently architected likely would require scaling both the `api` service as well as the `inventory` and `recommendations` services in order to meet demand. Upon examination of the [api service code](https://github.com/f5devcentral/spa-demo-app/blob/19fd503004a8e3ab5a01eb7eddcac56da165f1c8/api/src/server.js#L121), your developers notice that the api service doesn't provide any real value when calls are made through it to these upstream services. The api service is essentially "passing through" the requests. It would be more efficient and a reduction of code and design complexity to break this simple dependency. We will use NGINX Ingress Controller to route these requests to the originating services themselves so we can update and scale them independently. When our work is complete, this will be the new representation of the deployment architecture:
 
-<img src="../assets/brews-k8s-refactor.svg" alt="Refactored k8s arch" width="600"/>
+<img src="../assets/brewz-k8s-refactor.svg" alt="Refactored k8s arch" width="600"/>
 
 Let's make it happen...
 

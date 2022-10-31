@@ -80,9 +80,9 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
 Now that we have connectivity to the Kubernetes API, we will deploy the Brewz app into the k3s Kubernetes cluster. The manifest files describing the database, the containers to be deployed and proxy ingress configuration has been provided for you by the Brewz development team as a result of their initial investment in breaking down the monolithic application into separate containers. The manifest files provided will create a series of resources in Kubernetes that represent the application deployment, such as ConfigMaps, Deployments, Services, and a Virtual Server.
 
-Once deployed into Kubernetes, the Brews deployment will look like this:
+Once deployed into Kubernetes, the Brewz deployment will look like this:
 
-<img src="../assets/brews-k8s-initial.svg" alt="Initial k8s arch" width="400"/>
+<img src="../assets/brewz-k8s-initial.svg" alt="Initial k8s arch" width="400"/>
 
 > **Note:** The NGINX Ingress Controller has been introduced as a proxy to the APIs, serving as an **API Gateway**.
 

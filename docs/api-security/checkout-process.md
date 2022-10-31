@@ -6,7 +6,7 @@ As a reminder, if you have completed the earlier labs in this workshop, you woul
 
 In the setup steps, you deployed the Brewz microservices application into Kubernetes as the starting point for this lab. Right now, this is a basic depiction of how the application and its services are deployed in Kubernetes:
 
-<img src="../assets/brews-k8s-refactor.svg" alt="Lab setup k8s arch" width="600"/>
+<img src="../assets/brewz-k8s-refactor.svg" alt="Lab setup k8s arch" width="600"/>
 
 The Brewz company has determined that they need to build a specific microservice dedicated to the checkout process, and secure it so that only authenticated users can utilize it. But how will they implement this?
 
