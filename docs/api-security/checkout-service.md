@@ -30,7 +30,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
         spec:
           containers:
             - name: checkout
-              image: ghcr.io/f5devcentral/spa-demo-app-checkout:sha-7dae528
+              image: ghcr.io/f5devcentral/spa-demo-app-checkout:sha-033b779
               ports:
                 - containerPort: 8003
     ---

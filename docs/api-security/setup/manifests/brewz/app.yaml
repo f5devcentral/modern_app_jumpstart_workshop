@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: ghcr.io/f5devcentral/spa-demo-app-api:sha-7dae528
+          image: ghcr.io/f5devcentral/spa-demo-app-api:sha-033b779
           ports:
             - containerPort: 8000
           env:
@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
         - name: spa
-          image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-7dae528
+          image: ghcr.io/f5devcentral/spa-demo-app-spa:sha-033b779
           ports:
             - containerPort: 80
 ---
@@ -131,7 +131,7 @@ spec:
     spec:
       containers:
         - name: recommendations
-          image: ghcr.io/f5devcentral/spa-demo-app-recommendations:sha-7dae528
+          image: ghcr.io/f5devcentral/spa-demo-app-recommendations:sha-033b779
           ports:
             - containerPort: 8001
 ---
@@ -165,7 +165,7 @@ spec:
     spec:
       containers:
         - name: inventory
-          image: ghcr.io/f5devcentral/spa-demo-app-inventory:sha-7dae528
+          image: ghcr.io/f5devcentral/spa-demo-app-inventory:sha-033b779
           ports:
             - containerPort: 8002
 ---
@@ -199,7 +199,7 @@ spec:
     spec:
       containers:
         - name: spa-dark
-          image: ghcr.io/f5devcentral/spa-demo-app-spa-dark:sha-7dae528
+          image: ghcr.io/f5devcentral/spa-demo-app-spa-dark:sha-033b779
           ports:
             - containerPort: 80
 ---
