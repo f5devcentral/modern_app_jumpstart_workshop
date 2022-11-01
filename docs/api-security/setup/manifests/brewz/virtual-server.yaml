@@ -52,7 +52,7 @@ spec:
             code: 404
             type: application/json
             body: |
-              {\"msg\": \"Could not find the product!\"}
+              {\"msg\": \"Could not find the resource!\"}
             headers:
               - name: x-debug-original-status
                 value: ${upstream_status}

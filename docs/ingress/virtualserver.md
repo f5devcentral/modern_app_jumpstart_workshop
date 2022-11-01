@@ -189,7 +189,9 @@ While the Brewz developers were able to break their monolith application into mi
     curl -k https://$HOST/api/products/1234
     ```
 
-    > Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
+    Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
+
+    > **Note:** Since the error response override we will be adding in the next steps could apply to multiple `404` entities on the api (users, products, cart, etc), we will generically use the term "resource" when creating the error response override.
 
 1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and add an `errorPages` resource to the `routes` -> `/api` path; example below.
 
@@ -229,7 +231,7 @@ While the Brewz developers were able to break their monolith application into mi
                 code: 404
                 type: application/json
                 body: |
-                  {\"msg\": \"Could not find the product!\"}
+                  {\"msg\": \"Could not find the resource!\"}
                 headers:
                   - name: x-debug-original-status
                     value: ${upstream_status}
@@ -250,7 +252,7 @@ While the Brewz developers were able to break their monolith application into mi
     curl -k https://$HOST/api/products/1234
     ```
 
-    > Your output should look like: `{"msg": "Could not find the product!"}`
+    > Your output should look like: `{"msg": "Could not find the resource!"}`
 
 ## TLS
 
@@ -377,7 +379,7 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
                 code: 404
                 type: application/json
                 body: |
-                  {\"msg\": \"Could not find the product!\"}
+                  {\"msg\": \"Could not find the resource!\"}
                 headers:
                   - name: x-debug-original-status
                     value: ${upstream_status}
