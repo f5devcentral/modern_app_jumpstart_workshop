@@ -53,11 +53,8 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
     > **Note:** If the **git pull upstream** command fails, you may need to add a new connection record to the modern_app_jumpstart_workshop repo. This can be accomplished by running the following command on your local machine:
 
     ```bash
-
     git remote add upstream https://github.com/f5devcentral/modern_app_jumpstart_workshop
     ```
-
-
 
 ## Run setup script
 
