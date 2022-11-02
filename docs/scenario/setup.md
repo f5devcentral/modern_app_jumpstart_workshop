@@ -89,10 +89,9 @@ Once deployed into Kubernetes, the Brewz deployment will look like this:
 1. On your local machine, open a terminal to the directory that you cloned your repository into and run the following commands:
 
     ```bash
-    cd manifests/brewz
-    kubectl apply -f mongo-init.yaml
-    kubectl apply -f app.yaml
-    kubectl apply -f virtual-server.yaml
+    kubectl apply -f manifests/brewz/mongo-init.yaml
+    kubectl apply -f manifests/brewz/app.yaml
+    kubectl apply -f manifests/brewz/virtual-server.yaml
     ```
 
 1. Use the **Brewz** UDF access method of the **k3s** component to explore the deployed app in your browser. Click the "BREWZ" title link to navigate to the main product catalog.
@@ -127,6 +126,8 @@ Once deployed into Kubernetes, the Brewz deployment will look like this:
     Argo CD will initiate an initial "sync" which will update the manually deployed application with the manifests in your GitHub repo. If successful, you should see this:
 
     ![Argo sync summary](../assets/argo_sync_summary.png)
+
+    > **Note:** If this takes more than a couple minutes, you may need to click the **Refresh** button on the **brewz** application card to update its status.
 
 1. Click anywhere in the **brewz** application card pictured above. You will be presented with a diagram of all the k8s resources that have been deployed:
 

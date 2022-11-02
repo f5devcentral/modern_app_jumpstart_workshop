@@ -36,7 +36,7 @@ NGINX Ingress Controller has the ability to configure the NGINX App Protect WAF 
 
     > The Brewz developers know that all product ids must be at least 3 digits in length. Why should they allow this service to be called with product ids that don't match this constraint?
 
-> **Observation:** Each of the above examples highlight potential ways this API could be abused. It would be ideal to add constraints in our API Gateway to validate requests in advance, so that our services do not waste CPU and IO resources attempting to service unexpected and invalid requests.
+> **Observation:** Each of the above examples highlight potential ways this API could be abused. It would be ideal to add constraints in our API Gateway to validate requests in advance, so that our microservices do not waste CPU and IO resources attempting to serve unexpected and invalid requests.
 
 ## Create and Deploy Security Policy
 
@@ -70,7 +70,9 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
 
 1. Commit the copied and modified files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-1. While it is deploying, review the files you copied:
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+
+1. Review the files you copied:
 
     - `waf-ap-policy.yaml` is the NAP policy itself, packaged into an `APPolicy` custom resource type. It is set to global blocking, and enables blocking for specific violations that we would like to have enforced for the Brewz APIs. Note that the OpenAPI file itself is referenced at the bottom of the policy file. Once the policy is loaded into the ingress controller and presented to NAP, it will be downloaded from the referenced [public GitHub URL](https://raw.githubusercontent.com/f5devcentral/modern_app_jumpstart_workshop/main/docs/ingress/source-manifests/oas.yaml). You are free to examine this file now, or later in the exercise.
     - `waf-ap-logconf.yaml` is the logging configuration that NAP WAF will use, packaged as an `APLogConf` custom resource. Note that it is set to log `blocked` requests only.

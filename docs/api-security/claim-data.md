@@ -7,6 +7,7 @@ The Brewz company developed the Checkout service with some audit logging require
 1. SSH into the K3s server using the UDF *SSH* or *Web Shell* Access Methods and run the following commands to follow the Checkout pod's logs:
 
     ```bash
+    sudo su -
     CHECKOUT_POD=`kubectl get pods -o json | jq '.items[] | select(.metadata.name | startswith("checkout")) | .metadata.name' -r`
     kubectl logs $CHECKOUT_POD -f
     ```
@@ -55,6 +56,8 @@ The Brewz company developed the Checkout service with some audit logging require
 
 1. Argo CD will detect the changes to your repository, and will update the Brewz app deployment.
 
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+
 ## Verify claim information in logs
 
 1. Open the **Brewz** UDF access method on the **k3s** component.
@@ -70,8 +73,6 @@ The Brewz company developed the Checkout service with some audit logging require
 1. Re-examine the Checkout service logs. You should see an entry similar to the following:
 
     <img src="../assets/checkout_order_service_logs_2.png" alt="Checkout service logs" width="400"/>
-
-    > **Note:** You may need to submit a few orders, as NGINX Ingress Controller may not have updated the running configuration by the time you submitted your order.
 
     The logs are now populated with the additional values that NGINX Ingress Controller parsed out of the JWT payload and injected into the upstream headers.
 

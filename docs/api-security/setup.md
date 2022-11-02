@@ -38,9 +38,12 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
     git clone git@github.com:your_username/modern_app_jumpstart_workshop.git modern_app_jumpstart_workshop
     ```
 
-    > **Note:** If you have completed earlier labs in this workshop, you will want to update your fork from the upstream repository. It is a destructive operation, but this can be accomplished by running the following commands:
+    > **Note:** If you have completed earlier labs in this workshop, you will want to update your fork from the upstream repository. It is a destructive operation, but this can be accomplished by running the following commands on your local machine:
 
     ```bash
+
+    cd <directory of your repository>
+
     git checkout main
     git pull upstream main
     git reset --hard upstream/main
@@ -57,8 +60,11 @@ For this lab, you will start by running a script that installs everything that w
 
     ```bash
     sudo su -
+
     export TRIAL_JWT=<paste contents of your JWT file>
+
     chmod +x /root/modern_app_jumpstart_workshop/docs/api-security/setup/setup.sh
+
     /root/modern_app_jumpstart_workshop/docs/api-security/setup/setup.sh
     ```
 
@@ -66,7 +72,7 @@ For this lab, you will start by running a script that installs everything that w
 
 ## Login to Argo CD
 
-1. Obtain the Argo CD password:
+1. Run the following in the K3s server SSH session to obtain the Argo CD password:
 
     ```bash
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo

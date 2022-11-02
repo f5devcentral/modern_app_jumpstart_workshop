@@ -69,6 +69,8 @@ Next, we will create a `Policy` resource in Kubernetes to inspect and enforce th
 
 1. Argo CD will detect the changes to your repository, and will update the Brewz app deployment.
 
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+
 1. Once the application updates have deployed, use the cURL to test the `/api/order` operation as you did on the previous page of this lab. You will receive a `401 Authorization Required` error as now NGINX is expecting a JWT token to be present before forwarding the request to the Checkout service.
 
     <img src="../assets/term_order_service_401_html.png" alt="401 response in html" width="750"/>
