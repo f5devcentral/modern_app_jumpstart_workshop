@@ -20,7 +20,7 @@ The Brewz developers have made use of a feature flag in the SPA application to e
 
 1. Click the **Shopping Cart** button. Note that there is no **Checkout** button in the Shopping Cart view.
 
-1. In the URL, replace `products` with `config` and hit enter. You will be presented with the config view:
+1. In the URL, replace `cart` with `config` and hit enter. You will be presented with the config view:
 
     <img src="../assets/spa_enable_security.png" alt="SPA enable security" width="400"/>
 
@@ -38,23 +38,35 @@ The Brewz developers have made use of a feature flag in the SPA application to e
 
 ## Sign In
 
-1. Click the **Sign In** button in the navigation header. If this is your first time signing into the Brewz app, you should be redirected to Microsoft's sign in pages and will see the following prompts. If not, jump directly to [Signed In](#signed-in).
+1. Click the **Sign In** button in the navigation header. If you are not signed into your Microsoft account, you should be redirected to Microsoft's sign in pages and will see the following prompts. If you are already signed in, jump directly to [Authorize the Brewz App](#authorize-the-brewz-app).
+
+1. If prompted, pick your F5 Microsoft account by clicking on it:
+
+    <img src="../assets/msft_pick_account.png" alt="Pick your F5 Microsoft account dialog" width="400"/>
 
 1. On the email page, enter your full F5 email address. Do not enter an email alias.
 
-    <img src="../assets/msft_email.png" alt="Sign In with your email address" width="400"/>
+    <img src="../assets/msft_email.png" alt="Sign In with your email address dialog" width="400"/>
 
 1. On the password page, enter your F5 account password, and click **Sign In**.
 
-    <img src="../assets/msft_password.png" alt="Enter your password" width="400"/>
+    <img src="../assets/msft_password.png" alt="Enter your password dialog" width="400"/>
 
 1. If you are prompted to **Stay Signed In**, you may pick either option you prefer to continue.
 
-    <img src="../assets/msft_stay_signed_in.png" alt="Enter your password" width="400"/>
+    <img src="../assets/msft_stay_signed_in.png" alt="Stay signed in dialog " width="400"/>
+
+## Authorize the Brewz App
+
+If this is your first time signing into the Brewz application, you will need to authorize it to access your account information. If you previously authorized the Brewz application, you will not see the following prompt so continue to the next section.
+
+1. Click the **Authorize** button:
+
+    <img src="../assets/msft_authorize_app.png" alt="Permissions requested dialog" width="400"/>
 
 ## Signed In
 
-Once sign in is complete, you should be redirected back to the Brewz application. Notice additional links and buttons now appear in the navigation bar:
+Once sign in and authorization is complete, you should be redirected back to the Brewz application. Notice additional links and buttons now appear in the navigation bar:
 
 <img src="../assets/spa_signed_in_header.png" alt="Signed into the Brewz SPA app" width="650"/>
 
