@@ -169,6 +169,8 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+
 1. Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
 
     ```bash
@@ -243,6 +245,8 @@ While the Brewz developers were able to break their monolith application into mi
     ```
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
 
 1. Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
 
@@ -402,6 +406,8 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
     ```
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
 
 ### Check the status of our virtual server
 

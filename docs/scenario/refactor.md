@@ -76,7 +76,9 @@ The goal of this refactoring is to make changes to the deployment architecture w
 
 1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
-1. Additionally, use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+
+1. Use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
 
 ## Scale the services independently
 
@@ -112,13 +114,17 @@ Now that the services have been decoupled, we will independently scale the `inve
 
 1. Save and commit the `app.yaml` file to the local repository, and push the changes to your remote GitHub repository.
 
-1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully. Note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
+1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
+
+    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+
+    In the **brewz** app details, note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
 
     ```bash
     kubectl get pods
     ```
 
-    > How many pods for the `inventory` service do you see?
+    How many pods for the `inventory` service do you see?
 
 ## Remove unused code
 
