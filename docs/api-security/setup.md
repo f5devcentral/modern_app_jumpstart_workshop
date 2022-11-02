@@ -133,7 +133,7 @@ In this section, you will initially deploy the Brewz microservices app using Arg
 
 ### Copy the starter Brewz manifests
 
-1. In your local repository, copy all the files from the `docs/api-security/setup/manifests/` folder to the `manifests/brewz` folder. Overwrite any existing files if prompted. These manifests will effectively represent the final state of the Brewz app after completing earlier labs in this workshop.
+1. In your local repository, copy all the files from the `docs/api-security/setup/manifests/brewz` folder to the `manifests/brewz` folder. Overwrite any existing files if prompted. These manifests will effectively represent the final state of the Brewz app after completing earlier labs in this workshop.
 
   > **Note:** Use a file manager (such as OSX Finder or Windows Explorer) or a terminal to copy these files. If you use VS Code, it will not replace existing files; it will copy duplicate files appending a "copy" suffix to avoid name collisions.
 
