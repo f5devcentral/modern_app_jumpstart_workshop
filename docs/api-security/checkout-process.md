@@ -10,7 +10,7 @@ In the setup steps, you deployed the Brewz microservices application into Kubern
 
 The Brewz company has determined that they need to build a specific microservice dedicated to the checkout process, and secure it so that only authenticated users can utilize it. But how will they implement this?
 
-It may come as no surprise that common to many organizations, the Brewz company's developers don't have much experience is secure development. The fact is, security coding is difficult, and requires lots of knowledge and specialized experience in a constantly evolving discipline. Since the Brewz application owners would rather invest in enhancing their platform than building their own security stack, they will instead leverage proven security standards and integrate with platforms that can provide security as a service.
+It may come as no surprise that common to many organizations, the Brewz company's developers don't have much experience in secure development. The fact is, security coding is difficult, and requires lots of knowledge and specialized experience in a constantly evolving discipline. Since the Brewz application owners would rather invest in enhancing their platform than building their own security stack, they will instead leverage proven security standards and integrate with platforms that can provide security as a service.
 
 The Brewz company's product managers have determined that since most of their existing and prospective customers already have Microsoft identities from work, school or personal use, they will leverage the Azure identity and authorization services.
 

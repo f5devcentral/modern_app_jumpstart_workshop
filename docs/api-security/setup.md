@@ -50,6 +50,12 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
     git push origin main --force
     ```
 
+    > **Note:** If the **git pull upstream** command fails, you may need to add a new connection record to the modern_app_jumpstart_workshop repo. This can be accomplished by running the following command on your local machine:
+
+    ```bash
+    git remote add upstream https://github.com/f5devcentral/modern_app_jumpstart_workshop
+    ```
+
 ## Run setup script
 
 For this lab, you will start by running a script that installs everything that was completed in the previous labs in this workshop.
@@ -124,7 +130,7 @@ In this section, you will initially deploy the Brewz microservices app using Arg
 
 ### Copy the starter Brewz manifests
 
-1. In your local repository, copy all the files from the `docs/api-security/setup/manifests/` folder to the `manifests/brewz` folder. Overwrite any existing files if prompted. These manifests will effectively represent the final state of the Brewz app after completing earlier labs in this workshop.
+1. In your local repository, copy all the files from the `docs/api-security/setup/manifests/brewz` folder to the `manifests/brewz` folder. Overwrite any existing files if prompted. These manifests will effectively represent the final state of the Brewz app after completing earlier labs in this workshop.
 
   > **Note:** Use a file manager (such as OSX Finder or Windows Explorer) or a terminal to copy these files. If you use VS Code, it will not replace existing files; it will copy duplicate files appending a "copy" suffix to avoid name collisions.
 
