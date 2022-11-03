@@ -4,13 +4,14 @@ The Brewz company developed the Checkout service with some audit logging require
 
 ## Follow the existing Checkout logs
 
-1. SSH into the K3s server using the UDF *SSH* or *Web Shell* Access Methods and run the following commands to follow the Checkout pod's logs:
+1. Run the following command from your local machine to follow the Checkout pod's logs:
 
     ```bash
-    sudo su -
     CHECKOUT_POD=`kubectl get pods -o json | jq '.items[] | select(.metadata.name | startswith("checkout")) | .metadata.name' -r`
     kubectl logs $CHECKOUT_POD -f
     ```
+
+    If the above command fails, it may be that the `KUBECONFIG` variable has not been set in your current shell session. Visit [setup](setup.md#generate-local-kubeconfig) if you need to set it again.
 
     > **Note:** At times, the log stream may stop. If you are not seeing events appear after some time, type `ctrl+c` and attempt to stream logs again.
 
@@ -20,7 +21,7 @@ The Brewz company developed the Checkout service with some audit logging require
 
 ## Configure NGINX to pass claim information
 
-1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file and update the `/api/order` route with the additional `requestHeaders` YAML:
+1. In VSCode, open the `manifests/brewz/virtual-server.yaml` file. Update the `/api/order` route's `proxy` object with the additional `requestHeaders` YAML as shown here:
 
     ```yaml
         - path: /api/order
@@ -32,10 +33,10 @@ The Brewz company developed the Checkout service with some audit logging require
               rewritePath: /api/order
               requestHeaders:
                 set:
-                - name: User
-                  value: ${jwt_claim_name}
-                - name: Email
-                  value: ${jwt_claim_email}
+                  - name: User
+                    value: ${jwt_claim_name}
+                  - name: Email
+                    value: ${jwt_claim_email}
           errorPages:
             - codes: [401]
               return:
@@ -74,7 +75,9 @@ The Brewz company developed the Checkout service with some audit logging require
 
     <img src="../assets/checkout_order_service_logs_2.png" alt="Checkout service logs" width="400"/>
 
-    The logs are now populated with the additional values that NGINX Ingress Controller parsed out of the JWT payload and injected into the upstream headers.
+    You should see that the logs are now populated with the additional values that NGINX Ingress Controller parsed out of the JWT payload and injected into the upstream headers.
+
+    > **Note:** If you do not see new log entries after placing an order, the log stream may have stopped. Type `ctrl+c` and attempt to stream logs again.
 
 ## End of Lab
 

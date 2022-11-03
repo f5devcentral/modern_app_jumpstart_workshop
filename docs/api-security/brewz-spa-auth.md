@@ -1,6 +1,6 @@
 # Integrate Authentication and Authorization into Brewz SPA application
 
-The Brewz developers have already completed the work to integrate the SPA application with Azure for authentication. Since they are integrating with Azure, they chose the [Microsoft Authentication Library (MSAL)](https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-overview) for which provides a Javascript API for ease of integration into their SPA.
+The Brewz developers have already completed the work to integrate the SPA application with Azure for authentication. Since they are integrating with Azure, they chose the [Microsoft Authentication Library (MSAL)](https://learn.microsoft.com/en-us/azure/active-directory/develop/msal-overview) for which provides a Javascript API for ease of integration into their SPA. The result of this integration work can be seen in the [source code of the Brewz SPA](https://github.com/f5devcentral/spa-demo-app/tree/main/spa).
 
 For detailed information about how the Brewz application registrations for the SPA and API components were set up in Azure, refer to the following procedures:
 
