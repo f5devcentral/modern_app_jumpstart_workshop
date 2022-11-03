@@ -172,7 +172,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
 
     You should receive an order ID if the API call is successful:
 
-    <img src="../assets/curl_checkout_service.png" alt="cUrl test of Checkout service"/>
+    <img src="../assets/curl_checkout_service.png" alt="cURL test of Checkout service"/>
 
     > **Note:** This API call was allowed without providing any authorization attributes. These will be added later on in the lab in order to protect this API.
 
