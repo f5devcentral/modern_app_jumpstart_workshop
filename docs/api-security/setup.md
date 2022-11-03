@@ -18,7 +18,7 @@
     gh repo fork --clone f5devcentral/modern_app_jumpstart_workshop
     ```
 
-    > **Note:** If you have completed earlier labs in this workshop, you may have already forked this repository. If this is the case, you may skip this step.
+    > **Note:** If you have completed earlier labs in this workshop, you have already forked this repository. If this is the case, you may skip this step.
 
 ## Clone your workshop repository to your laptop
 
@@ -38,7 +38,7 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
     git clone git@github.com:your_username/modern_app_jumpstart_workshop.git modern_app_jumpstart_workshop
     ```
 
-    > **Note:** If you have completed earlier labs in this workshop, you will want to update your fork from the upstream repository. It is a destructive operation, but this can be accomplished by running the following commands on your local machine:
+    > **Note:** If you have completed earlier labs in this workshop, you will need to update your fork from the upstream repository. It is a destructive operation, but this can be accomplished by running the following commands on your local machine:
 
     ```bash
 

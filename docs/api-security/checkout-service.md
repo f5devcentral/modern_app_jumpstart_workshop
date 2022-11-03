@@ -170,9 +170,11 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
     curl -H "Content-Type: application/json" -X POST "$BREWZ_URL/api/order" -d '{"products":[{"id":"234"},{"id":"456"}],"shippingAddress":{"street":"801 5th Ave","city":"Seattle","state":"WA","zip":"98104"},"userId":"12345"}' | jq
     ```
 
-    You should receive an order ID if the API call is successful.
+    You should receive an order ID if the API call is successful:
 
-  > **Note:** This API call was allowed without providing any authorization attributes. These will be added later on in the lab in order to protect this API.
+    <img src="../assets/curl_checkout_service.png" alt="cURL test of Checkout service"/>
+
+    > **Note:** This API call was allowed without providing any authorization attributes. These will be added later on in the lab in order to protect this API.
 
 ## Next Steps
 
