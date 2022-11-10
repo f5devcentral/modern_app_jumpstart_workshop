@@ -78,6 +78,8 @@ For this lab, you will start by running a script that installs everything that w
 
 ## Login to Argo CD
 
+This lab uses [Argo CD](https://argo-cd.readthedocs.io/en/stable/) for [GitOps](https://www.gitops.tech/) [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Kubernetes resources updated in a watched repository. If you are not familiar with Argo CD, consider reviewing Labs [1](../scenario/README.md) and [2](../ingress/README.md) for an introduction to it and basic usage scenarios.
+
 1. Run the following in the K3s server SSH session to obtain the Argo CD password:
 
     ```bash
