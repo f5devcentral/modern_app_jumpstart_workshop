@@ -156,7 +156,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
 
 1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+    > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
 
 1. Open Argo CD using the UDF access method (as you did earlier in this lab) to verify that the Brewz app is in a healthy state and in sync.
 
