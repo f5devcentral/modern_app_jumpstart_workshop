@@ -58,7 +58,7 @@ Now that you have forked the workshop repository, you'll want to clone the repo 
 
 ## Run setup script
 
-For this lab, you will start by running a script that installs everything that was completed in the previous labs in this workshop.
+For this lab, you will start by running a script that installs everything that was completed in the previous labs of this workshop.
 
 1. Use a utility of choice to view and copy the contents of the NGINX Trial JWT file for use in the next step.
 
@@ -70,6 +70,7 @@ For this lab, you will start by running a script that installs everything that w
     export TRIAL_JWT=<paste contents of your JWT file>
 
     chmod +x /root/modern_app_jumpstart_workshop/docs/api-security/setup/setup.sh
+    chmod +x /root/modern_app_jumpstart_workshop/setup/scripts/gen_kubeconfig.sh
 
     /root/modern_app_jumpstart_workshop/docs/api-security/setup/setup.sh
     ```
@@ -77,6 +78,8 @@ For this lab, you will start by running a script that installs everything that w
 1. Wait for the script to finish running. It may take up to 5 more minutes for NGINX Ingress Controller, Prometheus and Grafana to be installed into k3s by Argo CD.
 
 ## Login to Argo CD
+
+This lab uses [Argo CD](https://argo-cd.readthedocs.io/en/stable/) for [GitOps](https://www.gitops.tech/) [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Kubernetes resources updated in a watched repository. If you are not familiar with Argo CD, consider reviewing Labs [1](../scenario/README.md) and [2](../ingress/README.md) for an introduction to it and basic usage scenarios.
 
 1. Run the following in the K3s server SSH session to obtain the Argo CD password:
 
@@ -107,6 +110,12 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
     # PowerShell
     $env:KUBECONFIG = 'C:\temp\config-udf.yaml'
+    ```
+
+    > **Note:** If your UDF deployment shuts down, the Kubeconfig file will will no longer be valid. This is because on startup, UDF changes the host name for the access method that kubectl uses to connect to the Kubernetes API. If this occurs, you will have to manually regenerate this file by running the following in SSH on the k3s server, then re-download the file as in the previous step:
+
+    ```bash
+    sudo /root/modern_app_jumpstart_workshop/setup/scripts/gen_kubeconfig.sh
     ```
 
 1. Now, test that your settings are correct:

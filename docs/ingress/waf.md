@@ -70,7 +70,7 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
 
 1. Commit the copied and modified files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
 
-    > **Note:** If Argo CD does not immediately detect and deploy the changes, you may need to click the **Refresh** button on the **brewz** application in Argo CD.
+    > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
 
 1. Review the files you copied:
 

@@ -98,6 +98,8 @@ Once deployed into Kubernetes, the Brewz deployment will look like this:
 
 ## GitOps with Argo CD
 
+For the remainder of this lab, we will no longer be manually deploying applications with kubectl. We will be practicing [GitOps](https://www.gitops.tech/) for [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of our applications. [Argo CD](https://argo-cd.readthedocs.io/en/stable/) is the tool we will be using to watch your forked repository for changes, and automatically deploy updated resources to Kubernetes for you. In this lab, Argo CD is already installed for you in your Kubernetes cluster.
+
 ### Obtain the Argo CD password
 
 1. To leverage the Argo CD UI, you will need to obtain the password created at install - save this for later use.
