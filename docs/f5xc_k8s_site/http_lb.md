@@ -40,9 +40,10 @@ Follow the [F5 Distributed Cloud HTTP Load Balancer docs](https://docs.cloud.f5.
 
 Use the following settings:
 
-- List of Domains: brewz-username.lab-app.f5demos.com
-- Automatically Manage DNS Records: Check
+- List of Domains: brewz-*username*.*lab-app*.f5demos.com
 - Origin Pool: the SPA origin pool
+
+**Note:** replace lab-app with a domain delegated to your F5XC organization, such as amer-ent.f5demos.com
 
 ### Routes
 
@@ -60,9 +61,9 @@ The following settings should be modified from their default:
 
 Prefixes:
 
-- Inventory: /api/inventory
-- Recommendations: /api/recommendations
-- API: /api
+- /api/inventory: Inventory origin
+- /api/recommendations: Recommendations origin
+- /api: API origin
 
 Now we also need a route to direct /images requests to the API service.
 
