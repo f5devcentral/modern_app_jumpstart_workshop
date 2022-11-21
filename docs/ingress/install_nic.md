@@ -72,7 +72,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
         tag: 2.4.0-SNAPSHOT-a88b7fe
       nginxPlus: true
       nginxStatus:
-        allowCidrs: 9000
+        allowCidrs: 0.0.0.0/0
         port: 9000
       readyStatus:
         initialDelaySeconds: 30
