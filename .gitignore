@@ -1,3 +1,7 @@
+*.jwt
+*.crt
+*.cer
+*.key
 .DS_Store
 config-udf.yaml
 config-udf.yml
