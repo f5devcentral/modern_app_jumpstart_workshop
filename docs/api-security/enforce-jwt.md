@@ -113,7 +113,7 @@ As in a previous lab in this workshop, we need to add additional fields to our `
 
     <img src="../assets/term_order_service_401_json.png" alt="401 response in json"/>
 
-1. Note that the response code is `401 Unauthorized`, `Content-Type: application/json`, and a payload of `{"msg": "Authorization Required"}` which is now well-formed JSON that the SPA application can consume.
+1. Note that the response code is `401 Unauthorized`, `content-type: application/json`, and a payload of `{"msg": "Authorization Required"}` which is now well-formed JSON that the SPA application can consume.
 
 ## Next Steps
 
