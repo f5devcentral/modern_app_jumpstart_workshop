@@ -2,6 +2,8 @@
 
 In this lab you will build and deploy the NGINX Plus container
 
+> **Important:** You must have completed [Lab 1](../scenario/README.md) before you can start this lab.
+
 ## Requirements
 
 For this lab, you will need:

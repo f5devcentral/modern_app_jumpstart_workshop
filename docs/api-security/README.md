@@ -4,6 +4,8 @@ In this lab you will integrate security features into the Brewz application, and
 
 If you have completed the earlier labs in this workshop, you would have learned about the Brewz company, and their digital transformation efforts to date. If not, you can read about them [here](../scenario/README.md#brewz-company-overview).
 
+> **Note:** Though it is *recommended*, it is **not required** that you complete labs 1-3 of this series before starting this lab.
+
 ## Requirements
 
 For this lab, you will need:
