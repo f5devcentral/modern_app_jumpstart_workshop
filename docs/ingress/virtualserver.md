@@ -146,8 +146,6 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
           action:
             pass: spa
         - path: /api
-          policies:
-            - name: rate-limit-policy
           action:
             pass: api
         - path: /api/inventory
