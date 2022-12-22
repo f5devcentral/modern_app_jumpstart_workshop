@@ -218,8 +218,23 @@ While the Brewz developers were able to break their monolith application into mi
             interval: 20s
             jitter: 3s
             port: 8000
+        - name: inventory
+          service: inventory
+          port: 8002
+        - name: recommendations
+          service: recommendations
+          port: 8001
+        - name: spa-dark
+          service: spa-dark
+          port: 80
       routes:
         - path: /
+          matches:
+            - conditions:
+              - cookie: "app_version"
+                value: "dark"
+              action:
+                pass: spa-dark
           action:
             pass: spa
         - path: /api
@@ -237,6 +252,16 @@ While the Brewz developers were able to break their monolith application into mi
                 headers:
                   - name: x-debug-original-status
                     value: ${upstream_status}
+        - path: /api/inventory
+          action:
+            proxy:
+              upstream: inventory
+              rewritePath: /api/inventory
+        - path: /api/recommendations
+          action:
+            proxy:
+              upstream: recommendations
+              rewritePath: /api/recommendations
         - path: /images
           action:
             proxy:
@@ -402,7 +427,6 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
             proxy:
               upstream: api
               rewritePath: /images
-
     ```
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
