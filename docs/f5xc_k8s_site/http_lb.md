@@ -6,10 +6,10 @@ In this step, we will leverage the F5 Distributed cloud to publish the Brewz API
 
 In this step, you need to create 4 origin pools:
 
-- API
-- Inventory
-- Recommendations
-- Static Page Application (SPA)
+- api
+- inventory
+- recommendations
+- spa (single page application)
 
 Follow the [F5 Distributed Cloud Origin Pool docs](https://docs.cloud.f5.com/docs/how-to/app-networking/origin-pools) instructions.
 
@@ -19,13 +19,13 @@ Use the following settings:
 
 - Select Type of Origin Server: k8s Service Name of Origin Server on given Sites
 - Service:
-  - API:
+  - api:
     - Service Name: api.default
     - Port: 8000
-  - Inventory:
+  - inventory:
     - Service Name: inventory.default
     - Port: 8002
-  - Recommendations:
+  - recommendations:
     - Service Name: recommendations.default
     - Port: 8001
   - spa:
@@ -41,6 +41,7 @@ Follow the [F5 Distributed Cloud HTTP Load Balancer docs](https://docs.cloud.f5.
 Use the following settings:
 
 - List of Domains: brewz-username.lab-app.f5demos.com
+- Choose `HTTP` from the Load Balancer Type dropdown menu
 - Automatically Manage DNS Records: Check
 - Origin Pool: the SPA origin pool
 
@@ -56,17 +57,17 @@ The following settings should be modified from their default:
 
 - HTTP Method: ANY
 
-**Note:** The order of the defined routes maters since we're using the prefix path match setting.  The API route needs to be the last in the order.
+**Note:** The order of the defined routes matters since we're using the prefix path match setting. The API route needs to be the last in the order.
 
 Prefixes:
 
-- Inventory: /api/inventory
-- Recommendations: /api/recommendations
-- API: /api
+- /api/inventory - choose the `inventory` origin pool
+- /api/recommendations - choose the `recommendations` origin pool
+- /api - choose the `api` origin pool
 
 Now we also need a route to direct /images requests to the API service.
 
-Follow the same steps as above, but change the *HTTP Method* to *GET* and the *Origin Pools* to your API origin pool.
+Follow the same steps as above, but change the *HTTP Method* to *GET* and the *Origin Pools* to your `api` origin pool.
 
 Once you create the */images* path, drag it above the */api* path to change its order; we want */api* to be the last path processed.
 
