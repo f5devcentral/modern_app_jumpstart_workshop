@@ -57,7 +57,7 @@ The following settings should be modified from their default:
 
 - HTTP Method: ANY
 
-**Note:** The order of the defined routes maters since we're using the prefix path match setting.  The API route needs to be the last in the order.
+**Note:** The order of the defined routes matters since we're using the prefix path match setting. The API route needs to be the last in the order.
 
 Prefixes:
 
