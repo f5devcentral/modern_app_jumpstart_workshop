@@ -69,7 +69,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
       enableSnippets: true
       image:
         repository: ghcr.io/codygreen/nginx-plus-ingress
-        tag: 2.4.0-SNAPSHOT-a88b7fe
+        tag: 3.0.2-SNAPSHOT-a88b7fe
       nginxplus: true
       nginxStatus:
         allowCidrs: 0.0.0.0/0
@@ -78,6 +78,8 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
         initialDelaySeconds: 30
       serviceAccount:
         imagePullSecretName: ghcr
+    serviceInsight:
+      create: true
     prometheus:
       create: true
     ```
@@ -196,7 +198,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
     Containers:
       nginx-plus-ingress-nginx-ingress:
         Container ID:  containerd://69e9e416438c2cc2330df627cc7605640f6c196092a4ea3f7ff421c3bcfbbcd7
-        Image:         ghcr.io/codygreen/nginx-plus-ingress:2.4.0-SNAPSHOT-a88b7fe
+        Image:         ghcr.io/codygreen/nginx-plus-ingress:3.0.2-SNAPSHOT-a88b7fe
         Image ID:      ghcr.io/codygreen/nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
         Ports:         80/TCP, 443/TCP, 9113/TCP, 8081/TCP
         Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
@@ -235,6 +237,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
           -ready-status=true
           -ready-status-port=8081
           -enable-latency-metrics=false
+          -enable-service-insight=true
         State:          Running
           Started:      Wed, 06 Jul 2022 09:07:24 -0700
         Ready:          True

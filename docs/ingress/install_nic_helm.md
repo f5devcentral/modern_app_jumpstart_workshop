@@ -46,6 +46,7 @@ While you could leverage the PAT created in the build steps, the best practice i
       --set controller.nginxplus=true \
       --set controller.enableSnippets=true \
       --set controller.appprotect.enable=true \
+      --set serviceInsight.create=true \
       --set controller.appprotectdos.enable=true \
       --set controller.nginxStatus.port=9000 \
       --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \

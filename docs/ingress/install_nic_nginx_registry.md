@@ -41,7 +41,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
         enableSnippets: true
         image:
           repository: private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress
-          tag: 2.4.0
+          tag: 3.0.2
         nginxplus: true
         nginxStatus:
           allowCidrs: 0.0.0.0/0
@@ -50,6 +50,8 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
           initialDelaySeconds: 30
         serviceAccount:
           imagePullSecretName: regcred
+      serviceInsight:
+        create: true
       prometheus:
         create: true
 
@@ -169,7 +171,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
     Containers:
       nginx-plus-ingress-nginx-ingress:
         Container ID:  containerd://cb295cefd0f8dad5297585f2e4cc2a8ecafc4f92fdab4cb23dd0b965149ab9d1
-        Image:         private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress:2.4.0
+        Image:         private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress:3.0.2
         Image ID:      private-registry.nginx.com/nginx-ic-nap-dos/nginx-plus-ingress@sha256:92fa43b20f04de58c843c6493ab51619115e7eff5f00b36a40a047e940c8c84nginx-plus-ingress@sha256:6b480db30059249d90d4f2d9d8bc2012af8c76e9b25799537f4b7e5a4a2946ca
         Ports:         80/TCP, 443/TCP, 9113/TCP, 8081/TCP
         Host Ports:    0/TCP, 0/TCP, 0/TCP, 0/TCP
@@ -204,6 +206,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
           -ready-status=true
           -ready-status-port=8081
           -enable-latency-metrics=false
+          -enable-service-insight=true
         State:          Running
           Started:      Wed, 06 Jul 2022 09:07:24 -0700
         Ready:          True
