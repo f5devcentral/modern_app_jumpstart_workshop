@@ -50,9 +50,9 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
           initialDelaySeconds: 30
         serviceAccount:
           imagePullSecretName: regcred
-      serviceInsight:
-        create: true
       prometheus:
+        create: true
+      serviceInsight:
         create: true
 
     ```
