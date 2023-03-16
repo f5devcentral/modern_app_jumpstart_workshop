@@ -1,3 +1,7 @@
+grafana:
+  service:
+    type: NodePort
+    nodePort: 32517
 nginx-ingress:
   controller:
     enableSnippets: true
@@ -8,3 +12,6 @@ nginx-ingress:
     create: true
   serviceInsight:
     create: true
+prometheus:
+  pushgateway:
+    enabled: false
