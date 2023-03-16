@@ -7,9 +7,9 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    server: {{ .Values.spec.destination.server }}
+    server: https://kubernetes.default.svc
     namespace: monitoring
-  project: {{ .Values.spec.project }}
+  project: udf
   source:
     chart: grafana
     helm:
