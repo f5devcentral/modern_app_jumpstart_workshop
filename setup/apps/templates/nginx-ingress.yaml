@@ -4,7 +4,7 @@ metadata:
   name: nginx-ingress
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -13,13 +13,22 @@ spec:
   source:
     chart: nginx-ingress
     helm:
-      valueFiles:
-        - values.yaml
+      parameters:
+        - name: "controller.nginxStatus.port"
+          value: 9000
+        - name: "controller.nginxStatus.allowCidrs"
+          value: 0.0.0.0/0
+        - name: "controller.enableSnippets"
+          value: true
+        - name: "prometheus.create"
+          value: true
+        - name: "serviceInsight.create"
+          value: true
     repoURL: https://helm.nginx.com/stable
-    targetRevision: 0.13.2
+    targetRevision: 0.16.2
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true

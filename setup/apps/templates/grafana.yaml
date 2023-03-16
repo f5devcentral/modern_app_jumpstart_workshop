@@ -4,7 +4,7 @@ metadata:
   name: grafana
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -13,8 +13,11 @@ spec:
   source:
     chart: grafana
     helm:
-      valueFiles:
-        - values.yaml
+      parameters:
+        - name: "service.type"
+          value: NodePort
+        - name: "service.nodePort"
+          value: 32517
     repoURL: https://grafana.github.io/helm-charts
     targetRevision: 6.31.1
   syncPolicy:
@@ -22,4 +25,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
