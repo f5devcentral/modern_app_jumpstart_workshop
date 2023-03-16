@@ -14,11 +14,12 @@ spec:
     chart: nginx-ingress
     helm:
       values: |
-        controller.nginxStatus.port: 9000
-        controller.nginxStatus.allowCidrs: 0.0.0.0/0
-        controller.enableSnippets: true
-        prometheus.create: true
-        serviceInsight.create: true
+        nginx-ingress:
+          controller.nginxStatus.port: 9000
+          controller.nginxStatus.allowCidrs: 0.0.0.0/0
+          controller.enableSnippets: true
+          prometheus.create: true
+          serviceInsight.create: true
     repoURL: https://helm.nginx.com/stable
     targetRevision: 0.16.2
   syncPolicy:
