@@ -15,7 +15,7 @@ spec:
     helm:
       parameters:
         - name: "pushgateway.enabled"
-          value: false
+          value: "false"
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 15.10.2
   syncPolicy:

@@ -15,15 +15,15 @@ spec:
     helm:
       parameters:
         - name: "controller.nginxStatus.port"
-          value: 9000
+          value: "9000"
         - name: "controller.nginxStatus.allowCidrs"
-          value: 0.0.0.0/0
+          value: "0.0.0.0/0"
         - name: "controller.enableSnippets"
-          value: true
+          value: "true"
         - name: "prometheus.create"
-          value: true
+          value: "true"
         - name: "serviceInsight.create"
-          value: true
+          value: "true"
     repoURL: https://helm.nginx.com/stable
     targetRevision: 0.16.2
   syncPolicy:
