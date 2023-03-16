@@ -4,7 +4,7 @@ metadata:
   name: nginx-ingress
   namespace: argocd
   finalizers:
-  - resources-finalizer.argocd.argoproj.io
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     server: https://kubernetes.default.svc
@@ -12,11 +12,14 @@ spec:
   project: udf
   source:
     chart: nginx-ingress
+    helm:
+      valueFiles:
+        - values-nginx-ingress.yaml
     repoURL: https://helm.nginx.com/stable
-    targetRevision: 0.16.2
+    targetRevision: 0.13.2
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
