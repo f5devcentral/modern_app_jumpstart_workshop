@@ -49,6 +49,10 @@ While you could leverage the PAT created in the build steps, the best practice i
       --set controller.appprotectdos.enable=true \
       --set controller.nginxStatus.port=9000 \
       --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
+      --set controller.service.customPorts[0].port=9114 \
+      --set controller.service.customPorts[0].targetPort=9114 \
+      --set controller.service.customPorts[0].protocol=TCP \
+      --set controller.service.customPorts[0].name=service-insight \
       --set prometheus.create=true \
       --set serviceInsight.create=true
     ```

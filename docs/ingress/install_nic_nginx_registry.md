@@ -50,6 +50,12 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
           initialDelaySeconds: 30
         serviceAccount:
           imagePullSecretName: regcred
+        service:
+          customPorts:
+            - port: 9114
+              targetPort: 9114
+              protocol: TCP
+              name: service-insight
       prometheus:
         create: true
       serviceInsight:
