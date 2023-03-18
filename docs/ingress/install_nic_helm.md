@@ -50,9 +50,15 @@ While you could leverage the PAT created in the build steps, the best practice i
       --set controller.nginxStatus.port=9000 \
       --set controller.nginxStatus.allowCidrs=0.0.0.0/0 \
       --set controller.service.customPorts[0].port=9114 \
-      --set controller.service.customPorts[0].targetPort=9114 \
+      --set controller.service.customPorts[0].targetPort=service-insight \
+      --set controller.service.customPorts[0].nodePort=9114 \
       --set controller.service.customPorts[0].protocol=TCP \
       --set controller.service.customPorts[0].name=service-insight \
+      --set controller.service.customPorts[1].port=9000 \
+      --set controller.service.customPorts[1].targetPort=9000 \
+      --set controller.service.customPorts[1].nodePort=9000 \
+      --set controller.service.customPorts[1].protocol=TCP \
+      --set controller.service.customPorts[1].name=nginx-status \
       --set prometheus.create=true \
       --set serviceInsight.create=true
     ```
