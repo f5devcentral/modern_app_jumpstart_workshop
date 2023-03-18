@@ -54,10 +54,12 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
           customPorts:
             - port: 9114
               targetPort: service-insight
+              nodePort: 31000
               protocol: TCP
               name: service-insight
             - port: 9000
               targetPort: 9000
+              nodePort: 32000
               protocol: TCP
               name: nginx-status
       prometheus:
