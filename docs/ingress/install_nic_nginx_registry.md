@@ -258,24 +258,11 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
 
 ## NGINX Dashboard
 
-The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key load-balancing and performance metrics.
+The NGINX Plus Ingress Controller includes the NGINX dashboard that reports key load-balancing and performance metrics. When you deployed Ingress Controller, `customPorts` were specified in the values file. These were added so the dashboard could be exposed as a service and available to use external to the cluster.
 
-1. To access the dashboard, SSH into the K3s server via the *SSH* or *Web Shell* access methods.
-
-    ```bash
-    sudo su -
-    # get the ingress pod name
-    NIC_POD=`kubectl get pods -n nginx-ingress -o json | jq '.items[0].metadata.name' -r`
-
-    # start a kubectl port-forward
-    kubectl port-forward $NIC_POD 9000:9000 --address='0.0.0.0' --namespace=nginx-ingress
-    ```
-
-1. Now, open the **NGINX Dashboard** UDF Access Method on the k3s component. You should see the NGINX default welcome page.
+1. To access the dashboard, open the **NGINX Dashboard** UDF Access Method on the k3s component. You should see the NGINX default welcome page.
 
 1. Append `/dashboard.html` to the URL in your browser to see the NIGNX Plus dashboard.
-
-    > **Note:** You will need to leave this port-forward command running to continue accessing the NGINX dashboard.
 
 1. Explore the features of the dashboard.
 
