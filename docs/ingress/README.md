@@ -1,6 +1,6 @@
 # Lab 2: K8s Ingress
 
-In this lab you will build and deploy the NGINX Plus container
+In this lab you will build and deploy the NGINX Plus-based Ingress Controller.
 
 > **Important:** You must have completed [Lab 1](../scenario/README.md) before you can start this lab.
 
