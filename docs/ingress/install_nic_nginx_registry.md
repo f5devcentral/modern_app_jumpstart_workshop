@@ -209,6 +209,7 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
           -enable-prometheus-metrics=true
           -prometheus-metrics-listen-port=9113
           -prometheus-tls-secret=
+          -enable-service-insight=true
           -enable-custom-resources=true
           -enable-snippets=true
           -enable-tls-passthrough=false
@@ -218,7 +219,6 @@ Now that NGINX Plus Ingress Controller has been installed, we need to check that
           -ready-status=true
           -ready-status-port=8081
           -enable-latency-metrics=false
-          -enable-service-insight=true
         State:          Running
           Started:      Wed, 06 Jul 2022 09:07:24 -0700
         Ready:          True
