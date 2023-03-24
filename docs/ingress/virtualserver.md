@@ -171,24 +171,21 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
 
     > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
 
-1. Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test that our API services is still up and has a health check:
+1. Run the following command on your laptop to test that our API services is still up and has a health check:
 
     ```bash
-    # Find the Brewz Access Method's Host
-    HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
-    curl -k https://$HOST/api/products/123
+    BREWZ_URL=<Your Brewz UDF access method url>
+    curl -k https://$BREWZ_URL/api/products/123
     ```
 
 ## ErrorPage
 
 While the Brewz developers were able to break their monolith application into microservices, their APIs are not always returning a JSON response. A good example is when you lookup a product that does not exist. The API returns a 400 HTTP response code but the body payload is *"Could not find the product!"*.
 
-1. Run the following command on the K3s server via the UDF *SSH* or *Web Shell* Access Methods to test this output:
+1. Run the following command on your laptop to test this output:
 
     ```bash
-    # Find the Brewz Access Method's Host
-    HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
-    curl -k https://$HOST/api/products/1234
+    curl -k https://$BREWZ_URL/api/products/1234
     ```
 
     Ideally, the development team will fix this issue in the API code but we can also help by performing a quick fix via our VirtualServer configuration.
@@ -273,12 +270,10 @@ While the Brewz developers were able to break their monolith application into mi
 
     > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
 
-1. Now, check that an unknown product returns a JSON object by running the following command on the K3s server:
+1. Now, check that an unknown product returns a JSON object by running the following command on your laptop:
 
     ```bash
-    # Find the Brewz Access Method's Host
-    HOST=`curl -s metadata.udf/deployment | jq '.deployment.components[] | select(.name == "k3s") | .accessMethods.https[] | select(.label == "Brewz") | .host' -r`
-    curl -k https://$HOST/api/products/1234
+    curl -k https://$BREWZ_URL/api/products/1234
     ```
 
     > Your output should look like: `{"msg": "Could not find the resource!"}`
