@@ -96,7 +96,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
     export KUBECONFIG=~/Downloads/config-udf.yaml
     ```
 
-1. Use kubeconfig to test your new configuration:
+1. Use kubectl to test your new configuration:
 
     ```bash
     kubectl get nodes
