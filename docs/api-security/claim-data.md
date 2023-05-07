@@ -57,8 +57,6 @@ The Brewz company developed the Checkout service with some audit logging require
 
 1. ArgoCD will detect the changes to your repository, and will update the Brewz app deployment.
 
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
-
 ## Verify claim information in logs
 
 1. Open the **Brewz** UDF access method on the **k3s** component.

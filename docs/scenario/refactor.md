@@ -76,8 +76,6 @@ The goal of this refactoring is to make changes to the deployment architecture w
 
 1. Open the ArgoCD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
-
 1. Use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
 
 ## Scale the services independently
@@ -115,8 +113,6 @@ Now that the services have been decoupled, we will independently scale the `inve
 1. Save and commit the `app.yaml` file to the local repository, and push the changes to your remote GitHub repository.
 
 1. Open the ArgoCD UI to ensure that the changes to the Virtual Server have been deployed successfully.
-
-    > **Note:** In the UDF environment, at times ArgoCD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in ArgoCD.
 
     In the **brewz** app details, note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
 

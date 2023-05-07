@@ -69,8 +69,6 @@ Next, we will create a `Policy` resource in Kubernetes to inspect and enforce th
 
 1. ArgoCD will detect the changes to your repository, and will update the Brewz app deployment.
 
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
-
 1. Once the application updates have deployed, use the cURL to test the `/api/order` operation as you did on the previous page of this lab. You will receive a `401 Authorization Required` error as now NGINX is expecting a JWT token to be present before forwarding the request to the Checkout service.
 
     <img src="../assets/term_order_service_401_html.png" alt="401 response in html" width="750"/>

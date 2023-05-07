@@ -70,8 +70,6 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
 
 1. Commit the copied and modified files to your local repository, then push them to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
 
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
-
 1. Review the files you copied:
 
     - `waf-ap-policy.yaml` is the NAP policy itself, packaged into an `APPolicy` custom resource type. It is set to global blocking, and enables blocking for specific violations that we would like to have enforced for the Brewz APIs. Note that the OpenAPI file itself is referenced at the bottom of the policy file. Once the policy is loaded into the ingress controller and presented to NAP, it will be downloaded from the referenced [public GitHub URL](https://raw.githubusercontent.com/f5devcentral/modern_app_jumpstart_workshop/main/docs/ingress/source-manifests/oas.yaml). You are free to examine this file now, or later in the exercise.

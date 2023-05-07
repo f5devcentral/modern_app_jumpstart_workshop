@@ -79,8 +79,6 @@ We need to deploy the new variant of the SPA application, so we can conditionall
 
 1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
 
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
-
 1. Open the **Brewz** UDF access method on the **k3s** component. Note that the application looks the same as it has been in previous labs.
 
 1. Open the **Brewz** UDF access method in a new tab, and open the developer tools.

@@ -268,8 +268,6 @@ While the Brewz developers were able to break their monolith application into mi
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
 
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
-
 1. Now, check that an unknown product returns a JSON object by running the following command on your laptop:
 
     ```bash
@@ -425,8 +423,6 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
     ```
 
 1. Commit the `manifests/brewz/virtual-server.yaml` file to your local repository, then push it to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
-
-    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 
 ### Check the status of our virtual server
 
