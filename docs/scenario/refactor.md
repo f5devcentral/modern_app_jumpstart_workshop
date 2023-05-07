@@ -76,7 +76,7 @@ The goal of this refactoring is to make changes to the deployment architecture w
 
 1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
-    > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
+    > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 
 1. Use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
 
