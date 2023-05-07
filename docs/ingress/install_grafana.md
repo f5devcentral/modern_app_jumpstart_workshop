@@ -1,10 +1,10 @@
-# Install Grafana via Argo CD
+# Install Grafana via ArgoCD
 
-In this step, you will use GitOps to install Grafana leveraging Argo CD.
+In this step, you will use GitOps to install Grafana leveraging ArgoCD.
 
-## Update Argo CD Application Manifest
+## Update ArgoCD Application Manifest
 
-You will need to update the Grafana Argo CD manifest to match your environment.  
+You will need to update the Grafana ArgoCD manifest to match your environment.  
 
 1. Open the `manifests/grafana-subchart.yaml` file in your forked version of the **infra** repository.
 
@@ -50,13 +50,13 @@ You will need to update the Grafana Argo CD manifest to match your environment.
 
 ## Deploy the manifest
 
-1. To deploy the Grafana Argo CD application, run the following command:
+1. To deploy the Grafana ArgoCD application, run the following command:
 
     ```bash
     kubectl apply -f manifests/grafana-subchart.yaml
     ```
 
-1. You should now see a new Grafana application in your Argo CD dashboard. Click on the Grafana application and verify there are no errors.
+1. You should now see a new Grafana application in your ArgoCD dashboard. Click on the Grafana application and verify there are no errors.
 
     > **Note:** A Prometheus datasource and a Dashboard for NGINX Ingress Controller have been pre-configured in Grafana. These can be seen in your `charts/grafana/values.yaml` file. We will utilize these in an upcoming exercise.
 

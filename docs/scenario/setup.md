@@ -96,19 +96,19 @@ Once deployed into Kubernetes, the Brewz deployment will look like this:
 
 1. Use the **Brewz** UDF access method of the **k3s** component to explore the deployed app in your browser. Click the "BREWZ" title link to navigate to the main product catalog.
 
-## GitOps with Argo CD
+## GitOps with ArgoCD
 
-For the remainder of this lab, we will no longer be manually deploying applications with kubectl. We will be practicing [GitOps](https://www.gitops.tech/) for [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of our applications. [Argo CD](https://argo-cd.readthedocs.io/en/stable/) is the tool we will be using to watch your forked repository for changes, and automatically deploy updated resources to Kubernetes for you. In this lab, Argo CD is already installed for you in your Kubernetes cluster.
+For the remainder of this lab, we will no longer be manually deploying applications with kubectl. We will be practicing [GitOps](https://www.gitops.tech/) for [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of our applications. [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) is the tool we will be using to watch your forked repository for changes, and automatically deploy updated resources to Kubernetes for you. In this lab, ArgoCD is already installed for you in your Kubernetes cluster.
 
-### Obtain the Argo CD password
+### Obtain the ArgoCD password
 
-1. To leverage the Argo CD UI, you will need to obtain the password created at install - save this for later use.
+1. To leverage the ArgoCD UI, you will need to obtain the password created at install - save this for later use.
 
     ```bash
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     ```
 
-1. Now open the **Argo CD** UDF access method of the **k3s** component, and login with `admin` and the password obtained from the previous step.
+1. Now open the **ArgoCD** UDF access method of the **k3s** component, and login with `admin` and the password obtained from the previous step.
 
 1. Once logged in, click the **+ NEW APP** button. Enter the following values:
 
@@ -125,7 +125,7 @@ For the remainder of this lab, we will no longer be manually deploying applicati
 
 1. Click the **CREATE** button.
 
-    Argo CD will initiate an initial "sync" which will update the manually deployed application with the manifests in your GitHub repo. If successful, you should see this:
+    ArgoCD will initiate an initial "sync" which will update the manually deployed application with the manifests in your GitHub repo. If successful, you should see this:
 
     ![Argo sync summary](../assets/argo_sync_summary.png)
 

@@ -74,9 +74,7 @@ The goal of this refactoring is to make changes to the deployment architecture w
 
 1. Save and commit the `virtual-server.yaml` file to the local repository, and push the changes to your remote GitHub repository.
 
-1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
-
-    > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
+1. Open the ArgoCD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
 1. Use the **Brewz** UDF access method to explore the deployed app in your browser and ensure it still functions correctly.
 
@@ -114,9 +112,7 @@ Now that the services have been decoupled, we will independently scale the `inve
 
 1. Save and commit the `app.yaml` file to the local repository, and push the changes to your remote GitHub repository.
 
-1. Open the Argo CD UI to ensure that the changes to the Virtual Server have been deployed successfully.
-
-    > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
+1. Open the ArgoCD UI to ensure that the changes to the Virtual Server have been deployed successfully.
 
     In the **brewz** app details, note the number of replicas for the `inventory` pod have now been scaled to 3. You can also examine this by running the following command locally:
 

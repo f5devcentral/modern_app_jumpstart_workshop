@@ -23,7 +23,7 @@ For this step, we will pull the NGINX Plus Ingress Controller image from the off
     kubectl get secret regcred -n nginx-ingress --output=yaml
     ```
 
-## Update Helm Values and Argo CD Application Manifest
+## Update Helm Values and ArgoCD Application Manifest
 
 Before you can deploy the NGINX Ingress Controller, you will need to modify the Helm chart values to match your environment.
 
@@ -69,7 +69,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
     ```
 
-1. Save the file. Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
+1. Save the file. Next, you will need to update the NGINX Plus Ingress ArgoCD manifest to match your environment.  
 
 1. Open the `manifests/nginx-ingress-subchart.yaml` file in your forked version of the **infra** repository.
 
@@ -113,9 +113,9 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 1. Push the changes to your remote **infra** repository.
 
-## Install NGINX Plus Ingress Argo CD Application
+## Install NGINX Plus Ingress ArgoCD Application
 
-1. Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to Argo CD with the following command:
+1. Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to ArgoCD with the following command:
 
     ```bash
     kubectl apply -f manifests/nginx-ingress-subchart.yaml

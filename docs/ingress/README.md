@@ -28,7 +28,7 @@ For this lab, you will need:
 ## Steps
 
 - [Setup](setup.md)
-- [Install Argo CD](argocd.md)
+- [Install ArgoCD](argocd.md)
 - [Build NGINX Plus Ingress Controller container](build_nic.md)
 - [Install NGINX Plus Ingress Controller](install_nic.md)
 - [Install Prometheus](install_prometheus.md)

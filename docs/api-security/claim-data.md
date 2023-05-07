@@ -55,9 +55,7 @@ The Brewz company developed the Checkout service with some audit logging require
 
 1. Push the changes to your remote repository.
 
-1. Argo CD will detect the changes to your repository, and will update the Brewz app deployment.
-
-    > **Note:** In the UDF environment, at times Argo CD may not immediately detect and deploy the changes. If this is the case, click the **Refresh** button on the **brewz** application in Argo CD.
+1. ArgoCD will detect the changes to your repository, and will update the Brewz app deployment.
 
 ## Verify claim information in logs
 

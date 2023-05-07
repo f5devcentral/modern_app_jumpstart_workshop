@@ -75,23 +75,23 @@ For this lab, you will start by running a script that installs everything that w
     /root/modern_app_jumpstart_workshop/docs/api-security/setup/setup.sh
     ```
 
-1. Wait for the script to finish running. It may take up to 5 more minutes for NGINX Ingress Controller, Prometheus and Grafana to be installed into k3s by Argo CD.
+1. Wait for the script to finish running. It may take up to 5 more minutes for NGINX Ingress Controller, Prometheus and Grafana to be installed into k3s by ArgoCD.
 
-## Login to Argo CD
+## Login to ArgoCD
 
-This lab uses [Argo CD](https://argo-cd.readthedocs.io/en/stable/) for [GitOps](https://www.gitops.tech/) [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Kubernetes resources updated in a watched repository. If you are not familiar with Argo CD, consider reviewing Labs [1](../scenario/README.md) and [2](../ingress/README.md) for an introduction to it and basic usage scenarios.
+This lab uses [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) for [GitOps](https://www.gitops.tech/) [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Kubernetes resources updated in a watched repository. If you are not familiar with ArgoCD, consider reviewing Labs [1](../scenario/README.md) and [2](../ingress/README.md) for an introduction to it and basic usage scenarios.
 
-1. Run the following in the K3s server SSH session to obtain the Argo CD password:
+1. Run the following in the K3s server SSH session to obtain the ArgoCD password:
 
     ```bash
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     ```
 
-1. Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `admin` user and the password you obtained in the previous step.
+1. Use the ArgoCD UDF Access Method to access the ArgoCD UI and login with the `admin` user and the password you obtained in the previous step.
 
-1. Once logged into Argo CD, ensure that NGINX Ingress Controller, Prometheus and Grafana are healthy and synced as in the following image:
+1. Once logged into ArgoCD, ensure that NGINX Ingress Controller, Prometheus and Grafana are healthy and synced as in the following image:
 
-    <img src="../assets/argo_infra_apps.png" alt="Argo CD sync health status" width="600"/>
+    <img src="../assets/argo_infra_apps.png" alt="ArgoCD sync health status" width="600"/>
 
 ## Generate Local Kubeconfig
 
@@ -133,9 +133,9 @@ To access the K8s API, you will need to download a kubeconfig file from the K3s 
 
     If the command succeeds, then check your environment variable.
 
-## Install the Brewz app with Argo CD
+## Install the Brewz app with ArgoCD
 
-In this section, you will initially deploy the Brewz microservices app using Argo CD.
+In this section, you will initially deploy the Brewz microservices app using ArgoCD.
 
 ### Copy the starter Brewz manifests
 
@@ -147,9 +147,9 @@ In this section, you will initially deploy the Brewz microservices app using Arg
 
 1. Push the changes to your remote repository.
 
-### Update Argo CD Application Manifest
+### Update ArgoCD Application Manifest
 
-You will need to update the Brewz Argo CD manifest to match your environment.
+You will need to update the Brewz ArgoCD manifest to match your environment.
 
 > **Note:** If you have completed earlier labs in this microservices workshop, your subchart file may already reflect the changes in the following step. If this is the case, you may skip down to the [Deploy the manifest](#deploy-the-manifest) step.
 
@@ -190,7 +190,7 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
 ### Deploy the manifest
 
-1. To deploy the Brewz Argo CD application, run the following command:
+1. To deploy the Brewz ArgoCD application, run the following command:
 
     ```bash
     kubectl apply -f manifests/brewz-subchart.yaml
@@ -198,11 +198,11 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
 ### Inspect the Brewz application
 
-1. Open the Argo CD UDF Access Method under the K3s server
+1. Open the ArgoCD UDF Access Method under the K3s server
 
 1. Inspect the deployment state of the Brewz application to ensure that it is healthy and synced with your repository:
 
-  ![Argo CD Sync](../assets/argo_sync.jpg)
+  ![ArgoCD Sync](../assets/argo_sync.jpg)
 
 1. Use the **Brewz** UDF access method of the **k3s** component to explore the deployed app in your browser. Click the "BREWZ" title link to navigate to the main product catalog.
 
