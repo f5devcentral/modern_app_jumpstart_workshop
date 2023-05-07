@@ -1,10 +1,10 @@
-# Argo CD
+# ArgoCD
 
-[Argo CD](https://argoproj.github.io/cd/) is a declarative, GitOps continuous delivery tool for Kubernetes.
+[ArgoCD](https://argoproj.github.io/cd/) is a declarative, GitOps continuous delivery tool for Kubernetes.
 
-In our workshop, we will use Argo CD to deploy our microservices and resources.
+In our workshop, we will use ArgoCD to deploy our microservices and resources.
 
-## Install Argo CD
+## Install ArgoCD
 
 1. On your laptop run:
 
@@ -14,7 +14,7 @@ In our workshop, we will use Argo CD to deploy our microservices and resources.
 
     ```
 
-## Expose the Argo CD Server API/UI
+## Expose the ArgoCD Server API/UI
 
 1. In your **infra** repository, save the following manifest locally to `argocd-nodeport.yaml`
 
@@ -52,15 +52,15 @@ In our workshop, we will use Argo CD to deploy our microservices and resources.
     kubectl apply -f argocd-nodeport.yaml
     ```
 
-## Login to Argo CD
+## Login to ArgoCD
 
-1. Obtain the Argo CD password:
+1. Obtain the ArgoCD password:
 
     ```bash
     kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
     ```
 
-1. Use the Argo CD UDF Access Method to access the Argo CD UI and login with the `admin` user and the password you obtained in the previous step.
+1. Use the ArgoCD UDF Access Method to access the ArgoCD UI and login with the `admin` user and the password you obtained in the previous step.
 
 ## Next Steps
 

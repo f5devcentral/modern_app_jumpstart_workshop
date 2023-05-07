@@ -77,7 +77,7 @@ We need to deploy the new variant of the SPA application, so we can conditionall
 
     > **Note:** The result of these changes to the file will configure NGINX Ingress Controller to conditionally route all requests to the `/` location to the `spa-dark` upstream if a cookie named `app_version` with a value of `dark` is present in the request. Otherwise, the requests will be routed to the `spa` upstream.
 
-1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
 
     > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 

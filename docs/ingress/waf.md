@@ -68,7 +68,7 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
     ...
     ```
 
-1. Commit the copied and modified files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the copied and modified files to your local repository, then push them to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
 
     > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 

@@ -99,7 +99,7 @@ The development team has developed and created a container image of the recommen
 
     > **Note:** The result of these changes to the file will configure NGINX Ingress Controller to route roughly 90% of requests to the `/api/recommendations` path to the `recommendations` upstream, and the remaining 10% to the `recommendations-v2` upstream.
 
-1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. Argo CD will pick up the most recent changes, and deploy them for you.
+1. Commit the `manifests/brewz/virtual-server.yaml` and `manifests/brewz/app.yaml` files to your local repository, then push them to your remote repository. ArgoCD will pick up the most recent changes, and deploy them for you.
 
     > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 
@@ -118,7 +118,7 @@ The development team has developed and created a container image of the recommen
 
 ## Rollback the Deployment
 
-The DevOps and the application owners aren't willing to allow this error condition to continue, so it is decided to route all traffic back to the older version of the recommendations service so that the team can investigate offline without affecting customers. While Kubernetes and Argo CD both have rollback capabilities, we have made the decision to effectively revert the change so that all traffic is once again routed to the older version of the recommendations service.
+The DevOps and the application owners aren't willing to allow this error condition to continue, so it is decided to route all traffic back to the older version of the recommendations service so that the team can investigate offline without affecting customers. While Kubernetes and ArgoCD both have rollback capabilities, we have made the decision to effectively revert the change so that all traffic is once again routed to the older version of the recommendations service.
 
 1. In VSCode, open a terminal and run the following commands to revert your previous git commit:
 
@@ -133,7 +133,7 @@ The DevOps and the application owners aren't willing to allow this error conditi
     git push origin
     ```
 
-1. Argo CD will pick up the most recent changes, and deploy them for you. Check the brewz `VirtualServer` resource under the `brewz` application to check that the revert was successful.
+1. ArgoCD will pick up the most recent changes, and deploy them for you. Check the brewz `VirtualServer` resource under the `brewz` application to check that the revert was successful.
 
     > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 

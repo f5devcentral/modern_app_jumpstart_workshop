@@ -67,7 +67,7 @@ Next, we will create a `Policy` resource in Kubernetes to inspect and enforce th
 
 1. Push the changes to your remote repository.
 
-1. Argo CD will detect the changes to your repository, and will update the Brewz app deployment.
+1. ArgoCD will detect the changes to your repository, and will update the Brewz app deployment.
 
     > **Note:** ArgoCD does not *immediately* detect changes. By default, it checks the repository for changes every 3 minutes. You can click the **Refresh** button on the **brewz** application in ArgoCD to immediately check for updated repository contents. If any are detected, ArgoCD will initiate a sync.
 

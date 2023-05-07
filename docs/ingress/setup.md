@@ -111,7 +111,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
 
 # Fork Infrastructure Repository
 
-When practicing GitOps with Argo CD, it is a [good practice](https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/) to separate your application code from your infrastructure configuration into separate repositories. This will ensure that changes to either may occur in isolation without triggering a large-scale deployment.
+When practicing GitOps with ArgoCD, it is a [good practice](https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/) to separate your application code from your infrastructure configuration into separate repositories. This will ensure that changes to either may occur in isolation without triggering a large-scale deployment.
 
 1. Fork this secondary repository to your own GitHub account as you did earlier.
 
@@ -146,4 +146,4 @@ Now that you have forked the workshop infrastructure repository, you'll want to 
 
 ## Next Steps
 
-Next, we will [install Argo CD](argocd.md)
+Next, we will [install ArgoCD](argocd.md)

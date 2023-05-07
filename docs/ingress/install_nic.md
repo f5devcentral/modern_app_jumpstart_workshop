@@ -2,7 +2,7 @@
 
 For this step, we will pull the NGINX Plus Ingress Controller image from your private registry and deploy it into your K3s deployment.
 
-We will use Argo CD to deploy NGINX Ingress Controller for us. However, if you wanted to do this using the Helm CLI, you may use [this procedure](install_nic_helm.md) as a reference.
+We will use ArgoCD to deploy NGINX Ingress Controller for us. However, if you wanted to do this using the Helm CLI, you may use [this procedure](install_nic_helm.md) as a reference.
 
 Alternatively, if you wish to install the NGINX Ingress Controller from the NGINX private container registry, you can follow [this procedure](install_nic_nginx_registry.md) and skip the remainder of this document.
 
@@ -36,7 +36,7 @@ While you could leverage the PAT created in the build steps, the best practice i
     kubectl create secret docker-registry ghcr -n nginx-ingress --docker-server=ghcr.io --docker-username=${GITHUB_USER} --docker-password=${GITHUB_TOKEN}
     ```
 
-## Update Helm Values and Argo CD Application Manifest
+## Update Helm Values and ArgoCD Application Manifest
 
 Before you can deploy the NGINX Ingress Controller, you will need to modify the Helm chart values to match your environment.
 
@@ -96,7 +96,7 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
       create: true
     ```
 
-1. Save the file. Next, you will need to update the NGINX Plus Ingress Argo CD manifest to match your environment.  
+1. Save the file. Next, you will need to update the NGINX Plus Ingress ArgoCD manifest to match your environment.  
 
 1. Open the `manifests/nginx-ingress-subchart.yaml` file in your forked version of the **infra** repository.
 
@@ -140,9 +140,9 @@ Before you can deploy the NGINX Ingress Controller, you will need to modify the 
 
 1. Push the changes to your remote **infra** repository.
 
-## Install NGINX Plus Ingress Argo CD Application
+## Install NGINX Plus Ingress ArgoCD Application
 
-1. Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to Argo CD with the following command:
+1. Now that we have the base requirements ready, we can add the NGINX Plus Ingress application to ArgoCD with the following command:
 
     ```bash
     kubectl apply -f manifests/nginx-ingress-subchart.yaml

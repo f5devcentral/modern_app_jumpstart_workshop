@@ -1,10 +1,10 @@
 # Install Brewz with ArgoCD
 
-In this section, you will deploy the Brewz microservices application using Argo CD.
+In this section, you will deploy the Brewz microservices application using ArgoCD.
 
-## Update Argo CD Application Manifest
+## Update ArgoCD Application Manifest
 
-You will need to update the Brewz Argo CD manifest to match your environment.  
+You will need to update the Brewz ArgoCD manifest to match your environment.  
 
 1. Open the `manifests/brewz-subchart.yaml` file in your forked version of the **primary** repository.
 
@@ -47,24 +47,24 @@ You will need to update the Brewz Argo CD manifest to match your environment.
 
 ## Deploy the manifest
 
-1. To deploy the Brewz Argo CD application, run the following command:
+1. To deploy the Brewz ArgoCD application, run the following command:
 
     ```bash
     kubectl apply -f manifests/brewz-subchart.yaml
     ```
 
-## View the Argo CD Application
+## View the ArgoCD Application
 
-1. Open the Argo CD UDF Access Method under the K3s server
-  ![Argo CD Sync](../assets/argo_sync.jpg)
+1. Open the ArgoCD UDF Access Method under the K3s server
+  ![ArgoCD Sync](../assets/argo_sync.jpg)
 
-1. Click on the **brewz** application in the Argo CD UI and inspect the deployed services and policies.
+1. Click on the **brewz** application in the ArgoCD UI and inspect the deployed services and policies.
 
     > **Note:** You should see the individual services as well as the `rate-limit-policy` resource from an earlier lab in this workshop.
 
 ## Inspect the NGINX Ingress Controller Configuration
 
-Now that Argo CD has deployed out application let's take a look at the NGINX Ingress Controller Virtual Server resources.
+Now that ArgoCD has deployed out application let's take a look at the NGINX Ingress Controller Virtual Server resources.
 
 **Note:** Refer to the [VirtualServer docs](https://docs.nginx.com/nginx-ingress-controller/configuration/virtualserver-and-virtualserverroute-resources/) for more information.
 
