@@ -169,11 +169,8 @@ Now that ArgoCD has deployed out application let's take a look at the NGINX Ingr
         Path:              /images
         Upstreams:
         Name:     spa
-        Port:     80
+        Port:     8080
         Service:  spa
-        Name:     spa-dark
-        Port:     80
-        Service:  spa-dark
         Name:     api
         Port:     8000
         Service:  api
@@ -183,6 +180,9 @@ Now that ArgoCD has deployed out application let's take a look at the NGINX Ingr
         Name:     recommendations
         Port:     8001
         Service:  recommendations
+        Name:     spa-dark
+        Port:     8080
+        Service:  spa-dark
     Status:
       External Endpoints:
         Ip:     10.1.1.5
