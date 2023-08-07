@@ -25,7 +25,7 @@ For this lab we will leverage the Rancher K3s Kubernetes distribution.  Since we
 1. Run the following command on the K3s server:
 
     ```bash
-    curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --egress-selector-mode=disabled --bind-address 10.1.1.5 --kube-apiserver-arg=feature-gates=LegacyServiceAccountTokenNoAutoGeneration=false" sh -s -
+    curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --egress-selector-mode=disabled --bind-address 10.1.1.5 --kube-apiserver-arg=feature-gates=LegacyServiceAccountTokenNoAutoGeneration=false" INSTALL_K3S_VERSION=v1.25.12+k3s1 sh -s -
     ```
 
     > **Note:** The default behavior starting with Kubernetes version 1.24 is **not** to auto generate secret tokens when creating service accounts. The above installation includes the option to disable this change in behavior. More information about this change can be found [here](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#urgent-upgrade-notes:~:text=The%20LegacyServiceAccountTokenNoAutoGeneration%20feature%20gate%20is%20beta%2C%20and%20enabled%20by%20default.%20When,controller%20to%20populate%20with%20a%20service%20account%20token%20by%20following%20this).
