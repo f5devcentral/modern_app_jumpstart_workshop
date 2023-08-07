@@ -30,9 +30,9 @@ We need to deploy the new variant of the SPA application, so we can conditionall
         spec:
           containers:
             - name: spa-dark
-              image: ghcr.io/f5devcentral/spa-demo-app-spa-dark:sha-eb52ccf
+              image: ghcr.io/f5devcentral/spa-demo-app-spa-dark:sha-ec8dec7
               ports:
-                - containerPort: 80
+                - containerPort: 8080
     ---
     apiVersion: v1
     kind: Service
@@ -40,8 +40,8 @@ We need to deploy the new variant of the SPA application, so we can conditionall
       name: spa-dark
     spec:
       ports:
-        - port: 80
-          targetPort: 80
+        - port: 8080
+          targetPort: 8080
           protocol: TCP
           name: http
       selector:
@@ -56,7 +56,7 @@ We need to deploy the new variant of the SPA application, so we can conditionall
     ```yaml
         - name: spa-dark
           service: spa-dark
-          port: 80
+          port: 8080
     ```
 
 1. Modify the existing `/` path in the `routes` section of the file so it looks like this and save it:

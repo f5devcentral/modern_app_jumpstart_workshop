@@ -31,7 +31,7 @@ The goal of this refactoring is to make changes to the deployment architecture w
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
         - name: api
           service: api
           port: 8000
