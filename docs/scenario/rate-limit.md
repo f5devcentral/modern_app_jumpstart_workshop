@@ -43,7 +43,7 @@ Currently, there is no limitation on the rate that clients may query the product
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
         - name: api
           service: api
           port: 8000

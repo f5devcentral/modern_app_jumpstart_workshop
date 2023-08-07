@@ -63,7 +63,7 @@ We will deploy the NAP WAF policy that is referencing the OpenAPI spec that the 
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
 
     ...
     ```

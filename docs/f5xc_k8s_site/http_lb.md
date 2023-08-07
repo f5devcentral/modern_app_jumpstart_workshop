@@ -30,7 +30,7 @@ Use the following settings:
     - Port: 8001
   - spa:
     - Service Name: spa.default
-    - Port: 80
+    - Port: 8080
 - Site: the site you created in the previous step
 - Select Network on the site: Outside Interface
 

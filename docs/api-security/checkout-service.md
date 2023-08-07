@@ -30,7 +30,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
         spec:
           containers:
             - name: checkout
-              image: ghcr.io/f5devcentral/spa-demo-app-checkout:sha-eb52ccf
+              image: ghcr.io/f5devcentral/spa-demo-app-checkout:sha-ec8dec7
               ports:
                 - containerPort: 8003
     ---
@@ -84,7 +84,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
         - name: api
           service: api
           port: 8000
@@ -102,7 +102,7 @@ First, we need to modify our existing Brewz manifests to add a `Deployment` reso
           port: 8001
         - name: spa-dark
           service: spa-dark
-          port: 80
+          port: 8080
         - name: checkout
           service: checkout
           port: 8003

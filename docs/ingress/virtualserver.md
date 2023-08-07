@@ -25,7 +25,7 @@ In the Brewz `virtual-server.yaml` manifest, the *spa* and *api* services levera
   upstreams:
     - name: spa
       service: spa
-      port: 80
+      port: 8080
     - name: api
       service: api
       port: 8000
@@ -75,7 +75,7 @@ In the Brewz `virtual-server.yaml` manifest, we define a very simple upstream co
   upstreams:
     - name: spa
       service: spa
-      port: 80
+      port: 8080
     - name: api
       service: api
       port: 8000
@@ -89,7 +89,7 @@ While this configuration meets our requirements for a lab, in a production envir
   upstreams:
     - name: spa
       service: spa
-      port: 80
+      port: 8080
     - name: api
       service: api
       port: 8000
@@ -116,7 +116,7 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
         - name: api
           service: api
           port: 8000
@@ -134,7 +134,7 @@ One of the advantages the NGINX Plus Ingress Controller provides is the ability 
           port: 8001
         - name: spa-dark
           service: spa-dark
-          port: 80
+          port: 8080
       routes:
         - path: /
           matches:
@@ -205,7 +205,7 @@ While the Brewz developers were able to break their monolith application into mi
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
         - name: api
           service: api
           port: 8000
@@ -223,7 +223,7 @@ While the Brewz developers were able to break their monolith application into mi
           port: 8001
         - name: spa-dark
           service: spa-dark
-          port: 80
+          port: 8080
       routes:
         - path: /
           matches:
@@ -361,7 +361,7 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
       upstreams:
         - name: spa
           service: spa
-          port: 80
+          port: 8080
         - name: api
           service: api
           port: 8000
@@ -379,7 +379,7 @@ The final step is to update our Brewz VirtualServer resource to leverage the new
           port: 8001
         - name: spa-dark
           service: spa-dark
-          port: 80
+          port: 8080
       routes:
         - path: /
           matches:
