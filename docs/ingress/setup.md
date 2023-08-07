@@ -106,7 +106,7 @@ Now that we have K3s up and running and a dedicated service account for UDF we n
 
     ```shell
     NAME   STATUS   ROLES                  AGE   VERSION
-    k3s    Ready    control-plane,master   6m   v1.24.3+k3s1
+    k3s    Ready    control-plane,master   6m    v1.25.12+k3s1
     ```
 
 # Fork Infrastructure Repository
